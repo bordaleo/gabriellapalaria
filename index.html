@@ -73,14 +73,21 @@
 
   .gallery {
     display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
-    gap: 20px;
+    grid-template-columns: 1fr;
+    gap: 30px;
     margin-bottom: 40px;
+  }
+
+  .gallery-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   .gallery img, .gallery video {
     width: 100%;
-    height: 200px;
+    max-width: 600px;
+    height: 300px;
     object-fit: cover;
     border-radius: 15px;
     box-shadow: 0 8px 25px rgba(180, 130, 255, 0.7);
@@ -94,9 +101,9 @@
 
   .text-block {
     text-align: center;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     color: #f0e6ff;
-    margin: 30px 0;
+    margin-top: 10px;
     text-shadow: 0 0 8px rgba(0,0,0,0.6);
   }
 
@@ -123,6 +130,7 @@
     h1 { font-size: 3rem; }
     .counter { font-size: 2rem; }
     .message { font-size: 1.1rem; }
+    .gallery img, .gallery video { height: 200px; }
   }
 </style>
 </head>
@@ -137,69 +145,61 @@
       Você é tudo e tudo. Eu te amo, minha gata <3
     </p>
 
-    <!-- BLOCO 1 -->
+    <!-- FOTOS COM TEXTO ABAIXO -->
     <div class="gallery">
-      <img src="foto1.jpg" alt="Momento 1" />
-      <img src="foto2.jpg" alt="Momento 2" />
-      <img src="foto3.jpg" alt="Momento 3" />
-      <img src="foto4.jpg" alt="Momento 4" />
-    </div>
-    <div class="text-block">Esses foram os primeiros momentos que nunca vou esquecer 💜</div>
+      <div class="gallery-item">
+        <img src="foto1.jpg" alt="Momento 1" />
+        <div class="text-block">Esse dia foi inesquecível 💜</div>
+      </div>
 
-    <!-- BLOCO 2 -->
-    <div class="gallery">
-      <img src="foto5.jpg" alt="Momento 5" />
-      <img src="foto6.jpg" alt="Momento 6" />
-      <img src="foto7.jpg" alt="Momento 7" />
-      <img src="foto8.jpg" alt="Momento 8" />
-    </div>
-    <div class="text-block">Cada sorriso seu ilumina minha vida 💜</div>
+      <div class="gallery-item">
+        <img src="foto2.jpg" alt="Momento 2" />
+        <div class="text-block">Seu sorriso é meu lugar favorito 💜</div>
+      </div>
 
-    <!-- BLOCO 3 -->
-    <div class="gallery">
-      <img src="foto9.jpg" alt="Momento 9" />
-      <img src="foto10.jpg" alt="Momento 10" />
-      <img src="foto11.jpg" alt="Momento 11" />
-      <img src="foto12.jpg" alt="Momento 12" />
-    </div>
-    <div class="text-block">Estar ao seu lado é tudo que eu sempre quis 💜</div>
+      <div class="gallery-item">
+        <img src="foto3.jpg" alt="Momento 3" />
+        <div class="text-block">A cada momento, me apaixono mais 💜</div>
+      </div>
 
-    <!-- BLOCO 4 -->
-    <div class="gallery">
-      <img src="foto13.jpg" alt="Momento 13" />
-      <img src="foto14.jpg" alt="Momento 14" />
-      <img src="foto15.jpg" alt="Momento 15" />
-      <img src="foto16.jpg" alt="Momento 16" />
-    </div>
-    <div class="text-block">Momentos simples se tornam mágicos contigo 💜</div>
+      <div class="gallery-item">
+        <img src="foto4.jpg" alt="Momento 4" />
+        <div class="text-block">Só você me faz tão feliz 💜</div>
+      </div>
 
-    <!-- BLOCO 5 -->
-    <div class="gallery">
-      <img src="foto17.jpg" alt="Momento 17" />
-      <img src="foto18.jpg" alt="Momento 18" />
-      <img src="foto19.jpg" alt="Momento 19" />
-      <img src="foto20.jpg" alt="Momento 20" />
-      <img src="foto21.jpg" alt="Momento 21" />
+      <!-- continue esse padrão para todas as fotos -->
     </div>
-    <div class="text-block">E ainda virão muitos capítulos da nossa história 💜</div>
 
     <!-- VÍDEOS -->
     <div class="gallery">
-      <video src="video1.mp4" controls></video>
-      <video src="video2.mp4" controls></video>
-      <video src="video3.mp4" controls></video>
-      <video src="video4.mp4" controls></video>
-      <video src="video5.mp4" controls></video>
+      <div class="gallery-item">
+        <video src="video1.mp4" controls></video>
+        <div class="text-block">Um pedacinho da nossa história 💜</div>
+      </div>
+      <div class="gallery-item">
+        <video src="video2.mp4" controls></video>
+        <div class="text-block">Revivendo esses momentos é mágico 💜</div>
+      </div>
+      <div class="gallery-item">
+        <video src="video3.mp4" controls></video>
+        <div class="text-block">Cada segundo ao seu lado é precioso 💜</div>
+      </div>
+      <div class="gallery-item">
+        <video src="video4.mp4" controls></video>
+        <div class="text-block">Nosso amor é eterno 💜</div>
+      </div>
+      <div class="gallery-item">
+        <video src="video5.mp4" controls></video>
+        <div class="text-block">Prometo sempre estar com você 💜</div>
+      </div>
     </div>
-
-    <div class="text-block">Esses vídeos guardam lembranças que jamais vou esquecer 💜</div>
 
     <button onclick="mostrarMensagem()">Clique para ter uma surpresa 💜</button>
   </div>
 
 <script>
   // Data do início do relacionamento
-  const startDate = new Date('2021-06-15T00:00:00');
+  const startDate = new Date('2025-08-15T00:00:00');
 
   function atualizarContador() {
     const hoje = new Date();
