@@ -2,289 +2,195 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title> 💝</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Para Minha Gatinha 💜</title>
 <style>
-  body {
+  body, html {
     margin: 0;
-    font-family: 'Roboto', sans-serif;
-    background: linear-gradient(135deg, #ffdde1, #ee9ca7);
+    padding: 0;
+    font-family: 'Arial', sans-serif;
     min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    background: #ffe6f0;
+    color: #333;
   }
 
-  /* 🔑 Login */
-  #login {
-    background: #fff;
-    padding: 40px;
-    border-radius: 20px;
-    box-shadow: 0 8px 30px rgba(0,0,0,0.25);
-    text-align: center;
-    width: 350px;
-  }
-  #login h1 {
-    color: #d63384;
-    font-family: 'Parisienne', cursive;
-    font-size: 2.5rem;
-  }
-  .pin-input {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin: 20px 0;
-  }
-  .pin-input input {
-    width: 40px;
-    height: 50px;
-    text-align: center;
-    font-size: 1.5rem;
-    border: 2px solid #d63384;
-    border-radius: 10px;
-  }
-  button {
-    background: #d63384;
-    border: none;
-    padding: 12px 30px;
-    border-radius: 30px;
-    color: white;
-    font-size: 1.1rem;
-    cursor: pointer;
-    box-shadow: 0 6px 20px rgba(214,51,132,0.4);
-    transition: 0.3s;
-  }
-  button:hover { background: #a12261; transform: scale(1.05); }
-
-  /* 📌 Estrutura geral das páginas */
-  section { display: none; padding: 30px; text-align: center; width: 100%; }
-
-  /* 🏠 Tela principal */
-  .cards {
-    display: flex;
-    gap: 20px;
-    justify-content: center;
-    margin-top: 30px;
-    flex-wrap: wrap;
-  }
-  .card {
-    background: white;
-    border-radius: 18px;
-    padding: 30px;
-    width: 250px;
-    text-align: center;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-    transition: transform 0.3s;
-    cursor: pointer;
-  }
-  .card:hover { transform: scale(1.05); }
-  .card h3 { margin: 0; color: #d63384; }
-
-  .back-btn {
-    margin-top: 20px;
-    display: inline-block;
-    background: #d63384;
-    padding: 10px 20px;
-    color: white;
-    border-radius: 20px;
-    cursor: pointer;
-    text-decoration: none;
-  }
-
-  /* 🎞️ Momentos */
-  .gallery {
+  /* ----------- TELA DE LOGIN ----------- */
+  #loginPage {
     display: flex;
     flex-direction: column;
-    gap: 30px;
-    max-width: 700px;
-    margin: 0 auto;
-  }
-  .gallery-item {
-    background: white;
-    padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0 6px 15px rgba(0,0,0,0.15);
-  }
-  .gallery-item img, .gallery-item video {
-    width: 100%;
-    border-radius: 12px;
-    margin-bottom: 10px;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+    background: linear-gradient(145deg, #ffb6c1, #ffcce0);
   }
 
-  /* 📅 Calendário */
-  #calendario-container {
-    background: white;
-    padding: 30px;
-    border-radius: 20px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-    display: inline-block;
-  }
-  #contador {
-    font-size: 1.3rem;
+  #loginPage h1 {
+    font-size: 2.5rem;
     color: #d63384;
-    margin-top: 15px;
+    margin-bottom: 15px;
   }
 
-  /* 💌 Cartinha */
-  .carta {
-    position: relative;
-    width: 300px;
-    height: 200px;
-    margin: 40px auto;
-    perspective: 1000px;
+  #loginPage img {
+    width: 120px;
+    margin-bottom: 20px;
   }
-  .carta-inner {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: #fff0f6;
-    border: 2px solid #d63384;
+
+  #passwordDisplay {
+    font-size: 2rem;
+    letter-spacing: 10px;
+    margin-bottom: 20px;
+    color: #444;
+  }
+
+  .keypad {
+    display: grid;
+    grid-template-columns: repeat(3, 80px);
+    gap: 15px;
+  }
+
+  .keypad button {
+    font-size: 1.5rem;
+    padding: 15px;
     border-radius: 12px;
-    padding: 20px;
-    transform-style: preserve-3d;
-    transform: rotateX(-90deg);
-    transition: transform 1s;
-  }
-  .carta.open .carta-inner {
-    transform: rotateX(0);
-  }
-  .carta-inner p {
-    color: #333;
-    font-size: 1.1rem;
-  }
-  .open-btn {
-    margin-top: 20px;
-    background: #d63384;
+    border: none;
+    background: #ff80b3;
     color: white;
-    padding: 10px 25px;
-    border-radius: 25px;
     cursor: pointer;
+    transition: 0.2s;
+  }
+
+  .keypad button:hover {
+    background: #ff4da6;
+  }
+
+  /* ----------- PÁGINA PRINCIPAL ----------- */
+  #mainPage {
+    display: none;
+    padding: 30px;
+    background: linear-gradient(120deg, #f8e1ff, #ffe6f9);
+    min-height: 100vh;
+  }
+
+  h2 {
+    text-align: center;
+    font-size: 2rem;
+    color: #8c52ff;
+    margin-bottom: 30px;
+  }
+
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+    gap: 25px;
+  }
+
+  .card {
+    background: white;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+    text-align: center;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+  }
+
+  .card:hover {
+    transform: scale(1.05);
+  }
+
+  .card h3 {
+    color: #d63384;
+    margin-bottom: 15px;
   }
 </style>
 </head>
 <body>
 
-<!-- 🔑 Tela inicial -->
-<section id="login">
-  <h1>Nosso Segredinho 💝</h1>
-  <p>Digite a senha para entrar:</p>
-  <div class="pin-input">
-    <input type="password" maxlength="1">
-    <input type="password" maxlength="1">
-    <input type="password" maxlength="1">
-    <input type="password" maxlength="1">
-    <input type="password" maxlength="1">
-    <input type="password" maxlength="1">
+  <!-- Página de Login -->
+  <div id="loginPage">
+    <img src="https://cdn-icons-png.flaticon.com/512/747/747376.png" alt="Lacinho">
+    <h1>Bem-vinda 💕</h1>
+    <p>Digite a senha para continuar</p>
+    <div id="passwordDisplay">••••••</div>
+    <div class="keypad">
+      <button onclick="enterDigit('1')">1</button>
+      <button onclick="enterDigit('2')">2</button>
+      <button onclick="enterDigit('3')">3</button>
+      <button onclick="enterDigit('4')">4</button>
+      <button onclick="enterDigit('5')">5</button>
+      <button onclick="enterDigit('6')">6</button>
+      <button onclick="enterDigit('7')">7</button>
+      <button onclick="enterDigit('8')">8</button>
+      <button onclick="enterDigit('9')">9</button>
+      <button onclick="clearPassword()">⌫</button>
+      <button onclick="enterDigit('0')">0</button>
+      <button onclick="checkPassword()">✔</button>
+    </div>
   </div>
-  <button onclick="checkPassword()">Entrar</button>
-</section>
 
-<!-- 🏠 Tela principal -->
-<section id="main">
-  <h2>Bem-vinda ao nosso cantinho 💜</h2>
-  <div class="cards">
-    <div class="card" onclick="showPage('momentos')">
-      <h3>Nossos Momentos 📸</h3>
-    </div>
-    <div class="card" onclick="showPage('calendario')">
-      <h3>Calendário do Amor ⏳</h3>
-    </div>
-    <div class="card" onclick="showPage('carta')">
-      <h3>Cartinha do Amor 💌</h3>
-    </div>
-  </div>
-</section>
+  <!-- Página Principal -->
+  <div id="mainPage">
+    <h2>Nosso Cantinho 💜</h2>
+    <div class="cards">
 
-<!-- 🎞️ Momentos -->
-<section id="momentos">
-  <h2>Nossos Momentos 📸</h2>
-  <div class="gallery">
-    <!-- Exemplo (repete até 20 fotos + 5 vídeos) -->
-    <div class="gallery-item">
-      <img src="foto1.jpg" alt="Foto 1">
-      <p>Texto sobre esse momento 💕</p>
-    </div>
-    <div class="gallery-item">
-      <video controls>
-        <source src="video1.mp4" type="video/mp4">
-      </video>
-      <p>Texto sobre esse vídeo 💕</p>
-    </div>
-  </div>
-  <div class="back-btn" onclick="showPage('main')">⬅ Voltar</div>
-</section>
+      <!-- Caixa 1 - Momentos -->
+      <div class="card" onclick="abrirPagina('momentos.html')">
+        <h3>Nossos Momentos 📸</h3>
+        <p>Clique para ver nossas fotos e vídeos 💕</p>
+      </div>
 
-<!-- 📅 Calendário -->
-<section id="calendario">
-  <h2>Calendário do Amor ❤️</h2>
-  <div id="calendario-container">
-    <h3>Desde 15 de Agosto de 2025</h3>
-    <div id="contador"></div>
-  </div>
-  <div class="back-btn" onclick="showPage('main')">⬅ Voltar</div>
-</section>
+      <!-- Caixa 2 - Calendário do Amor -->
+      <div class="card" onclick="abrirPagina('calendario.html')">
+        <h3>Calendário do Amor ⏳</h3>
+        <p>Clique para ver o tempo que estamos juntos 💜</p>
+      </div>
 
-<!-- 💌 Cartinha -->
-<section id="carta">
-  <h2>Cartinha do Amor 💌</h2>
-  <div class="carta" id="cartaBox">
-    <div class="carta-inner">
-      <p>Aqui você pode escrever sua mensagem de amor 💕</p>
+      <!-- Caixa 3 - Cartinha -->
+      <div class="card" onclick="abrirPagina('cartinha.html')">
+        <h3>Cartinha do Amor 💌</h3>
+        <p>Clique para abrir a cartinha especial 💖</p>
+      </div>
+
     </div>
   </div>
-  <button class="open-btn" onclick="abrirCarta()">Abrir Cartinha</button>
-  <div class="back-btn" onclick="showPage('main')">⬅ Voltar</div>
-</section>
 
 <script>
   const senhaCorreta = "150825";
+  let senhaDigitada = "";
+
+  function enterDigit(num) {
+    if (senhaDigitada.length < senhaCorreta.length) {
+      senhaDigitada += num;
+      atualizarDisplay();
+    }
+  }
+
+  function clearPassword() {
+    senhaDigitada = senhaDigitada.slice(0, -1);
+    atualizarDisplay();
+  }
+
+  function atualizarDisplay() {
+    const display = document.getElementById("passwordDisplay");
+    display.textContent = senhaDigitada.padEnd(senhaCorreta.length, "•");
+  }
 
   function checkPassword() {
-    const inputs = document.querySelectorAll(".pin-input input");
-    let senha = "";
-    inputs.forEach(inp => senha += inp.value);
-    if(senha === senhaCorreta){
-      showPage("main");
+    if (senhaDigitada === senhaCorreta) {
+      document.getElementById("loginPage").style.display = "none";
+      document.getElementById("mainPage").style.display = "block";
     } else {
-      alert("Senha incorreta 😢");
+      alert("Senha incorreta! 💔");
+      senhaDigitada = "";
+      atualizarDisplay();
     }
   }
 
-  function showPage(pageId){
-    document.querySelectorAll("section").forEach(sec => sec.style.display = "none");
-    document.getElementById(pageId).style.display = "block";
+  function abrirPagina(pagina) {
+    window.open(pagina, "_blank"); 
   }
-
-  // ⏳ Contador
-  function atualizarContador(){
-    const inicio = new Date("2025-08-15T00:00:00");
-    const agora = new Date();
-    const diff = agora - inicio;
-
-    if(diff < 0){
-      document.getElementById("contador").innerText = "Ainda não chegou 💕";
-      return;
-    }
-
-    const dias = Math.floor(diff / (1000*60*60*24));
-    const horas = Math.floor((diff / (1000*60*60)) % 24);
-    const minutos = Math.floor((diff / (1000*60)) % 60);
-    const segundos = Math.floor((diff / 1000) % 60);
-
-    document.getElementById("contador").innerText =
-      `${dias} dias, ${horas}h ${minutos}m ${segundos}s juntos 💝`;
-  }
-  setInterval(atualizarContador, 1000);
-
-  // 💌 Abrir carta
-  function abrirCarta(){
-    document.getElementById("cartaBox").classList.toggle("open");
-  }
-
-  // Começa na tela de login
-  showPage("login");
 </script>
 
 </body>
 </html>
-
