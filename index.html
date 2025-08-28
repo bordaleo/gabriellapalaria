@@ -3,136 +3,120 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Minha Declaração de Amor</title>
+  <title>Para Minha Amada - Nosso Tempo Juntos</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&family=Parisienne&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto:wght@400;700&display=swap');
 
-    * {
-      box-sizing: border-box;
-    }
-
-    body, html {
+    body {
       margin: 0;
-      padding: 0;
-      height: 100%;
-      font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      background: linear-gradient(135deg, #fceabb, #f8b500);
+      font-family: 'Roboto', sans-serif;
       display: flex;
       justify-content: center;
       align-items: center;
-      color: #333;
-      overflow-x: hidden;
-    }
-
-    .card {
-      background: white;
-      border-radius: 25px;
-      box-shadow: 0 15px 35px rgba(0,0,0,0.2);
-      max-width: 450px;
-      width: 90%;
-      padding: 40px 35px;
+      min-height: 100vh;
+      color: #4a2c2a;
       text-align: center;
-      animation: fadeIn 1.5s ease forwards;
-      opacity: 0;
+      padding: 20px;
     }
 
-    @keyframes fadeIn {
-      to {
-        opacity: 1;
-      }
+    .container {
+      background: #fff8f0;
+      padding: 40px 30px;
+      border-radius: 25px;
+      box-shadow: 0 12px 40px rgba(255, 181, 0, 0.3);
+      max-width: 400px;
+      width: 100%;
+      position: relative;
     }
 
     h1 {
-      font-family: 'Parisienne', cursive;
-      font-size: 3.8rem;
-      color: #d94f4f;
+      font-family: 'Pacifico', cursive;
+      font-size: 3rem;
       margin-bottom: 10px;
-      letter-spacing: 1.2px;
-    }
-
-    .heart {
-      color: #d94f4f;
-      font-size: 2.8rem;
-      margin-bottom: 25px;
-      animation: pulse 2s infinite ease-in-out;
-    }
-
-    @keyframes pulse {
-      0%, 100% {
-        transform: scale(1);
-        opacity: 1;
-      }
-      50% {
-        transform: scale(1.15);
-        opacity: 0.7;
-      }
-    }
-
-    p {
-      font-size: 1.2rem;
-      line-height: 1.6;
-      margin-bottom: 30px;
-      color: #555;
-    }
-
-    button {
-      background: #d94f4f;
-      border: none;
-      padding: 14px 30px;
-      color: white;
-      font-size: 1.1rem;
-      border-radius: 30px;
-      cursor: pointer;
-      box-shadow: 0 6px 20px rgba(217,79,79,0.4);
-      transition: background 0.3s ease, transform 0.15s ease;
-      user-select: none;
-    }
-    button:hover {
-      background: #b73f3f;
-      transform: scale(1.05);
+      color: #d2691e;
     }
 
     .photo {
-      border-radius: 15px;
       width: 100%;
-      max-height: 250px;
-      object-fit: cover;
+      border-radius: 20px;
+      box-shadow: 0 8px 25px rgba(210,105,30,0.4);
       margin-bottom: 25px;
-      box-shadow: 0 12px 30px rgba(217,79,79,0.25);
+      object-fit: cover;
+      max-height: 280px;
       transition: transform 0.3s ease;
     }
     .photo:hover {
       transform: scale(1.05);
     }
 
-    @media (max-width: 500px) {
-      h1 {
-        font-size: 3rem;
-      }
-      p {
-        font-size: 1rem;
-      }
+    p.message {
+      font-size: 1.15rem;
+      margin-bottom: 25px;
+      line-height: 1.5;
+      color: #6e3e1a;
     }
+
+    .counter {
+      font-weight: 700;
+      font-size: 2.5rem;
+      color: #b45400;
+      margin-bottom: 25px;
+      letter-spacing: 2px;
+    }
+
+    button {
+      background: #d2691e;
+      color: white;
+      border: none;
+      padding: 14px 28px;
+      border-radius: 30px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      box-shadow: 0 6px 20px rgba(210,105,30,0.5);
+      transition: background 0.3s ease, transform 0.2s ease;
+      user-select: none;
+    }
+    button:hover {
+      background: #a85100;
+      transform: scale(1.05);
+    }
+
   </style>
 </head>
 <body>
-  <div class="card">
-    <h1>Minha Amada <span class="heart">❤️</span></h1>
-    <img
+  <div class="container">
+    <h1>Para Minha Amada</h1>
+    <img 
+      src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80" 
+      alt="Nosso amor" 
       class="photo"
-      src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=600&q=80"
-      alt="Foto especial"
     />
-    <p>
-      Cada momento contigo é mágico e inesquecível. Obrigado por preencher minha vida com alegria, amor e inspiração. Você é meu porto seguro, minha razão de sorrir todos os dias.
+    <p class="message">
+      Cada dia ao seu lado é um presente que não tem preço. Obrigado por ser minha luz e minha alegria.
     </p>
-    <button onclick="mostrarMensagem()">Clique para ver meu segredo</button>
+    <div class="counter" id="daysCount">0 dias</div>
+    <button onclick="mostrarMensagem()">Clique para surpresa ❤️</button>
   </div>
 
   <script>
-    function mostrarMensagem() {
-      alert("Eu te amo mais do que as palavras podem expressar. Para sempre, só você no meu coração.");
+    // Ajuste essa data para o dia que vocês começaram o relacionamento
+    const startDate = new Date('2021-06-15T00:00:00');
+
+    function atualizarContador() {
+      const hoje = new Date();
+      const diffTime = hoje - startDate;
+      const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+      const contador = document.getElementById('daysCount');
+      contador.textContent = diffDays + (diffDays === 1 ? ' dia' : ' dias');
     }
+
+    function mostrarMensagem() {
+      alert("Eu te amo mais que tudo neste mundo. Obrigado por ser minha melhor metade.");
+    }
+
+    atualizarContador();
+    setInterval(atualizarContador, 1000 * 60 * 60 * 24); // atualiza a cada dia
   </script>
 </body>
 </html>
