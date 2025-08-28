@@ -1,205 +1,265 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Gabriella Palaria 💜</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Para Minha Gatinha 💜</title>
 <style>
   body, html {
     margin: 0;
     padding: 0;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Arial', sans-serif;
     min-height: 100vh;
-    color: #eee;
-    position: relative;
-    overflow-x: hidden;
+    background: #ffe6f0;
+    color: #333;
   }
 
-  body::before {
-    content: "";
-    position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background-image: url('us.jpg'); /* Coloque sua foto de fundo */
-    background-size: cover;
-    background-position: center;
-    filter: brightness(0.35);
-    z-index: -1;
-  }
-
-  .container {
-    max-width: 900px;
-    margin: auto;
-    padding: 40px 20px;
-    background: rgba(75, 0, 130, 0.5); 
-    border-radius: 20px;
-    box-shadow: 0 0 40px rgba(130, 0, 255, 0.7);
-  }
-
-  h1 {
-    font-family: 'Parisienne', cursive;
-    font-size: 4rem;
-    text-align: center;
-    margin-bottom: 5px;
-    color: #d9b3ff;
-    text-shadow: 0 0 8px rgba(255,255,255,0.6);
-  }
-
-  .subtitle {
-    text-align: center;
-    font-size: 1.3rem;
-    margin-bottom: 30px;
-    color: #cbb9ffcc;
-  }
-
-  .counter {
-    font-weight: 700;
-    font-size: 2.8rem;
-    text-align: center;
-    margin-bottom: 50px;
-    color: #b59fff;
-    letter-spacing: 2px;
-    text-shadow: 0 0 10px #bb99ffaa;
-  }
-
-  .message {
-    max-width: 600px;
-    margin: 0 auto 40px;
-    font-size: 1.3rem;
-    line-height: 1.6;
-    text-align: center;
-    color: #ddd;
-    text-shadow: 0 0 6px #5e3a9b88;
-  }
-
-  .gallery {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 30px;
-    margin-bottom: 40px;
-  }
-
-  .gallery-item {
+  /* ----------- TELA DE LOGIN ----------- */
+  #loginPage {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
-  }
-
-  .gallery img, .gallery video {
-    width: 100%;
-    max-width: 600px;
-    height: 300px;
-    object-fit: cover;
-    border-radius: 15px;
-    box-shadow: 0 8px 25px rgba(180, 130, 255, 0.7);
-    cursor: pointer;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-  .gallery img:hover, .gallery video:hover {
-    transform: scale(1.05);
-    box-shadow: 0 15px 40px rgba(180, 140, 255, 0.9);
-  }
-
-  .text-block {
+    height: 100vh;
     text-align: center;
-    font-size: 1.1rem;
-    color: #f0e6ff;
-    margin-top: 10px;
-    text-shadow: 0 0 8px rgba(0,0,0,0.6);
+    background: linear-gradient(145deg, #ffb6c1, #ffcce0);
   }
 
-  button {
-    display: block;
-    margin: 0 auto 40px;
+  #loginPage h1 {
+    font-size: 2.5rem;
+    color: #d63384;
+    margin-bottom: 15px;
+  }
+
+  #loginPage img {
+    width: 120px;
+    margin-bottom: 20px;
+  }
+
+  #passwordDisplay {
+    font-size: 2rem;
+    letter-spacing: 10px;
+    margin-bottom: 20px;
+    color: #444;
+  }
+
+  .keypad {
+    display: grid;
+    grid-template-columns: repeat(3, 80px);
+    gap: 15px;
+  }
+
+  .keypad button {
+    font-size: 1.5rem;
+    padding: 15px;
+    border-radius: 12px;
+    border: none;
+    background: #ff80b3;
+    color: white;
+    cursor: pointer;
+    transition: 0.2s;
+  }
+
+  .keypad button:hover {
+    background: #ff4da6;
+  }
+
+  /* ----------- PÁGINA PRINCIPAL ----------- */
+  #mainPage {
+    display: none;
+    padding: 30px;
+    background: linear-gradient(120deg, #f8e1ff, #ffe6f9);
+    min-height: 100vh;
+  }
+
+  h2 {
+    text-align: center;
+    font-size: 2rem;
+    color: #8c52ff;
+    margin-bottom: 30px;
+  }
+
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+    gap: 25px;
+  }
+
+  .card {
+    background: white;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+    text-align: center;
+    transition: transform 0.3s ease;
+  }
+
+  .card:hover {
+    transform: scale(1.03);
+  }
+
+  .card h3 {
+    color: #d63384;
+    margin-bottom: 15px;
+  }
+
+  /* Momentos */
+  #momentos img {
+    width: 100%;
+    max-height: 200px;
+    border-radius: 15px;
+    object-fit: cover;
+    margin-bottom: 10px;
+  }
+
+  #momentos button {
     background: #8c52ff;
     color: white;
     border: none;
-    padding: 15px 40px;
-    font-size: 1.2rem;
-    border-radius: 30px;
+    padding: 10px 20px;
+    border-radius: 15px;
     cursor: pointer;
-    box-shadow: 0 8px 25px rgba(140, 82, 255, 0.6);
-    transition: background 0.3s ease, transform 0.2s ease;
-    user-select: none;
-  }
-  button:hover {
-    background: #6f3fcc;
-    transform: scale(1.05);
   }
 
-  @media (max-width: 500px) {
-    h1 { font-size: 3rem; }
-    .counter { font-size: 2rem; }
-    .message { font-size: 1.1rem; }
-    .gallery img, .gallery video { height: 200px; }
+  #momentos button:hover {
+    background: #6f3fcc;
+  }
+
+  /* Calendário */
+  #contador {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #444;
+    margin-top: 10px;
+  }
+
+  /* Cartinha */
+  #carta textarea {
+    width: 100%;
+    min-height: 150px;
+    border-radius: 12px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    resize: none;
+    font-size: 1rem;
   }
 </style>
 </head>
 <body>
 
-  <div class="container">
-    <h1>Gabriella Palaria 💜</h1>
-    <div class="subtitle">Cada dia contigo é mais lindo que o anterior</div>
-    <div class="counter" id="daysCount">0 dias</div>
-
-    <p class="message">
-      Você é tudo e tudo. Eu te amo, minha gata <3
-    </p>
-
-    <!-- FOTOS COM TEXTO ABAIXO -->
-    <div class="gallery">
-      <div class="gallery-item"><img src="foto1.jpg" alt="Momento 1" /><div class="text-block">Esse dia foi inesquecível 💜</div></div>
-      <div class="gallery-item"><img src="foto2.jpg" alt="Momento 2" /><div class="text-block">Seu sorriso é meu lugar favorito 💜</div></div>
-      <div class="gallery-item"><img src="foto3.jpg" alt="Momento 3" /><div class="text-block">A cada momento, me apaixono mais 💜</div></div>
-      <div class="gallery-item"><img src="foto4.jpg" alt="Momento 4" /><div class="text-block">Só você me faz tão feliz 💜</div></div>
-      <div class="gallery-item"><img src="foto5.jpg" alt="Momento 5" /><div class="text-block">Com você, tudo fica leve 💜</div></div>
-      <div class="gallery-item"><img src="foto6.jpg" alt="Momento 6" /><div class="text-block">Esse olhar me desmonta 💜</div></div>
-      <div class="gallery-item"><img src="foto7.jpg" alt="Momento 7" /><div class="text-block">Nosso amor é único 💜</div></div>
-      <div class="gallery-item"><img src="foto8.jpg" alt="Momento 8" /><div class="text-block">Cada abraço seu é um lar 💜</div></div>
-      <div class="gallery-item"><img src="foto9.jpg" alt="Momento 9" /><div class="text-block">Essa lembrança sempre me faz sorrir 💜</div></div>
-      <div class="gallery-item"><img src="foto10.jpg" alt="Momento 10" /><div class="text-block">Meu mundo gira em torno de você 💜</div></div>
-      <div class="gallery-item"><img src="foto11.jpg" alt="Momento 11" /><div class="text-block">Contigo, até o silêncio é lindo 💜</div></div>
-      <div class="gallery-item"><img src="foto12.jpg" alt="Momento 12" /><div class="text-block">Você é meu maior presente 💜</div></div>
-      <div class="gallery-item"><img src="foto13.jpg" alt="Momento 13" /><div class="text-block">O tempo voa quando estou com você 💜</div></div>
-      <div class="gallery-item"><img src="foto14.jpg" alt="Momento 14" /><div class="text-block">Você é meu sonho realizado 💜</div></div>
-      <div class="gallery-item"><img src="foto15.jpg" alt="Momento 15" /><div class="text-block">Não existe nada melhor que nós 💜</div></div>
-      <div class="gallery-item"><img src="foto16.jpg" alt="Momento 16" /><div class="text-block">Sempre juntos, sempre fortes 💜</div></div>
-      <div class="gallery-item"><img src="foto17.jpg" alt="Momento 17" /><div class="text-block">Você é meu destino 💜</div></div>
-      <div class="gallery-item"><img src="foto18.jpg" alt="Momento 18" /><div class="text-block">Momentos assim valem a eternidade 💜</div></div>
-      <div class="gallery-item"><img src="foto19.jpg" alt="Momento 19" /><div class="text-block">Meu coração é seu para sempre 💜</div></div>
-      <div class="gallery-item"><img src="foto20.jpg" alt="Momento 20" /><div class="text-block">Esse dia foi mágico 💜</div></div>
-      <div class="gallery-item"><img src="foto21.jpg" alt="Momento 21" /><div class="text-block">Nosso futuro será ainda mais lindo 💜</div></div>
+  <!-- Página de Login -->
+  <div id="loginPage">
+    <img src="https://cdn-icons-png.flaticon.com/512/747/747376.png" alt="Lacinho">
+    <h1>Bem-vinda 💕</h1>
+    <p>Digite a senha para continuar</p>
+    <div id="passwordDisplay">••••••</div>
+    <div class="keypad">
+      <button onclick="enterDigit('1')">1</button>
+      <button onclick="enterDigit('2')">2</button>
+      <button onclick="enterDigit('3')">3</button>
+      <button onclick="enterDigit('4')">4</button>
+      <button onclick="enterDigit('5')">5</button>
+      <button onclick="enterDigit('6')">6</button>
+      <button onclick="enterDigit('7')">7</button>
+      <button onclick="enterDigit('8')">8</button>
+      <button onclick="enterDigit('9')">9</button>
+      <button onclick="clearPassword()">⌫</button>
+      <button onclick="enterDigit('0')">0</button>
+      <button onclick="checkPassword()">✔</button>
     </div>
+  </div>
 
-    <!-- VÍDEOS -->
-    <div class="gallery">
-      <div class="gallery-item"><video src="video1.mp4" controls></video><div class="text-block">Um pedacinho da nossa história 💜</div></div>
-      <div class="gallery-item"><video src="video2.mp4" controls></video><div class="text-block">Revivendo esses momentos é mágico 💜</div></div>
-      <div class="gallery-item"><video src="video3.mp4" controls></video><div class="text-block">Cada segundo ao seu lado é precioso 💜</div></div>
-      <div class="gallery-item"><video src="video4.mp4" controls></video><div class="text-block">Nosso amor é eterno 💜</div></div>
-      <div class="gallery-item"><video src="video5.mp4" controls></video><div class="text-block">Prometo sempre estar com você 💜</div></div>
+  <!-- Página Principal -->
+  <div id="mainPage">
+    <h2>Nosso Cantinho 💜</h2>
+    <div class="cards">
+
+      <!-- Caixa 1 - Momentos -->
+      <div class="card" id="momentos">
+        <h3>Nossos Momentos 📸</h3>
+        <img id="fotoAtual" src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80" alt="Foto">
+        <button onclick="trocarFoto()">Próxima Foto</button>
+      </div>
+
+      <!-- Caixa 2 - Calendário do Amor -->
+      <div class="card" id="calendario">
+        <h3>Calendário do Amor ⏳</h3>
+        <p>Desde <b>15 de Agosto de 2025</b> estamos juntos!</p>
+        <div id="contador">Carregando...</div>
+      </div>
+
+      <!-- Caixa 3 - Cartinha -->
+      <div class="card" id="carta">
+        <h3>Cartinha do Amor 💌</h3>
+        <textarea placeholder="Escreva sua cartinha aqui..."></textarea>
+      </div>
+
     </div>
-
-    <button onclick="mostrarMensagem()">Clique para ter uma surpresa 💜</button>
   </div>
 
 <script>
-  // Data do início do relacionamento
-  const startDate = new Date('2025-08-15T00:00:00');
+  const senhaCorreta = "150825";
+  let senhaDigitada = "";
+
+  function enterDigit(num) {
+    if (senhaDigitada.length < senhaCorreta.length) {
+      senhaDigitada += num;
+      atualizarDisplay();
+    }
+  }
+
+  function clearPassword() {
+    senhaDigitada = senhaDigitada.slice(0, -1);
+    atualizarDisplay();
+  }
+
+  function atualizarDisplay() {
+    const display = document.getElementById("passwordDisplay");
+    display.textContent = senhaDigitada.padEnd(senhaCorreta.length, "•");
+  }
+
+  function checkPassword() {
+    if (senhaDigitada === senhaCorreta) {
+      document.getElementById("loginPage").style.display = "none";
+      document.getElementById("mainPage").style.display = "block";
+    } else {
+      alert("Senha incorreta! 💔");
+      senhaDigitada = "";
+      atualizarDisplay();
+    }
+  }
+
+  /* Momentos */
+  const fotos = [
+    "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80",
+    "https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=400&q=80",
+    "https://images.unsplash.com/photo-1504198453319-5ce911bafcde?auto=format&fit=crop&w=400&q=80"
+  ];
+  let fotoIndex = 0;
+
+  function trocarFoto() {
+    fotoIndex = (fotoIndex + 1) % fotos.length;
+    document.getElementById("fotoAtual").src = fotos[fotoIndex];
+  }
+
+  /* Calendário do Amor */
+  const startDate = new Date("2025-08-15T00:00:00");
 
   function atualizarContador() {
-    const hoje = new Date();
-    const diffTime = hoje - startDate;
-    const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
-    const contador = document.getElementById('daysCount');
-    contador.textContent = diffDays + (diffDays === 1 ? ' dia' : ' dias');
+    const agora = new Date();
+    const diff = agora - startDate;
+
+    const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const horas = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const minutos = Math.floor((diff / (1000 * 60)) % 60);
+    const segundos = Math.floor((diff / 1000) % 60);
+
+    document.getElementById("contador").textContent = 
+      `${dias} dias, ${horas} horas, ${minutos} minutos e ${segundos} segundos 💜`;
   }
 
-  function mostrarMensagem() {
-    alert("Eu te amo mais !! Para sempre, será você. 💜");
-  }
-
+  setInterval(atualizarContador, 1000);
   atualizarContador();
-  setInterval(atualizarContador, 1000 * 60 * 60 * 24);
 </script>
 
 </body>
