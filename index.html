@@ -6,23 +6,19 @@
 <title>Para Minha Gatinha 💜</title>
 <style>
   body, html {
-    margin: 0;
-    padding: 0;
+    margin: 0; padding: 0;
     font-family: 'Arial', sans-serif;
     min-height: 100vh;
     background: #ffe6f0;
     color: #333;
   }
 
-  /* ----------- TELA DE LOGIN ----------- */
+  section { display: none; padding: 30px; min-height: 100vh; }
+
+  /* LOGIN */
   #loginPage {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    text-align: center;
-    background: linear-gradient(145deg, #ffb6c1, #ffcce0);
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    height: 100vh; text-align: center; background: linear-gradient(145deg,#ffb6c1,#ffcce0);
   }
   #loginPage h1 { font-size: 2.5rem; color: #d63384; margin-bottom: 15px; }
   #loginPage img { width: 120px; margin-bottom: 20px; }
@@ -31,46 +27,43 @@
   .keypad button { font-size: 1.5rem; padding: 15px; border-radius: 12px; border: none; background: #ff80b3; color: white; cursor: pointer; transition: 0.2s; }
   .keypad button:hover { background: #ff4da6; }
 
-  /* ----------- PÁGINA PRINCIPAL ----------- */
-  section { display: none; padding: 30px; min-height: 100vh; }
-  #mainPage { display: none; background: linear-gradient(120deg, #f8e1ff, #ffe6f9); }
-  h2 { text-align: center; font-size: 2rem; color: #8c52ff; margin-bottom: 30px; }
-  .cards { display: grid; grid-template-columns: repeat(auto-fit,minmax(280px,1fr)); gap: 25px; }
-  .card { background: white; border-radius: 20px; padding: 20px; box-shadow: 0 6px 18px rgba(0,0,0,0.15); text-align: center; transition: transform 0.3s ease; cursor: pointer; }
-  .card:hover { transform: scale(1.05); }
-  .card h3 { color: #d63384; margin-bottom: 15px; }
+  /* MAIN PAGE */
+  #mainPage { display: none; background: linear-gradient(120deg,#f8e1ff,#ffe6f9); }
+  h2 { text-align:center; font-size:2rem; color:#8c52ff; margin-bottom:30px; }
+  .cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:25px; }
+  .card { background:white; border-radius:20px; padding:20px; box-shadow:0 6px 18px rgba(0,0,0,0.15); text-align:center; transition:transform 0.3s ease; cursor:pointer; }
+  .card:hover { transform:scale(1.05); }
+  .card h3 { color:#d63384; margin-bottom:15px; }
 
-  /* ----------- Momentos ----------- */
-  #momentosSection { display: none; }
-  .gallery { display: flex; flex-direction: column; gap: 30px; max-width: 700px; margin: 0 auto; }
-  .gallery-item { background: white; padding: 20px; border-radius: 15px; box-shadow: 0 6px 15px rgba(0,0,0,0.15); }
-  .gallery-item img, .gallery-item video { width: 100%; border-radius: 12px; margin-bottom: 10px; }
-  .back-btn { margin-top: 20px; display: inline-block; background: #d63384; padding: 10px 20px; color: white; border-radius: 20px; cursor: pointer; text-decoration: none; }
+  /* MOMENTOS */
+  #momentosSection { display:none; }
+  .gallery { display:flex; flex-direction:column; gap:30px; max-width:700px; margin:0 auto; }
+  .gallery-item { background:white; padding:20px; border-radius:15px; box-shadow:0 6px 15px rgba(0,0,0,0.15); }
+  .gallery-item img, .gallery-item video { width:100%; border-radius:12px; margin-bottom:10px; }
+  .gallery-item p { text-align:center; font-size:1rem; color:#d63384; }
+  .back-btn { margin-top:20px; display:inline-block; background:#d63384; padding:10px 20px; color:white; border-radius:20px; cursor:pointer; text-decoration:none; }
 
-  /* ----------- Calendário ----------- */
-  #calendarioSection { display: none; text-align: center; }
-  #contador { font-size: 1.3rem; font-weight: bold; color: #d63384; margin-top: 15px; }
-  table { margin: 20px auto; border-collapse: collapse; }
-  th, td { padding: 10px 15px; border: 1px solid #d63384; border-radius: 6px; }
-  th { background: #ffe6f0; color: #d63384; }
+  /* CONTADOR FOFO */
+  #contadorSection { display:none; text-align:center; }
+  #contadorBox { background:white; display:inline-block; padding:30px; border-radius:25px; box-shadow:0 6px 15px rgba(0,0,0,0.15); font-size:1.4rem; color:#d63384; margin-top:30px; }
+  #contadorBox span { font-weight:bold; }
 
-  /* ----------- Cartinha ----------- */
-  #cartaSection { display: none; text-align: center; }
-  .carta { position: relative; width: 300px; height: 200px; margin: 40px auto; perspective: 1000px; }
-  .carta-inner { position: absolute; width: 100%; height: 100%; background: #fff0f6; border: 2px solid #d63384; border-radius: 12px; padding: 20px; transform-style: preserve-3d; transform: rotateX(-90deg); transition: transform 1s; }
-  .carta.open .carta-inner { transform: rotateX(0); }
-  .carta-inner p { color: #333; font-size: 1.1rem; }
-  .open-btn { margin-top: 20px; background: #d63384; color: white; padding: 10px 25px; border-radius: 25px; cursor: pointer; }
-
+  /* CARTINHA REAL */
+  #cartaSection { display:none; text-align:center; }
+  .carta { position:relative; width:300px; height:200px; margin:50px auto; perspective:1000px; cursor:pointer; }
+  .carta-inner { position:absolute; width:100%; height:100%; background:#fff0f6; border:2px solid #d63384; border-radius:12px; padding:20px; transform-style:preserve-3d; transform:rotateX(-90deg); transition:transform 1s; display:flex; align-items:center; justify-content:center; text-align:center; }
+  .carta.open .carta-inner { transform:rotateX(0); }
+  .carta-inner p { color:#333; font-size:1.1rem; }
+  .open-btn { background:#d63384; color:white; padding:10px 25px; border-radius:25px; cursor:pointer; margin-bottom:20px; }
 </style>
 </head>
 <body>
 
-<!-- Login -->
+<!-- LOGIN -->
 <section id="loginPage">
   <img src="https://cdn-icons-png.flaticon.com/512/747/747376.png" alt="Lacinho">
   <h1>Bem-vinda 💕</h1>
-  <p>Digite a senha para continuar</p>
+  <p>DData especial para nós</p>
   <div id="passwordDisplay">••••••</div>
   <div class="keypad">
     <button onclick="enterDigit('1')">1</button>
@@ -88,63 +81,53 @@
   </div>
 </section>
 
-<!-- Página Principal -->
+<!-- MAIN PAGE -->
 <section id="mainPage">
   <h2>Nosso Cantinho 💜</h2>
   <div class="cards">
     <div class="card" onclick="showSection('momentosSection')"><h3>Nossos Momentos 📸</h3></div>
-    <div class="card" onclick="showSection('calendarioSection')"><h3>Calendário do Amor ⏳</h3></div>
+    <div class="card" onclick="showSection('contadorSection')"><h3>Calendário do Amor ⏳</h3></div>
     <div class="card" onclick="showSection('cartaSection')"><h3>Cartinha do Amor 💌</h3></div>
   </div>
 </section>
 
-<!-- Momentos -->
+<!-- MOMENTOS -->
 <section id="momentosSection">
   <h2>Nossos Momentos 📸</h2>
   <div class="gallery">
-    <!-- 20 fotos e 5 vídeos -->
-    <!-- Foto 1 -->
-    <div class="gallery-item">
-      <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80" alt="Foto 1">
-      <p>Texto sobre a foto 1 💕</p>
-    </div>
-    <!-- Foto 2 -->
-    <div class="gallery-item">
-      <img src="https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=400&q=80" alt="Foto 2">
-      <p>Texto sobre a foto 2 💕</p>
-    </div>
-    <!-- Vídeo 1 -->
-    <div class="gallery-item">
-      <video controls>
-        <source src="video1.mp4" type="video/mp4">
-      </video>
-      <p>Texto sobre o vídeo 1 💕</p>
-    </div>
+    <!-- Aqui vão as 20 fotos e 5 vídeos -->
+    <script>
+      const gallery = [];
+      for(let i=1;i<=20;i++){
+        gallery.push({type:'img', src:`https://picsum.photos/400/200?random=${i}`, text:`Texto da foto ${i} 💕`});
+      }
+      for(let i=1;i<=5;i++){
+        gallery.push({type:'video', src:`video${i}.mp4`, text:`Texto do vídeo ${i} 💕`});
+      }
+      gallery.forEach(item=>{
+        document.write('<div class="gallery-item">');
+        if(item.type==='img') document.write(`<img src="${item.src}" alt="Foto">`);
+        else document.write(`<video controls><source src="${item.src}" type="video/mp4"></video>`);
+        document.write(`<p>${item.text}</p></div>`);
+      });
+    </script>
   </div>
   <div class="back-btn" onclick="showSection('mainPage')">⬅ Voltar</div>
 </section>
 
-<!-- Calendário -->
-<section id="calendarioSection">
-  <h2>Calendário do Amor ❤️</h2>
-  <div id="contador"></div>
-  <table>
-    <tr><th>Dom</th><th>Seg</th><th>Ter</th><th>Qua</th><th>Qui</th><th>Sex</th><th>Sáb</th></tr>
-    <tr><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td></tr>
-    <tr><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td></tr>
-    <tr><td>15</td><td>16</td><td>17</td><td>18</td><td>19</td><td>20</td><td>21</td></tr>
-    <tr><td>22</td><td>23</td><td>24</td><td>25</td><td>26</td><td>27</td><td>28</td></tr>
-    <tr><td>29</td><td>30</td><td>31</td><td></td><td></td><td></td><td></td></tr>
-  </table>
+<!-- CONTADOR FOFO -->
+<section id="contadorSection">
+  <h2>Nosso Amor 💖</h2>
+  <div id="contadorBox">Carregando...</div>
   <div class="back-btn" onclick="showSection('mainPage')">⬅ Voltar</div>
 </section>
 
-<!-- Cartinha -->
+<!-- CARTINHA REAL -->
 <section id="cartaSection">
   <h2>Cartinha do Amor 💌</h2>
   <div class="carta" id="carta">
     <div class="carta-inner">
-      <p>Minha gatinha, eu te amo mais do que tudo neste mundo. Cada dia contigo é uma surpresa e alegria. 💜</p>
+      <p>Minha gatinha, eu te amo infinitamente 💜<br>Cada momento contigo é único e especial.<br>Para sempre, você e eu 💕</p>
     </div>
   </div>
   <div class="open-btn" onclick="document.getElementById('carta').classList.toggle('open')">Abrir/Fechar Cartinha</div>
@@ -155,7 +138,7 @@
   // ---------- LOGIN ----------
   const senhaCorreta = "150825";
   let senhaDigitada = "";
-  function enterDigit(num) { if(senhaDigitada.length<senhaCorreta.length){senhaDigitada+=num; atualizarDisplay();} }
+  function enterDigit(num){ if(senhaDigitada.length<senhaCorreta.length){senhaDigitada+=num; atualizarDisplay();} }
   function clearPassword(){ senhaDigitada = senhaDigitada.slice(0,-1); atualizarDisplay(); }
   function atualizarDisplay(){ document.getElementById("passwordDisplay").textContent = senhaDigitada.padEnd(senhaCorreta.length,"•"); }
   function checkPassword(){ 
@@ -169,25 +152,16 @@
     document.getElementById(sectionId).style.display='block';
   }
 
-  // ---------- Momentos ----------
-  const fotos = [
-    "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80",
-    "https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=400&q=80",
-    "https://images.unsplash.com/photo-1504198453319-5ce911bafcde?auto=format&fit=crop&w=400&q=80"
-  ];
-  let fotoIndex = 0;
-  function trocarFoto(){ fotoIndex=(fotoIndex+1)%fotos.length; document.getElementById("fotoAtual").src=fotos[fotoIndex]; }
-
-  // ---------- Calendário ----------
+  // ---------- CONTADOR FOFO ----------
   const startDate = new Date("2025-08-15T00:00:00");
   function atualizarContador(){
     const agora = new Date();
-    const diff = agora - startDate;
-    const dias = Math.floor(diff / (1000*60*60*24));
-    const horas = Math.floor((diff / (1000*60*60))%24);
+    const diff = agora-startDate;
+    const dias = Math.floor(diff/(1000*60*60*24));
+    const horas = Math.floor((diff/(1000*60*60))%24);
     const minutos = Math.floor((diff/(1000*60))%60);
     const segundos = Math.floor((diff/1000)%60);
-    document.getElementById("contador").textContent = `${dias} dias, ${horas}h ${minutos}m ${segundos}s 💜`;
+    document.getElementById("contadorBox").innerHTML = `Juntos há <span>${dias}</span> dias, <span>${horas}</span>h <span>${minutos}</span>m <span>${segundos}</span>s 💜`;
   }
   setInterval(atualizarContador,1000);
   atualizarContador();
