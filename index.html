@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Nosso Amor Roxo 💜</title>
+<title>Gabriella Palaria 💜</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Parisienne&family=Roboto:wght@400;700&display=swap');
 
@@ -11,15 +11,31 @@
     margin: 0;
     padding: 0;
     font-family: 'Roboto', sans-serif;
-    background: linear-gradient(135deg, #6a11cb, #2575fc);
-    color: #eee;
     min-height: 100vh;
+    color: #eee;
+    position: relative;
+    overflow-x: hidden;
+  }
+
+
+  body::before {
+    content: "";
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image: url('us.jpg');
+    background-size: cover;
+    background-position: center;
+    filter: brightness(0.35);
+    z-index: -1;
   }
 
   .container {
     max-width: 900px;
     margin: auto;
     padding: 40px 20px;
+    background: rgba(75, 0, 130, 0.5); /* Roxo translúcido para melhorar leitura */
+    border-radius: 20px;
+    box-shadow: 0 0 40px rgba(130, 0, 255, 0.7);
   }
 
   h1 {
@@ -58,7 +74,6 @@
     text-shadow: 0 0 6px #5e3a9b88;
   }
 
-  /* Grid de fotos */
   .gallery {
     display: grid;
     grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
@@ -71,13 +86,13 @@
     height: 150px;
     object-fit: cover;
     border-radius: 15px;
-    box-shadow: 0 8px 25px rgba(130, 90, 200, 0.5);
+    box-shadow: 0 8px 25px rgba(180, 130, 255, 0.7);
     cursor: pointer;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
   .gallery img:hover {
     transform: scale(1.05);
-    box-shadow: 0 15px 40px rgba(180, 140, 255, 0.8);
+    box-shadow: 0 15px 40px rgba(180, 140, 255, 0.9);
   }
 
   button {
@@ -115,16 +130,16 @@
 <body>
 
   <div class="container">
-    <h1>Nosso Amor Roxo 💜</h1>
+    <h1>Gabriella Palaria 💜</h1>
     <div class="subtitle">Cada dia contigo é mais lindo que o anterior</div>
     <div class="counter" id="daysCount">0 dias</div>
 
     <p class="message">
-      Você é minha inspiração e minha alegria. Obrigado por estar comigo nessa jornada incrível, 
-      transformando cada momento em uma doce lembrança.
+      Você é tudo e tudo. Eu te amo, minha gata <3
     </p>
 
     <div class="gallery">
+      <!-- Troque as URLs abaixo pelas suas fotos -->
       <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80" alt="Momento 1" />
       <img src="https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=400&q=80" alt="Momento 2" />
       <img src="https://images.unsplash.com/photo-1504198453319-5ce911bafcde?auto=format&fit=crop&w=400&q=80" alt="Momento 3" />
@@ -133,12 +148,12 @@
       <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=400&q=80" alt="Momento 6" />
     </div>
 
-    <button onclick="mostrarMensagem()">Clique para minha surpresa 💜</button>
+    <button onclick="mostrarMensagem()">Clique para ter uma surpresa 💜</button>
   </div>
 
 <script>
   // Ajuste aqui a data do início do relacionamento
-  const startDate = new Date('2025-08-15T00:00:00'); 
+  const startDate = new Date('2021-06-15T00:00:00');
 
   function atualizarContador() {
     const hoje = new Date();
@@ -149,7 +164,7 @@
   }
 
   function mostrarMensagem() {
-    alert("Eu te amo mais do que as palavras podem expressar. Para sempre, só você no meu coração.");
+    alert("Eu te amo mais !! Para sempre, será você.");
   }
 
   atualizarContador();
