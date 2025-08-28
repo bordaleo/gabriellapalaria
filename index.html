@@ -2,81 +2,81 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Para Minha Gatinha 💜</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nosso Cantinho 💜</title>
 <style>
   body, html {
     margin: 0;
     padding: 0;
-    font-family: 'Arial', sans-serif;
-    min-height: 100vh;
-    background: #ffe6f0;
-    color: #333;
-  }
-
-  /* ----------- TELA DE LOGIN ----------- */
-  #loginPage {
+    font-family: 'Roboto', sans-serif;
+    height: 100vh;
+    background: linear-gradient(135deg, #ffb6c1, #ffe4f0);
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    text-align: center;
-    background: linear-gradient(145deg, #ffb6c1, #ffcce0);
   }
 
-  #loginPage h1 {
+  /* Tela inicial */
+  #login {
+    text-align: center;
+    background: #fff0f6;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+    max-width: 350px;
+    width: 90%;
+  }
+  #login h1 {
+    font-family: 'Parisienne', cursive;
     font-size: 2.5rem;
     color: #d63384;
-    margin-bottom: 15px;
   }
-
-  #loginPage img {
-    width: 120px;
-    margin-bottom: 20px;
+  #login img {
+    width: 100px;
+    margin: 15px 0;
   }
-
-  #passwordDisplay {
-    font-size: 2rem;
-    letter-spacing: 10px;
-    margin-bottom: 20px;
-    color: #444;
+  .pin-input {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 20px 0;
   }
-
-  .keypad {
-    display: grid;
-    grid-template-columns: repeat(3, 80px);
-    gap: 15px;
-  }
-
-  .keypad button {
+  .pin-input input {
+    width: 50px;
+    height: 50px;
+    text-align: center;
     font-size: 1.5rem;
-    padding: 15px;
-    border-radius: 12px;
+    border-radius: 10px;
+    border: 2px solid #d63384;
+    outline: none;
+  }
+  button {
+    background: #d63384;
     border: none;
-    background: #ff80b3;
+    padding: 12px 25px;
+    border-radius: 30px;
     color: white;
+    font-size: 1.1rem;
     cursor: pointer;
-    transition: 0.2s;
+    box-shadow: 0 6px 20px rgba(214,51,132,0.4);
+    transition: 0.3s;
+  }
+  button:hover {
+    background: #a12261;
+    transform: scale(1.05);
   }
 
-  .keypad button:hover {
-    background: #ff4da6;
-  }
-
-  /* ----------- PÁGINA PRINCIPAL ----------- */
-  #mainPage {
+  /* Página principal */
+  #main {
     display: none;
     padding: 30px;
-    background: linear-gradient(120deg, #f8e1ff, #ffe6f9);
-    min-height: 100vh;
+    max-width: 1000px;
+    margin: auto;
   }
-
   h2 {
     text-align: center;
-    font-size: 2rem;
-    color: #8c52ff;
-    margin-bottom: 30px;
+    color: #6a0dad;
+    margin-bottom: 20px;
   }
 
   .cards {
@@ -87,177 +87,160 @@
 
   .card {
     background: white;
-    border-radius: 20px;
+    border-radius: 18px;
     padding: 20px;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.15);
     text-align: center;
-    transition: transform 0.3s ease;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    transition: transform 0.3s;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
   }
-
   .card:hover {
     transform: scale(1.03);
   }
-
   .card h3 {
+    margin: 0;
     color: #d63384;
-    margin-bottom: 15px;
   }
 
-  /* Momentos */
+  .content {
+    display: none;
+    margin-top: 15px;
+    animation: fadeIn 0.6s ease;
+  }
+
+  @keyframes fadeIn {
+    from {opacity: 0; transform: translateY(-10px);}
+    to {opacity: 1; transform: translateY(0);}
+  }
+
+  /* Estilos extras de cada caixinha */
   #momentos img {
     width: 100%;
-    max-height: 200px;
-    border-radius: 15px;
-    object-fit: cover;
-    margin-bottom: 10px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
   }
-
-  #momentos button {
-    background: #8c52ff;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 15px;
-    cursor: pointer;
-  }
-
-  #momentos button:hover {
-    background: #6f3fcc;
-  }
-
-  /* Calendário */
-  #contador {
-    font-size: 1.2rem;
+  #calendario .contador {
+    font-size: 1.5rem;
+    color: #6a0dad;
     font-weight: bold;
-    color: #444;
     margin-top: 10px;
   }
-
-  /* Cartinha */
-  #carta textarea {
-    width: 100%;
-    min-height: 150px;
-    border-radius: 12px;
-    border: 1px solid #ccc;
-    padding: 10px;
-    resize: none;
-    font-size: 1rem;
+  #carta {
+    font-size: 1.2rem;
+    color: #444;
+    text-align: left;
+    line-height: 1.6;
   }
 </style>
 </head>
 <body>
 
-  <!-- Página de Login -->
-  <div id="loginPage">
-    <img src="https://cdn-icons-png.flaticon.com/512/747/747376.png" alt="Lacinho">
-    <h1>Bem-vinda 💕</h1>
-    <p>Digite a senha para continuar</p>
-    <div id="passwordDisplay">••••••</div>
-    <div class="keypad">
-      <button onclick="enterDigit('1')">1</button>
-      <button onclick="enterDigit('2')">2</button>
-      <button onclick="enterDigit('3')">3</button>
-      <button onclick="enterDigit('4')">4</button>
-      <button onclick="enterDigit('5')">5</button>
-      <button onclick="enterDigit('6')">6</button>
-      <button onclick="enterDigit('7')">7</button>
-      <button onclick="enterDigit('8')">8</button>
-      <button onclick="enterDigit('9')">9</button>
-      <button onclick="clearPassword()">⌫</button>
-      <button onclick="enterDigit('0')">0</button>
-      <button onclick="checkPassword()">✔</button>
+<!-- Página inicial -->
+<div id="login">
+  <h1>Nosso Segredinho 💝</h1>
+  <img src="https://cdn-icons-png.flaticon.com/512/616/616408.png" alt="Lacinho">
+  <p>Digite a senha para entrar:</p>
+  <div class="pin-input">
+    <input type="password" maxlength="1">
+    <input type="password" maxlength="1">
+    <input type="password" maxlength="1">
+    <input type="password" maxlength="1">
+    <input type="password" maxlength="1">
+    <input type="password" maxlength="1">
+  </div>
+  <button onclick="checkPassword()">Entrar</button>
+</div>
+
+<!-- Página principal -->
+<div id="main">
+  <h2>Bem-vinda ao nosso cantinho 💜</h2>
+  <div class="cards">
+    <!-- Momentos -->
+    <div class="card" onclick="toggleContent('momentos')">
+      <h3>Nossos Momentos 📸</h3>
+      <div class="content" id="momentos">
+        <img id="momentImage" src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=600" alt="Momento">
+        <br><br>
+        <button onclick="nextImage(event)">Trocar foto</button>
+      </div>
+    </div>
+
+    <!-- Calendário -->
+    <div class="card" onclick="toggleContent('calendario')">
+      <h3>Calendário do Amor ⏳</h3>
+      <div class="content" id="calendario">
+        <p>Juntos desde <b>15 de agosto de 2025</b></p>
+        <div class="contador" id="contador"></div>
+      </div>
+    </div>
+
+    <!-- Carta -->
+    <div class="card" onclick="toggleContent('carta')">
+      <h3>Cartinha do Amor 💌</h3>
+      <div class="content" id="carta">
+        <p>
+          Aqui vai a sua cartinha especial.  
+          Escreva com todo amor do mundo 💜  
+          e deixe registrado o quanto ela é única.  
+        </p>
+      </div>
     </div>
   </div>
-
-  <!-- Página Principal -->
-  <div id="mainPage">
-    <h2>Nosso Cantinho 💜</h2>
-    <div class="cards">
-
-      <!-- Caixa 1 - Momentos -->
-      <div class="card" id="momentos">
-        <h3>Nossos Momentos 📸</h3>
-        <img id="fotoAtual" src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80" alt="Foto">
-        <button onclick="trocarFoto()">Próxima Foto</button>
-      </div>
-
-      <!-- Caixa 2 - Calendário do Amor -->
-      <div class="card" id="calendario">
-        <h3>Calendário do Amor ⏳</h3>
-        <p>Desde <b>15 de Agosto de 2025</b> estamos juntos!</p>
-        <div id="contador">Carregando...</div>
-      </div>
-
-      <!-- Caixa 3 - Cartinha -->
-      <div class="card" id="carta">
-        <h3>Cartinha do Amor 💌</h3>
-        <textarea placeholder="Escreva sua cartinha aqui..."></textarea>
-      </div>
-
-    </div>
-  </div>
+</div>
 
 <script>
   const senhaCorreta = "150825";
-  let senhaDigitada = "";
-
-  function enterDigit(num) {
-    if (senhaDigitada.length < senhaCorreta.length) {
-      senhaDigitada += num;
-      atualizarDisplay();
-    }
-  }
-
-  function clearPassword() {
-    senhaDigitada = senhaDigitada.slice(0, -1);
-    atualizarDisplay();
-  }
-
-  function atualizarDisplay() {
-    const display = document.getElementById("passwordDisplay");
-    display.textContent = senhaDigitada.padEnd(senhaCorreta.length, "•");
-  }
 
   function checkPassword() {
-    if (senhaDigitada === senhaCorreta) {
-      document.getElementById("loginPage").style.display = "none";
-      document.getElementById("mainPage").style.display = "block";
+    const inputs = document.querySelectorAll(".pin-input input");
+    let senha = "";
+    inputs.forEach(inp => senha += inp.value);
+    if(senha === senhaCorreta){
+      document.getElementById("login").style.display = "none";
+      document.getElementById("main").style.display = "block";
     } else {
-      alert("Senha incorreta! 💔");
-      senhaDigitada = "";
-      atualizarDisplay();
+      alert("Senha incorreta 😢");
     }
   }
 
-  /* Momentos */
-  const fotos = [
-    "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80",
-    "https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=400&q=80",
-    "https://images.unsplash.com/photo-1504198453319-5ce911bafcde?auto=format&fit=crop&w=400&q=80"
-  ];
-  let fotoIndex = 0;
-
-  function trocarFoto() {
-    fotoIndex = (fotoIndex + 1) % fotos.length;
-    document.getElementById("fotoAtual").src = fotos[fotoIndex];
+  function toggleContent(id) {
+    const content = document.getElementById(id);
+    if (content.style.display === "block") {
+      content.style.display = "none";
+    } else {
+      content.style.display = "block";
+    }
   }
 
-  /* Calendário do Amor */
+  // Trocar fotos
+  const fotos = [
+    "https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=600",
+    "https://images.unsplash.com/photo-1494526585095-c41746248156?w=600",
+    "https://images.unsplash.com/photo-1504198453319-5ce911bafcde?w=600"
+  ];
+  let fotoAtual = 0;
+
+  function nextImage(event) {
+    event.stopPropagation();
+    fotoAtual = (fotoAtual + 1) % fotos.length;
+    document.getElementById("momentImage").src = fotos[fotoAtual];
+  }
+
+  // Contador de tempo
   const startDate = new Date("2025-08-15T00:00:00");
 
   function atualizarContador() {
     const agora = new Date();
     const diff = agora - startDate;
-
-    const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
-    const horas = Math.floor((diff / (1000 * 60 * 60)) % 24);
-    const minutos = Math.floor((diff / (1000 * 60)) % 60);
+    const dias = Math.floor(diff / (1000*60*60*24));
+    const horas = Math.floor((diff / (1000*60*60)) % 24);
+    const minutos = Math.floor((diff / (1000*60)) % 60);
     const segundos = Math.floor((diff / 1000) % 60);
-
-    document.getElementById("contador").textContent = 
-      `${dias} dias, ${horas} horas, ${minutos} minutos e ${segundos} segundos 💜`;
+    document.getElementById("contador").textContent =
+      `${dias} dias, ${horas}h ${minutos}m ${segundos}s`;
   }
-
   setInterval(atualizarContador, 1000);
   atualizarContador();
 </script>
