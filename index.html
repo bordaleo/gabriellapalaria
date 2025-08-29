@@ -36,13 +36,74 @@
   .keypad button { font-size: 1.5rem; padding: 15px; border-radius: 12px; border: none; background: var(--pink-2); color: white; cursor: pointer; transition: 0.2s; }
   .keypad button:hover { background: #ff4da6; }
 
-  /* MAIN PAGE */
-  #mainPage { display: none; background: linear-gradient(120deg,var(--bg-2),#ffe6f9); }
-  h2 { text-align:center; font-size:clamp(1.4rem, 2.5vw, 2rem); color:#8c52ff; margin-bottom:30px; }
-  .cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:25px; }
-  .card { background:white; border-radius:20px; padding:20px; box-shadow:var(--shadow); text-align:center; transition:transform 0.3s ease; cursor:pointer; }
-  .card:hover { transform:scale(1.05); }
-  .card h3 { color:var(--pink); margin-bottom:15px; }
+  /* MAIN PAGE - MELHORIAS NO DESIGN */
+  #mainPage { 
+    display: none; 
+    background: linear-gradient(120deg, var(--bg-2), #ffe6f9); 
+    display: flex; /* Adicionado para centralizar o conteúdo */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 100vh;
+  }
+  h2 { 
+    text-align:center; 
+    font-size:clamp(1.4rem, 2.5vw, 2rem); 
+    color:#8c52ff; 
+    margin-bottom:30px; 
+  }
+  .cards { 
+    display:grid; 
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); 
+    gap:25px; 
+    max-width: 900px;
+    width: 100%;
+    padding: 0 15px;
+  }
+  .card { 
+    background: linear-gradient(145deg, #f8f8f8, #e8e8e8);
+    border-radius:20px; 
+    padding:25px; 
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    text-align:center; 
+    transition: transform 0.3s ease, box-shadow 0.3s ease; 
+    cursor:pointer; 
+    border: 1px solid #fff;
+    position: relative;
+    overflow: hidden;
+  }
+  .card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: rgba(255, 255, 255, 0.1);
+    transform: rotate(45deg);
+    transition: transform 0.5s ease;
+  }
+  .card:hover::before {
+    transform: rotate(45deg) scale(1.2);
+  }
+  .card:hover { 
+    transform:scale(1.05); 
+    box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+  }
+  .card h3 { 
+    color: var(--pink); 
+    margin-bottom:15px; 
+    position: relative;
+    z-index: 1;
+    font-size: 1.25rem;
+  }
+  .card p {
+    color: #666;
+    margin: 0;
+    position: relative;
+    z-index: 1;
+  }
 
   /* MOMENTOS */
   #momentosSection { display:none; }
@@ -62,15 +123,10 @@
     font-size:clamp(0.9rem, 1.8vw, 1.1rem);
     color:#6b2d5b;
     background: #fff0f6;
-    border:2px solid var(--pink);
     border-radius:999px;
     padding:8px 14px;
     box-shadow:var(--shadow);
-  }
-  /* Estilo para remover a borda do "Juntos desde" */
-  #contadorSection .since {
     border: none;
-    box-shadow: none;
   }
   .timer-grid{
     width:100%;
@@ -99,7 +155,6 @@
     color:#8a8a8a;
     text-transform:uppercase;
   }
-  /* Estilo para a mensagem personalizada */
   #customMessage {
     font-size: clamp(0.9rem, 1.8vw, 1.1rem);
     color: #6b2d5b;
@@ -107,7 +162,7 @@
     border-radius: 999px;
     padding: 8px 14px;
     box-shadow: var(--shadow);
-    margin-top: 15px; /* Adiciona um espaço da contagem */
+    margin-top: 15px;
   }
 
   /* ========= CARTINHA REAL (NOVA) ========= */
@@ -122,14 +177,12 @@
     perspective:1200px;
     cursor:pointer;
   }
-  /* base do envelope */
   .env-back{
     position:absolute; inset:0;
     background: linear-gradient(180deg, #ffd1e1, #ffb3cf);
     border-radius:18px;
     box-shadow:var(--shadow);
   }
-  /* tampa */
   .env-flap{
     position:absolute; left:0; right:0; top:0; height:55%;
     background: linear-gradient(180deg, #ff9cc5, #ff6cab);
@@ -138,7 +191,6 @@
     transition: transform .9s cubic-bezier(.2,.8,.2,1);
     border-top-left-radius:18px; border-top-right-radius:18px;
   }
-  /* frente (bordinha) */
   .env-front{
     position:absolute; inset:0;
     border-radius:18px;
@@ -147,32 +199,32 @@
     transform: translateZ(1px);
     clip-path: polygon(0 40%, 100% 40%, 100% 100%, 0 100%);
   }
-
-  /* folha (a carta) */
   .letter{
     position:absolute; left:8%; right:8%; bottom:12px; height:80%;
     background:#fff; border-radius:14px; box-shadow:0 10px 20px rgba(0,0,0,.15);
     transform: translateY(36%) rotateX(0deg);
     transition: transform .9s cubic-bezier(.2,.8,.2,1);
-    padding:18px; overflow:hidden;
+    padding:18px;
+    overflow: hidden;
+    opacity: 0; /* Começa invisível */
+    transition: transform .9s cubic-bezier(.2,.8,.2,1), opacity .5s ease .3s; /* Adicionado transição para opacidade com delay */
   }
-  /* Borda da carta - novo design */
   .letter::after{
     content:''; position:absolute; left:0; right:0; top:0; height:8px;
-    background: linear-gradient(90deg, #ff6cab, #ffb3cf, #ff6cab); /* Degradê mais suave */
+    background: linear-gradient(90deg, #ff6cab, #ffb3cf, #ff6cab);
     border-top-left-radius:14px; border-top-right-radius:14px;
   }
   .letter-content{
     position:absolute; inset:18px 16px 16px; overflow:auto;
     font-size:clamp(.95rem, 2.2vw, 1.05rem); line-height:1.5; color:#333;
-    opacity: 0; /* Começa invisível */
-    transition: opacity .5s ease-in-out .4s; /* Transição com delay */
   }
 
   /* estado aberto */
   .envelope.open .env-flap{ transform: rotateX(180deg); }
-  .envelope.open .letter{ transform: translateY(-46%) rotateX(0); }
-  .envelope.open .letter-content{ opacity: 1; } /* Torna o conteúdo visível ao abrir */
+  .envelope.open .letter{ 
+    transform: translateY(-46%) rotateX(0); 
+    opacity: 1; /* Torna a carta visível */
+  }
 
   /* corações */
   .hearts{
@@ -225,7 +277,7 @@
 </section>
 
 <section id="mainPage">
-  <h2>Nosso Cantinho 💜</h2>
+  <h2>Oi, gatinha! Escolha onde quer ir 💜</h2>
   <div class="cards">
     <div class="card" onclick="showSection('momentosSection')"><h3>Nossos Momentos 📸</h3></div>
     <div class="card" onclick="showSection('contadorSection')"><h3>Calendário do Amor ⏳</h3></div>
@@ -279,7 +331,7 @@
       </div>
     </div>
     
-    <div id="customMessage">Cada segundo com você é um presente!! 💝</div>
+    <div id="customMessage">Cada segundo com você é um presente 💝</div>
   </div>
   <div class="back-btn" onclick="showSection('mainPage')">⬅ Voltar</div>
 </section>
