@@ -4,340 +4,65 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Para Minha Gatinha 💜</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Parisienne&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --primary-color: #d63384;
-    --secondary-color: #ff80b3;
-    --bg-light: #ffe6f0;
-    --bg-main: #fcf5f8;
-    --text-dark: #333;
-    --text-light: #fff;
-    --card-bg: #fff;
-  }
-
   body, html {
     margin: 0; padding: 0;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Arial', sans-serif;
     min-height: 100vh;
-    background: var(--bg-light);
-    color: var(--text-dark);
-    overflow-x: hidden;
+    background: #ffe6f0;
+    color: #333;
   }
 
-  section {
-    display: none;
-    padding: 30px;
-    min-height: 100vh;
-    box-sizing: border-box;
-    animation: fadeIn 0.8s ease-in-out;
-  }
-
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
+  section { display: none; padding: 30px; min-height: 100vh; }
 
   /* LOGIN */
   #loginPage {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    text-align: center;
-    background: linear-gradient(145deg, #ffb6c1, #ffe0e6);
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    height: 100vh; text-align: center; background: linear-gradient(145deg,#ffb6c1,#ffcce0);
   }
-  #loginPage h1 {
-    font-size: 3rem;
-    color: var(--primary-color);
-    margin-bottom: 10px;
-    font-family: 'Parisienne', cursive;
-  }
-  #loginPage img {
-    width: 150px;
-    margin-bottom: 25px;
-    animation: pulse 1.5s infinite;
-  }
-  @keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.05); }
-    100% { transform: scale(1); }
-  }
-  #passwordDisplay {
-    font-size: 2rem;
-    letter-spacing: 8px;
-    margin-bottom: 25px;
-    color: var(--text-dark);
-    padding: 10px 20px;
-    background: rgba(255, 255, 255, 0.6);
-    border-radius: 12px;
-    box-shadow: inset 0 2px 5px rgba(0,0,0,0.1);
-  }
-  .keypad {
-    display: grid;
-    grid-template-columns: repeat(3, 90px);
-    gap: 15px;
-  }
-  .keypad button {
-    font-size: 1.8rem;
-    padding: 20px;
-    border-radius: 15px;
-    border: none;
-    background: var(--secondary-color);
-    color: var(--text-light);
-    cursor: pointer;
-    transition: transform 0.2s, box-shadow 0.2s;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-  }
-  .keypad button:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
-  }
+  #loginPage h1 { font-size: 2.5rem; color: #d63384; margin-bottom: 15px; }
+  #loginPage img { width: 120px; margin-bottom: 20px; }
+  #passwordDisplay { font-size: 2rem; letter-spacing: 10px; margin-bottom: 20px; color: #444; }
+  .keypad { display: grid; grid-template-columns: repeat(3, 80px); gap: 15px; }
+  .keypad button { font-size: 1.5rem; padding: 15px; border-radius: 12px; border: none; background: #ff80b3; color: white; cursor: pointer; transition: 0.2s; }
+  .keypad button:hover { background: #ff4da6; }
 
   /* MAIN PAGE */
-  #mainPage {
-    display: none;
-    background: linear-gradient(120deg, #f8e1ff, #ffe6f9);
-    padding-top: 50px;
-  }
-  h2 {
-    text-align: center;
-    font-size: 2.8rem;
-    color: var(--primary-color);
-    margin-bottom: 40px;
-    font-family: 'Parisienne', cursive;
-  }
-  .cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px;
-    max-width: 900px;
-    margin: 0 auto;
-  }
-  .card {
-    background: var(--card-bg);
-    border-radius: 25px;
-    padding: 30px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-    text-align: center;
-    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    cursor: pointer;
-  }
-  .card:hover {
-    transform: translateY(-10px) scale(1.03);
-    box-shadow: 0 12px 25px rgba(0,0,0,0.15);
-  }
-  .card h3 {
-    color: var(--primary-color);
-    font-size: 1.6rem;
-    margin-bottom: 10px;
-  }
-  .card p {
-    color: #888;
-  }
+  #mainPage { display: none; background: linear-gradient(120deg,#f8e1ff,#ffe6f9); }
+  h2 { text-align:center; font-size:2rem; color:#8c52ff; margin-bottom:30px; }
+  .cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:25px; }
+  .card { background:white; border-radius:20px; padding:20px; box-shadow:0 6px 18px rgba(0,0,0,0.15); text-align:center; transition:transform 0.3s ease; cursor:pointer; }
+  .card:hover { transform:scale(1.05); }
+  .card h3 { color:#d63384; margin-bottom:15px; }
 
   /* MOMENTOS */
-  #momentosSection {
-    background: linear-gradient(120deg, #e1f5fe, #f0f4c3);
-  }
+  #momentosSection { display:none; }
+  .gallery { display:flex; flex-direction:column; gap:30px; max-width:700px; margin:0 auto; }
+  .gallery-item { background:white; padding:20px; border-radius:15px; box-shadow:0 6px 15px rgba(0,0,0,0.15); }
+  .gallery-item img, .gallery-item video { width:100%; border-radius:12px; margin-bottom:10px; }
+  .gallery-item p { text-align:center; font-size:1rem; color:#d63384; }
+  .back-btn { margin-top:20px; display:inline-block; background:#d63384; padding:10px 20px; color:white; border-radius:20px; cursor:pointer; text-decoration:none; }
 
-  /* CONTADOR FOFO - Novo Design */
-  #contadorSection {
-    text-align: center;
-    background: linear-gradient(120deg, #fce4ec, #fff3e0);
-  }
-  .diary-page {
-    background: var(--card-bg);
-    border-radius: 20px;
-    padding: 40px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    max-width: 500px;
-    margin: 30px auto;
-    position: relative;
-    border: 3px solid #f06292;
-    transform: rotate(-2deg);
-    transition: transform 0.5s ease-in-out;
-  }
-  .diary-page:hover {
-    transform: rotate(0deg);
-  }
-  .diary-page::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 20px; bottom: 0;
-    width: 2px;
-    background: #f06292;
-    transform: rotate(180deg);
-  }
-  .counter-grid {
-    display: flex;
-    justify-content: space-around;
-    text-align: center;
-    gap: 15px;
-  }
-  .counter-item {
-    display: flex;
-    flex-direction: column;
-    padding: 10px;
-    border-radius: 10px;
-  }
-  .counter-item span {
-    font-size: 3rem;
-    font-weight: 600;
-    color: var(--primary-color);
-    line-height: 1.2;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
-  }
-  .counter-item small {
-    font-size: 0.9rem;
-    color: #666;
-  }
+  /* CONTADOR FOFO */
+  #contadorSection { display:none; text-align:center; }
+  #contadorBox { background:white; display:inline-block; padding:30px; border-radius:25px; box-shadow:0 6px 15px rgba(0,0,0,0.15); font-size:1.4rem; color:#d63384; margin-top:30px; }
+  #contadorBox span { font-weight:bold; }
 
-  /* CARTINHA REAL - Novo Design */
-  #cartaSection {
-    text-align: center;
-    background: linear-gradient(120deg, #e0f2f1, #e6e9f0);
-  }
-  .envelope-container {
-    width: 320px;
-    height: 220px;
-    position: relative;
-    margin: 50px auto;
-    cursor: pointer;
-    perspective: 1500px;
-  }
-  .envelope-body {
-    background: #f06292;
-    width: 100%; height: 100%;
-    border-radius: 12px;
-    position: absolute;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-    transform-style: preserve-3d;
-    transition: transform 1s cubic-bezier(0.68, -0.55, 0.27, 1.55);
-  }
-  .envelope-flap {
-    width: 0; height: 0;
-    border-style: solid;
-    border-width: 110px 160px 0 160px;
-    border-color: #f8bbd0 transparent transparent transparent;
-    position: absolute;
-    top: 0; left: 0;
-    transform-origin: top;
-    transition: transform 1s cubic-bezier(0.68, -0.55, 0.27, 1.55);
-    z-index: 2;
-  }
-  .envelope-container.open .envelope-flap {
-    transform: rotateX(180deg);
-  }
-  .letter-paper {
-    background: #fff;
-    border-radius: 10px;
-    padding: 20px;
-    width: 85%;
-    height: 85%;
-    position: absolute;
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%) scale(0.8) translateY(10px);
-    opacity: 0;
-    transition: transform 1s, opacity 1s;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-  }
-  .envelope-container.open .letter-paper {
-    transform: translate(-50%, -50%) scale(1) translateY(0);
-    opacity: 1;
-  }
-  .letter-text {
-    font-family: 'Parisienne', cursive;
-    font-size: 1.5rem;
-    line-height: 1.5;
-    color: #555;
-  }
-  .heart-explosion {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    pointer-events: none;
-    z-index: 10;
-  }
-  .heart-explosion span {
-    position: absolute;
-    font-size: 1.5rem;
-    color: #ff69b4;
-    animation: explode 1.5s ease-out forwards;
-  }
-  @keyframes explode {
-    from { transform: scale(0) translateY(0); opacity: 1; }
-    to { transform: scale(1.5) translateY(-100px); opacity: 0; }
-  }
-
-  /* MOTIVOS - Novo Design */
-  #motivosSection {
-    text-align: center;
-    background: linear-gradient(120deg, #fce4ec, #e9eafc);
-  }
-  #motivosBox {
-    background: var(--card-bg);
-    border-radius: 25px;
-    padding: 30px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-    max-width: 500px;
-    margin: 0 auto;
-    min-height: 180px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    overflow: hidden;
-  }
-  .motivo-card {
-    position: absolute;
-    width: 90%;
-    padding: 15px;
-    font-size: 1.4rem;
-    color: var(--primary-color);
-    text-align: center;
-    transition: transform 1s, opacity 1s;
-  }
-  .motivo-card.active {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  .motivo-card.prev {
-    opacity: 0;
-    transform: translateY(-50px) scale(0.8);
-  }
-  .motivo-card.next {
-    opacity: 0;
-    transform: translateY(50px) scale(0.8);
-  }
-  .motivo-icon {
-    font-size: 2rem;
-    margin-bottom: 10px;
-  }
-  .back-btn {
-    margin-top: 20px;
-    display: inline-block;
-    background: var(--primary-color);
-    padding: 12px 25px;
-    color: var(--text-light);
-    border-radius: 25px;
-    cursor: pointer;
-    text-decoration: none;
-    transition: background 0.3s ease;
-  }
-  .back-btn:hover {
-    background: #a32766;
-  }
+  /* CARTINHA REAL */
+  #cartaSection { display:none; text-align:center; }
+  .carta { position:relative; width:300px; height:200px; margin:50px auto; perspective:1000px; cursor:pointer; }
+  .carta-inner { position:absolute; width:100%; height:100%; background:#fff0f6; border:2px solid #d63384; border-radius:12px; padding:20px; transform-style:preserve-3d; transform:rotateX(-90deg); transition:transform 1s; display:flex; align-items:center; justify-content:center; text-align:center; }
+  .carta.open .carta-inner { transform:rotateX(0); }
+  .carta-inner p { color:#333; font-size:1.1rem; }
+  .open-btn { background:#d63384; color:white; padding:10px 25px; border-radius:25px; cursor:pointer; margin-bottom:20px; }
 </style>
 </head>
 <body>
 
+<!-- LOGIN -->
 <section id="loginPage">
   <img src="https://cdn-icons-png.flaticon.com/512/747/747376.png" alt="Lacinho">
-  <h1>Bem-vinda, meu amor 💕</h1>
+  <h1>Bem-vinda 💕</h1>
   <p>Data especial para nós</p>
   <div id="passwordDisplay">••••••</div>
   <div class="keypad">
@@ -356,27 +81,33 @@
   </div>
 </section>
 
+<!-- MAIN PAGE -->
 <section id="mainPage">
   <h2>Nosso Cantinho 💜</h2>
   <div class="cards">
     <div class="card" onclick="showSection('momentosSection')"><h3>Nossos Momentos 📸</h3></div>
     <div class="card" onclick="showSection('contadorSection')"><h3>Calendário do Amor ⏳</h3></div>
     <div class="card" onclick="showSection('cartaSection')"><h3>Cartinha do Amor 💌</h3></div>
-    <div class="card" onclick="showSection('motivosSection')"><h3>Motivos do Meu Amor 💖</h3></div>
   </div>
 </section>
 
+<!-- MOMENTOS -->
 <section id="momentosSection">
   <h2>Nossos Momentos 📸</h2>
   <div class="gallery">
+    <!-- Aqui vão as 20 fotos e 5 vídeos -->
     <script>
       const gallery = [];
       for(let i=1;i<=20;i++){
         gallery.push({type:'img', src:`https://picsum.photos/400/200?random=${i}`, text:`Texto da foto ${i} 💕`});
       }
+      for(let i=1;i<=5;i++){
+        gallery.push({type:'video', src:`video${i}.mp4`, text:`Texto do vídeo ${i} 💕`});
+      }
       gallery.forEach(item=>{
         document.write('<div class="gallery-item">');
-        document.write(`<img src="${item.src}" alt="Foto">`);
+        if(item.type==='img') document.write(`<img src="${item.src}" alt="Foto">`);
+        else document.write(`<video controls><source src="${item.src}" type="video/mp4"></video>`);
         document.write(`<p>${item.text}</p></div>`);
       });
     </script>
@@ -384,44 +115,22 @@
   <div class="back-btn" onclick="showSection('mainPage')">⬅ Voltar</div>
 </section>
 
+<!-- CONTADOR FOFO -->
 <section id="contadorSection">
   <h2>Nosso Amor 💖</h2>
-  <div class="diary-page">
-    <p>Juntos há</p>
-    <div class="counter-grid">
-      <div class="counter-item"><span id="dias">0</span><small>dias</small></div>
-      <div class="counter-item"><span id="horas">0</span><small>h</small></div>
-      <div class="counter-item"><span id="minutos">0</span><small>m</small></div>
-      <div class="counter-item"><span id="segundos">0</span><small>s</small></div>
-    </div>
-  </div>
+  <div id="contadorBox">Carregando...</div>
   <div class="back-btn" onclick="showSection('mainPage')">⬅ Voltar</div>
 </section>
 
+<!-- CARTINHA REAL -->
 <section id="cartaSection">
   <h2>Cartinha do Amor 💌</h2>
-  <div class="envelope-container" onclick="toggleLetter()">
-    <div class="envelope-body">
-      <div class="envelope-flap"></div>
-      <div class="letter-paper">
-        <p class="letter-text">
-          Minha gatinha, meu amor,<br><br>
-          Cada momento contigo é um presente. Seu sorriso, seu abraço, seu carinho... tudo me faz a pessoa mais feliz do mundo. Sou grato por ter você na minha vida e prometo te amar e te proteger para sempre.<br><br>
-          Com todo o meu coração,<br>
-          Seu amor 💜
-        </p>
-      </div>
+  <div class="carta" id="carta">
+    <div class="carta-inner">
+      <p>Minha gatinha, eu te amo infinitamente 💜<br>Cada momento contigo é único e especial.<br>Para sempre, você e eu 💕</p>
     </div>
   </div>
-  <div class="heart-explosion" id="heartExplosion"></div>
-  <div class="back-btn" onclick="showSection('mainPage')">⬅ Voltar</div>
-</section>
-
-<section id="motivosSection">
-  <h2>Motivos do Meu Amor 💖</h2>
-  <div id="motivosBox">
-    <div class="motivo-card active" id="motivoCard"></div>
-  </div>
+  <div class="open-btn" onclick="document.getElementById('carta').classList.toggle('open')">Abrir/Fechar Cartinha</div>
   <div class="back-btn" onclick="showSection('mainPage')">⬅ Voltar</div>
 </section>
 
@@ -429,103 +138,33 @@
   // ---------- LOGIN ----------
   const senhaCorreta = "150825";
   let senhaDigitada = "";
-  function enterDigit(num){
-    if(senhaDigitada.length < senhaCorreta.length){
-      senhaDigitada += num;
-      atualizarDisplay();
-    }
-  }
-  function clearPassword(){
-    senhaDigitada = senhaDigitada.slice(0, -1);
-    atualizarDisplay();
-  }
-  function atualizarDisplay(){
-    document.getElementById("passwordDisplay").textContent = senhaDigitada.padEnd(senhaCorreta.length, "•");
-  }
-  function checkPassword(){
-    if(senhaDigitada === senhaCorreta){
-      showSection('mainPage');
-      document.getElementById('loginPage').style.display = 'none';
-    } else {
-      alert("Senha incorreta 💔");
-      senhaDigitada = "";
-      atualizarDisplay();
-    }
+  function enterDigit(num){ if(senhaDigitada.length<senhaCorreta.length){senhaDigitada+=num; atualizarDisplay();} }
+  function clearPassword(){ senhaDigitada = senhaDigitada.slice(0,-1); atualizarDisplay(); }
+  function atualizarDisplay(){ document.getElementById("passwordDisplay").textContent = senhaDigitada.padEnd(senhaCorreta.length,"•"); }
+  function checkPassword(){ 
+    if(senhaDigitada===senhaCorreta){ showSection('mainPage'); document.getElementById('loginPage').style.display='none'; }
+    else{ alert("Senha incorreta 💔"); senhaDigitada=""; atualizarDisplay(); }
   }
 
   // ---------- SHOW SECTIONS ----------
   function showSection(sectionId){
-    document.querySelectorAll('section').forEach(sec => sec.style.display = 'none');
-    document.getElementById(sectionId).style.display = 'block';
+    document.querySelectorAll('section').forEach(sec=>sec.style.display='none');
+    document.getElementById(sectionId).style.display='block';
   }
 
   // ---------- CONTADOR FOFO ----------
   const startDate = new Date("2025-08-15T00:00:00");
   function atualizarContador(){
     const agora = new Date();
-    const diff = agora - startDate;
-    const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
-    const horas = Math.floor((diff / (1000 * 60 * 60)) % 24);
-    const minutos = Math.floor((diff / (1000 * 60)) % 60);
-    const segundos = Math.floor((diff / 1000) % 60);
-
-    document.getElementById("dias").textContent = dias;
-    document.getElementById("horas").textContent = horas;
-    document.getElementById("minutos").textContent = minutos;
-    document.getElementById("segundos").textContent = segundos;
+    const diff = agora-startDate;
+    const dias = Math.floor(diff/(1000*60*60*24));
+    const horas = Math.floor((diff/(1000*60*60))%24);
+    const minutos = Math.floor((diff/(1000*60))%60);
+    const segundos = Math.floor((diff/1000)%60);
+    document.getElementById("contadorBox").innerHTML = `Juntos há <span>${dias}</span> dias, <span>${horas}</span>h <span>${minutos}</span>m <span>${segundos}</span>s 💜`;
   }
-  setInterval(atualizarContador, 1000);
+  setInterval(atualizarContador,1000);
   atualizarContador();
-
-  // ---------- CARTINHA REAL ----------
-  function toggleLetter(){
-    const envelope = document.querySelector('.envelope-container');
-    const isClosed = !envelope.classList.contains('open');
-
-    envelope.classList.toggle('open');
-    if (isClosed) {
-      setTimeout(() => {
-        for(let i = 0; i < 15; i++) {
-          const heart = document.createElement('span');
-          heart.innerHTML = '💖';
-          heart.style.left = `${Math.random() * 100}%`;
-          heart.style.animationDelay = `${Math.random() * 0.5}s`;
-          document.getElementById('heartExplosion').appendChild(heart);
-          setTimeout(() => heart.remove(), 1500);
-        }
-      }, 800);
-    }
-  }
-
-  // ---------- MOTIVOS ----------
-  const motivos = [
-    { text: "Seu sorriso ilumina o meu dia", icon: "🌞" },
-    { text: "O jeito que você me faz rir", icon: "😂" },
-    { text: "Seu abraço é meu lugar seguro", icon: "🤗" },
-    { text: "A forma como você me olha", icon: "✨" },
-    { text: "A sua força e determinação", icon: "💪" },
-    { text: "O seu coração gigante", icon: "💜" },
-    { text: "Você me ensina a ser uma pessoa melhor", icon: "🥰" },
-    { text: "Seu carinho e atenção", icon: "🌷" },
-    { text: "Sua beleza, por dentro e por fora", icon: "💎" },
-    { text: "O fato de ser simplesmente você", icon: "💖" }
-  ];
-  let motivoIndex = 0;
-  function trocarMotivo(){
-    const motivoCard = document.getElementById("motivoCard");
-    motivoCard.classList.remove('active');
-    motivoCard.classList.add('next');
-
-    setTimeout(() => {
-      motivoIndex = (motivoIndex + 1) % motivos.length;
-      const currentMotivo = motivos[motivoIndex];
-      motivoCard.innerHTML = `<div class="motivo-icon">${currentMotivo.icon}</div>${currentMotivo.text}`;
-      motivoCard.classList.remove('next');
-      motivoCard.classList.add('active');
-    }, 500);
-  }
-  setInterval(trocarMotivo, 3500);
-  trocarMotivo();
 </script>
 
 </body>
