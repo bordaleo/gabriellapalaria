@@ -102,6 +102,21 @@
     background:#fff0f6; border:1px dashed var(--pink);
     color:#6b2d5b; padding:6px 10px; border-radius:999px;
   }
+  /* Estilo para remover a borda do "Juntos desde" */
+  #contadorSection .since {
+    border: none;
+    box-shadow: none;
+  }
+
+  /* Estilo para a mensagem personalizada */
+  #customMessage {
+    font-size: clamp(0.9rem, 1.8vw, 1.1rem);
+    color: #6b2d5b;
+    background: #fff0f6;
+    border-radius: 999px;
+    padding: 8px 14px;
+    box-shadow: var(--shadow);
+  }
 
   /* ========= CARTINHA REAL (NOVA) ========= */
   #cartaSection { display:none; text-align:center; }
@@ -163,13 +178,7 @@
   .envelope.open .env-flap{ transform: rotateX(180deg); }
   .envelope.open .letter{ transform: translateY(-46%) rotateX(0); }
 
-  /* botão */
-  .open-btn {
-    background:var(--pink); color:white; padding:10px 24px; border-radius:25px;
-    cursor:pointer; border:none; box-shadow:var(--shadow);
-  }
-
-  /* corações */
+  /* coração */
   .hearts{
     position:relative; width:0; height:0;
   }
@@ -198,7 +207,6 @@
 </head>
 <body>
 
-<!-- LOGIN -->
 <section id="loginPage">
   <img src="https://cdn-icons-png.flaticon.com/512/747/747376.png" alt="Lacinho">
   <h1>Bem-vinda 💕</h1>
@@ -220,7 +228,6 @@
   </div>
 </section>
 
-<!-- MAIN PAGE -->
 <section id="mainPage">
   <h2>Nosso Cantinho 💜</h2>
   <div class="cards">
@@ -230,7 +237,6 @@
   </div>
 </section>
 
-<!-- MOMENTOS -->
 <section id="momentosSection">
   <h2>Nossos Momentos 📸</h2>
   <div class="gallery">
@@ -253,12 +259,11 @@
   <div class="back-btn" onclick="showSection('mainPage')">⬅ Voltar</div>
 </section>
 
-<!-- ========= CONTADOR FOFO (NOVO) ========= -->
 <section id="contadorSection">
   <h2>Nosso Amor 💖</h2>
   <div class="counter-wrap">
     <div class="since" id="sinceLabel">Juntos desde 15/08/2025</div>
-
+    
     <div class="timer-grid" role="timer" aria-live="polite">
       <div class="unit">
         <div class="num" id="dias">0</div>
@@ -277,22 +282,18 @@
         <div class="label">Segundos</div>
       </div>
     </div>
-
-    <div class="milestones">
-      <span class="chip" id="semanasChip">0 semanas 💜</span>
-      <span class="chip" id="mesesChip">0 meses ✨</span>
-    </div>
+    
+    <div id="customMessage">Cada segundo com você é um presente 💝</div>
   </div>
   <div class="back-btn" onclick="showSection('mainPage')">⬅ Voltar</div>
 </section>
 
-<!-- ========= CARTINHA REAL (NOVA) ========= -->
 <section id="cartaSection">
   <h2>Cartinha do Amor 💌</h2>
 
   <div class="envelope-area">
     <div class="envelope" id="envelope" onclick="toggleCarta()"
-         role="button" aria-label="Abrir cartinha" tabindex="0">
+      role="button" aria-label="Abrir cartinha" tabindex="0">
       <div class="env-back"></div>
       <div class="env-flap"></div>
       <div class="env-front"></div>
@@ -308,8 +309,7 @@
         </div>
       </div>
     </div>
-
-    <button class="open-btn" onclick="toggleCarta()">Abrir/Fechar Cartinha</button>
+    
     <div class="hearts" id="heartsAnchor"></div>
   </div>
 
@@ -355,12 +355,6 @@
     document.getElementById("minutos").textContent = fmt2(minutos);
     document.getElementById("segundos").textContent = fmt2(segundos);
 
-    // extras fofos
-    const semanas = Math.floor((agora - startDate)/(1000*60*60*24*7));
-    const meses = Math.max(0, (agora.getFullYear()-startDate.getFullYear())*12 + (agora.getMonth()-startDate.getMonth()) - (agora.getDate()<startDate.getDate()?1:0));
-    document.getElementById("semanasChip").textContent = `${semanas} semanas 💜`;
-    document.getElementById("mesesChip").textContent = `${meses} meses ✨`;
-
     // label
     const dd = String(startDate.getDate()).padStart(2,'0');
     const mm = String(startDate.getMonth()+1).padStart(2,'0');
@@ -373,12 +367,13 @@
   // ---------- CARTINHA REAL (NOVA) ----------
   const envelope = document.getElementById('envelope');
   const heartsAnchor = document.getElementById('heartsAnchor');
-  let cartaAberta = false;
-
+  
+  // A carta começa fechada, não há necessidade de uma variável global
   function toggleCarta(){
-    cartaAberta = !cartaAberta;
-    envelope.classList.toggle('open', cartaAberta);
-    if(cartaAberta) soltarCoracoes(10);
+    envelope.classList.toggle('open');
+    if (envelope.classList.contains('open')) {
+      soltarCoracoes(10);
+    }
   }
 
   // Acessibilidade pelo teclado
