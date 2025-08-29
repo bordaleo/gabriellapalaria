@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Para Minha Gatinha 💜</title>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Great+Vibes&display=swap" rel="stylesheet">
 <style>
   body, html {
     margin: 0; padding: 0;
@@ -11,145 +12,338 @@
     min-height: 100vh;
     background: #ffe6f0;
     color: #333;
+    overflow-x: hidden;
   }
 
-  section { display: none; padding: 30px; min-height: 100vh; }
+  section {
+    display: none;
+    padding: 30px;
+    min-height: 100vh;
+    box-sizing: border-box;
+  }
 
   /* LOGIN */
   #loginPage {
-    display: flex; flex-direction: column; justify-content: center; align-items: center;
-    height: 100vh; text-align: center; background: linear-gradient(145deg,#ffb6c1,#ffcce0);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+    background: linear-gradient(145deg, #ffb6c1, #ffcce0);
   }
-  #loginPage h1 { font-size: 2.5rem; color: #d63384; margin-bottom: 15px; }
-  #loginPage img { width: 120px; margin-bottom: 20px; }
-  #passwordDisplay { font-size: 2rem; letter-spacing: 10px; margin-bottom: 20px; color: #444; }
-  .keypad { display: grid; grid-template-columns: repeat(3, 80px); gap: 15px; }
-  .keypad button { font-size: 1.5rem; padding: 15px; border-radius: 12px; border: none; background: #ff80b3; color: white; cursor: pointer; transition: 0.2s; }
-  .keypad button:hover { background: #ff4da6; }
+  #loginPage h1 {
+    font-size: 2.8rem;
+    color: #d63384;
+    margin-bottom: 15px;
+    font-family: 'Dancing Script', cursive;
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+  }
+  #loginPage img {
+    width: 120px;
+    margin-bottom: 20px;
+  }
+  #passwordDisplay {
+    font-size: 2.2rem;
+    letter-spacing: 15px;
+    margin-bottom: 20px;
+    color: #444;
+    padding: 10px 20px;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 10px;
+  }
+  .keypad {
+    display: grid;
+    grid-template-columns: repeat(3, 90px);
+    gap: 15px;
+  }
+  .keypad button {
+    font-size: 1.8rem;
+    padding: 20px;
+    border-radius: 15px;
+    border: none;
+    background: #ff80b3;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  }
+  .keypad button:hover {
+    background: #ff4da6;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+  }
 
   /* MAIN PAGE */
-  #mainPage { display: none; background: linear-gradient(120deg,#f8e1ff,#ffe6f9); }
-  h2 { text-align:center; font-size:2rem; color:#8c52ff; margin-bottom:30px; }
-  .cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:25px; }
-  .card { background:white; border-radius:20px; padding:20px; box-shadow:0 6px 18px rgba(0,0,0,0.15); text-align:center; transition:transform 0.3s ease; cursor:pointer; }
-  .card:hover { transform:scale(1.05); }
-  .card h3 { color:#d63384; margin-bottom:15px; }
-
-  /* CONTADOR FOFO */
-  #contadorSection { display:none; text-align:center; }
-  #contadorBox {
-    background:linear-gradient(135deg,#ffe0f7,#fcd5ff);
-    display:inline-block; padding:40px;
-    border-radius:25px;
-    box-shadow:0 8px 25px rgba(0,0,0,0.2);
-    font-size:1.6rem;
-    color:#d63384;
-    margin-top:30px;
-    border:3px solid #d63384;
+  #mainPage {
+    display: none;
+    background: linear-gradient(120deg, #f8e1ff, #ffe6f9);
   }
-  #contadorBox span { font-weight:bold; color:#8c52ff; }
-
-  /* CARTA REAL */
-  #cartaSection { display:none; text-align:center; }
-  .carta {
-    width: 320px;
-    height: 220px;
-    margin: 50px auto;
-    position: relative;
-    perspective: 1000px;
+  h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    color: #8c52ff;
+    margin-bottom: 30px;
+    font-family: 'Dancing Script', cursive;
+  }
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .card {
+    background: white;
+    border-radius: 25px;
+    padding: 30px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    text-align: center;
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     cursor: pointer;
+    border: 2px solid transparent;
   }
-  .envelope {
-    width: 100%; height: 100%;
-    background: #ffebf5;
+  .card:hover {
+    transform: translateY(-10px) scale(1.05);
     border: 2px solid #d63384;
-    border-radius: 10px;
-    position: relative;
-    overflow: hidden;
-    box-shadow: 0 6px 15px rgba(0,0,0,0.15);
   }
-  .flap {
-    width: 0; height: 0;
-    border-left: 160px solid transparent;
-    border-right: 160px solid transparent;
-    border-bottom: 110px solid #d63384;
-    position: absolute;
-    top: 0; left: 0;
-    transform-origin: top;
-    transition: transform 1s;
+  .card h3 {
+    color: #d63384;
+    font-size: 1.5rem;
+    margin-bottom: 15px;
   }
-  .carta.open .flap {
-    transform: rotateX(180deg);
+
+  /* MOMENTOS */
+  #momentosSection {
+    display: none;
+    background: linear-gradient(120deg, #e1f5fe, #f0f4c3);
   }
-  .mensagem {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%; height: 100%;
+  .gallery {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+  .gallery-item {
     background: white;
     padding: 20px;
-    border-radius: 8px;
+    border-radius: 15px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+  }
+  .gallery-item img, .gallery-item video {
+    width: 100%;
+    border-radius: 12px;
+    margin-bottom: 10px;
+  }
+  .gallery-item p {
     text-align: center;
-    transition: top 1s;
-    font-size: 1.1rem;
-    color: #333;
+    font-size: 1rem;
+    color: #d63384;
   }
-  .carta.open .mensagem {
-    top: 0;
+  .back-btn {
+    margin-top: 20px;
+    display: inline-block;
+    background: #d63384;
+    padding: 12px 25px;
+    color: white;
+    border-radius: 25px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.3s ease;
   }
-  /* corações */
+  .back-btn:hover {
+    background: #a32766;
+  }
+
+  /* CONTADOR FOFO */
+  #contadorSection {
+    display: none;
+    text-align: center;
+    background: linear-gradient(120deg, #ffe0e6, #fffde7);
+  }
+  #contadorBox {
+    background-color: #fce4ec;
+    border: 3px dashed #d63384;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 400px;
+    margin: 30px auto;
+    position: relative;
+    overflow: hidden;
+  }
+  #contadorBox::before {
+    content: '⏳';
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 3rem;
+  }
+  .counter-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    margin-top: 20px;
+    text-align: center;
+  }
+  .counter-item {
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  }
+  .counter-item span {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #d63384;
+    transition: transform 0.5s ease-in-out;
+  }
+  .counter-item small {
+    font-size: 0.9rem;
+    color: #666;
+    margin-top: 5px;
+  }
+
+  /* CARTINHA REAL */
+  #cartaSection {
+    display: none;
+    text-align: center;
+    background: linear-gradient(120deg, #e6e9f0, #e0f2f1);
+  }
+  .carta-container {
+    width: 320px;
+    height: 220px;
+    perspective: 1500px;
+    margin: 50px auto;
+    position: relative;
+  }
+  .envelope {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 1s ease-in-out;
+  }
+  .envelope.open .flap {
+    transform: rotateX(180deg);
+  }
+  .flap {
+    position: absolute;
+    width: 100%;
+    height: 50%;
+    background-color: #f06292;
+    border-radius: 12px 12px 0 0;
+    transform-origin: bottom;
+    transition: transform 1s ease-in-out;
+    z-index: 2;
+  }
+  .letter-content {
+    background: #fff0f6;
+    border: 2px solid #d63384;
+    border-radius: 12px;
+    padding: 20px;
+    height: 100%;
+    transform: translateZ(20px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    line-height: 1.6;
+    opacity: 0;
+    transition: opacity 0.8s ease-in-out 0.5s;
+  }
+  .envelope.open .letter-content {
+    opacity: 1;
+  }
+  .open-btn {
+    background: #d63384;
+    color: white;
+    padding: 12px 25px;
+    border-radius: 25px;
+    cursor: pointer;
+    margin-bottom: 20px;
+    transition: background 0.3s;
+  }
+  .open-btn:hover {
+    background: #a32766;
+  }
+
+  /* Heart burst animation */
+  @keyframes heart-burst {
+    0% { transform: translateY(0) scale(0); opacity: 0; }
+    50% { opacity: 1; }
+    100% { transform: translateY(-200px) scale(1.5); opacity: 0; }
+  }
   .heart {
     position: absolute;
-    color: #ff4da6;
-    font-size: 20px;
-    animation: float 2s ease-out forwards;
-  }
-  @keyframes float {
-    0% { opacity:1; transform:translateY(0) scale(1);}
-    100% { opacity:0; transform:translateY(-100px) scale(1.5);}
+    font-size: 1.5rem;
+    color: #ff69b4;
+    animation: heart-burst 2s ease-out forwards;
+    z-index: 3;
   }
 
   /* MOTIVOS */
-  #motivosSection { display:none; text-align:center; }
+  #motivosSection {
+    display: none;
+    text-align: center;
+    background: linear-gradient(120deg, #fce4ec, #e9eafc);
+  }
   #motivosBox {
-    background:linear-gradient(145deg,#fff0f6,#ffe6f9);
-    padding:35px;
-    border-radius:30px;
-    box-shadow:0 8px 25px rgba(0,0,0,0.2);
-    font-size:1.4rem;
-    color:#d63384;
-    max-width:500px;
-    margin:0 auto;
-    border:3px solid #d63384;
-    transition: opacity 1s ease;
-    position:relative;
+    background: linear-gradient(135deg, #fff0f6, #fff);
+    padding: 30px;
+    border-radius: 25px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+    font-size: 1.3rem;
+    color: #4a148c;
+    max-width: 500px;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+    min-height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    perspective: 1000px;
+    transition: transform 0.6s ease-in-out;
+    transform-style: preserve-3d;
   }
-  #motivosBox::before {
-    content:"❤";
-    position:absolute;
-    top:-20px; left:-20px;
-    font-size:2rem;
-    color:#ff4da6;
-    animation: pulse 1.5s infinite;
+  .motivo-text {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    transform-origin: center center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    text-align: center;
   }
-  #motivosBox::after {
-    content:"❤";
-    position:absolute;
-    bottom:-20px; right:-20px;
-    font-size:2rem;
-    color:#ff4da6;
-    animation: pulse 1.5s infinite alternate;
+  .motivo-text.old {
+    transform: rotateX(-90deg);
+    transition: transform 0.8s ease;
   }
-  @keyframes pulse {
-    0% { transform:scale(1);}
-    50% { transform:scale(1.3);}
-    100% { transform:scale(1);}
+  .motivo-text.new {
+    transform: rotateX(0deg);
+    transition: transform 0.8s ease;
+  }
+  .motivo-icon {
+    font-size: 2rem;
+    margin-bottom: 10px;
   }
 </style>
 </head>
 <body>
 
-<!-- LOGIN -->
 <section id="loginPage">
   <img src="https://cdn-icons-png.flaticon.com/512/747/747376.png" alt="Lacinho">
   <h1>Bem-vinda 💕</h1>
@@ -171,39 +365,78 @@
   </div>
 </section>
 
-<!-- MAIN PAGE -->
 <section id="mainPage">
   <h2>Nosso Cantinho 💜</h2>
   <div class="cards">
+    <div class="card" onclick="showSection('momentosSection')"><h3>Nossos Momentos 📸</h3></div>
     <div class="card" onclick="showSection('contadorSection')"><h3>Calendário do Amor ⏳</h3></div>
     <div class="card" onclick="showSection('cartaSection')"><h3>Cartinha do Amor 💌</h3></div>
     <div class="card" onclick="showSection('motivosSection')"><h3>Motivos do Meu Amor 💖</h3></div>
   </div>
 </section>
 
-<!-- CONTADOR FOFO -->
-<section id="contadorSection">
-  <h2>Nosso Amor 💖</h2>
-  <div id="contadorBox">Carregando...</div>
+<section id="momentosSection">
+  <h2>Nossos Momentos 📸</h2>
+  <div class="gallery">
+    <script>
+      const gallery = [];
+      for(let i=1;i<=20;i++){
+        gallery.push({type:'img', src:`https://picsum.photos/400/200?random=${i}`, text:`Texto da foto ${i} 💕`});
+      }
+      for(let i=1;i<=5;i++){
+        gallery.push({type:'video', src:`video${i}.mp4`, text:`Texto do vídeo ${i} 💕`});
+      }
+      gallery.forEach(item=>{
+        document.write('<div class="gallery-item">');
+        if(item.type==='img') document.write(`<img src="${item.src}" alt="Foto">`);
+        else document.write(`<video controls><source src="${item.src}" type="video/mp4"></video>`);
+        document.write(`<p>${item.text}</p></div>`);
+      });
+    </script>
+  </div>
   <div class="back-btn" onclick="showSection('mainPage')">⬅ Voltar</div>
 </section>
 
-<!-- CARTA -->
-<section id="cartaSection">
-  <h2>Cartinha do Amor 💌</h2>
-  <div class="carta" id="carta" onclick="abrirCarta()">
-    <div class="envelope">
-      <div class="flap"></div>
-      <div class="mensagem">Minha gatinha, você é o meu mundo 💜<br>Meu porto seguro, meu sorriso, minha vida.<br>Te amo infinitamente! 💕</div>
+<section id="contadorSection">
+  <h2>Nosso Amor 💖</h2>
+  <div id="contadorBox">
+    <div class="counter-grid">
+      <div class="counter-item">
+        <span id="dias">0</span><small>dias</small>
+      </div>
+      <div class="counter-item">
+        <span id="horas">0</span><small>horas</small>
+      </div>
+      <div class="counter-item">
+        <span id="minutos">0</span><small>minutos</small>
+      </div>
+      <div class="counter-item">
+        <span id="segundos">0</span><small>segundos</small>
+      </div>
     </div>
   </div>
   <div class="back-btn" onclick="showSection('mainPage')">⬅ Voltar</div>
 </section>
 
-<!-- MOTIVOS -->
+<section id="cartaSection">
+  <h2>Cartinha do Amor 💌</h2>
+  <div class="carta-container">
+    <div class="envelope" id="envelope">
+      <div class="flap" id="flap"></div>
+      <div class="letter-content" id="letterContent">
+        <p>Minha gatinha, eu te amo infinitamente 💜<br>Cada momento contigo é único e especial.<br>Para sempre, você e eu 💕</p>
+      </div>
+    </div>
+  </div>
+  <div class="open-btn" onclick="toggleLetter()">Abrir/Fechar Cartinha</div>
+  <div class="back-btn" onclick="showSection('mainPage')">⬅ Voltar</div>
+</section>
+
 <section id="motivosSection">
   <h2>Motivos pelos quais eu me apaixono por você todos os dias 💖</h2>
-  <div id="motivosBox">Carregando...</div>
+  <div id="motivosBox">
+    <div class="motivo-text" id="motivoText"></div>
+  </div>
   <div class="back-btn" onclick="showSection('mainPage')">⬅ Voltar</div>
 </section>
 
@@ -211,76 +444,107 @@
   // ---------- LOGIN ----------
   const senhaCorreta = "150825";
   let senhaDigitada = "";
-  function enterDigit(num){ if(senhaDigitada.length<senhaCorreta.length){senhaDigitada+=num; atualizarDisplay();} }
-  function clearPassword(){ senhaDigitada = senhaDigitada.slice(0,-1); atualizarDisplay(); }
-  function atualizarDisplay(){ document.getElementById("passwordDisplay").textContent = senhaDigitada.padEnd(senhaCorreta.length,"•"); }
-  function checkPassword(){ 
-    if(senhaDigitada===senhaCorreta){ showSection('mainPage'); document.getElementById('loginPage').style.display='none'; }
-    else{ alert("Senha incorreta 💔"); senhaDigitada=""; atualizarDisplay(); }
+  function enterDigit(num){
+    if(senhaDigitada.length < senhaCorreta.length){
+      senhaDigitada += num;
+      atualizarDisplay();
+    }
+  }
+  function clearPassword(){
+    senhaDigitada = senhaDigitada.slice(0, -1);
+    atualizarDisplay();
+  }
+  function atualizarDisplay(){
+    document.getElementById("passwordDisplay").textContent = senhaDigitada.padEnd(senhaCorreta.length, "•");
+  }
+  function checkPassword(){
+    if(senhaDigitada === senhaCorreta){
+      showSection('mainPage');
+      document.getElementById('loginPage').style.display = 'none';
+    } else {
+      alert("Senha incorreta 💔");
+      senhaDigitada = "";
+      atualizarDisplay();
+    }
   }
 
   // ---------- SHOW SECTIONS ----------
   function showSection(sectionId){
-    document.querySelectorAll('section').forEach(sec=>sec.style.display='none');
-    document.getElementById(sectionId).style.display='block';
+    document.querySelectorAll('section').forEach(sec => sec.style.display = 'none');
+    document.getElementById(sectionId).style.display = 'block';
   }
 
-  // ---------- CONTADOR ----------
+  // ---------- CONTADOR FOFO ----------
   const startDate = new Date("2025-08-15T00:00:00");
   function atualizarContador(){
     const agora = new Date();
-    const diff = agora-startDate;
-    const dias = Math.floor(diff/(1000*60*60*24));
-    const horas = Math.floor((diff/(1000*60*60))%24);
-    const minutos = Math.floor((diff/(1000*60))%60);
-    const segundos = Math.floor((diff/1000)%60);
-    document.getElementById("contadorBox").innerHTML = `Juntos há <span>${dias}</span> dias, <span>${horas}</span>h <span>${minutos}</span>m <span>${segundos}</span>s 💜`;
+    const diff = agora - startDate;
+    const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const horas = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const minutos = Math.floor((diff / (1000 * 60)) % 60);
+    const segundos = Math.floor((diff / 1000) % 60);
+
+    document.getElementById("dias").textContent = dias;
+    document.getElementById("horas").textContent = horas;
+    document.getElementById("minutos").textContent = minutos;
+    document.getElementById("segundos").textContent = segundos;
   }
-  setInterval(atualizarContador,1000);
+  setInterval(atualizarContador, 1000);
   atualizarContador();
 
-  // ---------- CARTA ----------
-  function abrirCarta(){
-    const carta = document.getElementById("carta");
-    carta.classList.toggle("open");
-    if(carta.classList.contains("open")){
-      for(let i=0;i<10;i++){
-        let heart = document.createElement("div");
-        heart.classList.add("heart");
-        heart.innerHTML="❤";
-        heart.style.left = (50 + Math.random()*100 - 50) + "%";
-        heart.style.top = "50%";
-        document.body.appendChild(heart);
-        setTimeout(()=>heart.remove(),2000);
+  // ---------- CARTINHA REAL ----------
+  function toggleLetter(){
+    const envelope = document.getElementById('envelope');
+    const letterContent = document.getElementById('letterContent');
+    const isOpen = envelope.classList.toggle('open');
+    if (isOpen) {
+      for(let i = 0; i < 20; i++) {
+        const heart = document.createElement('span');
+        heart.className = 'heart';
+        heart.textContent = '💖';
+        heart.style.left = `${Math.random() * 100}%`;
+        heart.style.animationDelay = `${Math.random() * 0.5}s`;
+        document.getElementById('cartaSection').appendChild(heart);
+        setTimeout(() => heart.remove(), 2000);
       }
     }
   }
 
   // ---------- MOTIVOS ----------
   const motivos = [
-    "Seu sorriso ilumina o meu dia 🌞",
-    "O jeito que você cuida de mim 💕",
-    "Seu abraço é meu lugar favorito 🤗",
-    "Sua risada é a coisa mais linda 😍",
-    "Você me faz acreditar no amor verdadeiro 💖",
-    "A forma como você olha nos meus olhos ✨",
-    "Seu jeitinho bobo que me encanta 😂",
-    "A paciência que você tem comigo 🥹",
-    "Como você transforma qualquer momento simples em algo especial 💜",
-    "O fato de você ser simplesmente você 💎"
+    { text: "Seu sorriso ilumina o meu dia", icon: "🌞" },
+    { text: "O jeito que você cuida de mim", icon: "💕" },
+    { text: "Seu abraço é meu lugar favorito", icon: "🤗" },
+    { text: "Sua risada é a coisa mais linda", icon: "😍" },
+    { text: "Você me faz acreditar no amor verdadeiro", icon: "💖" },
+    { text: "A forma como você olha nos meus olhos", icon: "✨" },
+    { text: "Seu jeitinho bobo que me encanta", icon: "😂" },
+    { text: "A paciência que você tem comigo", icon: "🥹" },
+    { text: "Como você transforma qualquer momento simples em algo especial", icon: "💜" },
+    { text: "O fato de você ser simplesmente você", icon: "💎" }
   ];
   let motivoIndex = 0;
+
   function trocarMotivo(){
-    const box = document.getElementById("motivosBox");
-    box.style.opacity = 0;
-    setTimeout(()=>{
-      box.textContent = motivos[motivoIndex];
-      box.style.opacity = 1;
-      motivoIndex = (motivoIndex+1)%motivos.length;
-    },800);
+    const motivosBox = document.getElementById("motivosBox");
+    const currentMotivo = motivos[motivoIndex];
+    const newMotivoElement = document.createElement('div');
+    newMotivoElement.className = 'motivo-text';
+    newMotivoElement.innerHTML = `<div class="motivo-icon">${currentMotivo.icon}</div>${currentMotivo.text}`;
+
+    if (motivosBox.children.length > 0) {
+      const oldMotivoElement = motivosBox.children[0];
+      oldMotivoElement.classList.add('old');
+      setTimeout(() => oldMotivoElement.remove(), 800);
+    }
+    
+    newMotivoElement.classList.add('new');
+    motivosBox.appendChild(newMotivoElement);
+    motivoIndex = (motivoIndex + 1) % motivos.length;
   }
-  setInterval(trocarMotivo,3000);
+  setInterval(trocarMotivo, 3000);
   trocarMotivo();
 </script>
+
 </body>
 </html>
