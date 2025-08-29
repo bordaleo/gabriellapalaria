@@ -45,61 +45,61 @@
     align-items: center;
     text-align: center;
     min-height: 100vh;
-    padding: 30px; /* Adiciona padding geral para responsividade */
+    padding: 30px;
   }
   h2 { 
-    font-size:clamp(1.8rem, 3.5vw, 2.8rem); /* Aumenta um pouco o tamanho do título */
+    font-size:clamp(1.8rem, 3.5vw, 2.8rem);
     color:#8c52ff; 
-    margin-bottom:40px; /* Mais espaço abaixo do título */
-    text-shadow: 1px 1px 3px rgba(0,0,0,0.1); /* Sombra suave no texto */
+    margin-bottom:40px;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
   }
   .cards { 
     display:grid; 
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); /* Ajuste para caixinhas um pouco menores e mais flexíveis */
-    gap:30px; /* Aumenta o espaçamento entre as caixas */
-    max-width: 1000px; /* Largura máxima maior */
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:30px;
+    max-width: 1000px;
     width: 100%;
     padding: 0 15px;
   }
   .card { 
-    background: linear-gradient(145deg, #f0e6ff, #f8d4ff); /* Gradiente mais vivo */
-    border-radius:25px; /* Bordas mais arredondadas */
-    padding:30px; /* Mais padding interno */
-    box-shadow: 0 12px 30px rgba(0,0,0,0.15); /* Sombra mais pronunciada */
+    background: linear-gradient(145deg, #f0e6ff, #f8d4ff);
+    border-radius:25px;
+    padding:30px;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.15);
     text-align:center; 
-    transition: transform 0.4s ease, box-shadow 0.4s ease, background 0.4s ease; /* Mais transições */
+    transition: transform 0.4s ease, box-shadow 0.4s ease, background 0.4s ease;
     cursor:pointer; 
-    border: none; /* Remove borda sólida */
+    border: none;
     position: relative;
     overflow: hidden;
   }
   .card::before {
     content: '';
     position: absolute;
-    top: -60%; /* Ajuste para cobrir melhor */
+    top: -60%;
     left: -60%;
-    width: 220%; /* Ajuste para cobrir melhor */
+    width: 220%;
     height: 220%;
-    background: rgba(255, 255, 255, 0.2); /* Brilho mais visível */
+    background: rgba(255, 255, 255, 0.2);
     transform: rotate(45deg);
-    transition: transform 0.6s ease; /* Transição mais suave */
-    opacity: 0; /* Começa invisível */
+    transition: transform 0.6s ease;
+    opacity: 0;
   }
   .card:hover::before {
     transform: rotate(45deg) scale(1.1);
-    opacity: 1; /* Brilho aparece no hover */
+    opacity: 1;
   }
   .card:hover { 
-    transform:scale(1.07); /* Aumenta um pouco mais ao passar o mouse */
-    box-shadow: 0 18px 45px rgba(0,0,0,0.25); /* Sombra ainda maior no hover */
-    background: linear-gradient(145deg, #f4d9ff, #ffd1ff); /* Gradiente muda um pouco no hover */
+    transform:scale(1.07);
+    box-shadow: 0 18px 45px rgba(0,0,0,0.25);
+    background: linear-gradient(145deg, #f4d9ff, #ffd1ff);
   }
   .card h3 { 
-    color: #6b2d5b; /* Cor mais escura para o texto principal */
+    color: #6b2d5b;
     margin-bottom:10px; 
     position: relative;
     z-index: 1;
-    font-size: 1.4rem; /* Texto maior */
+    font-size: 1.4rem;
     font-weight: 700;
   }
   .card p {
@@ -117,21 +117,35 @@
   .gallery-item img, .gallery-item video { width:100%; border-radius:12px; margin-bottom:10px; }
   .gallery-item p { text-align:center; font-size:1rem; color:var(--pink); }
   .back-btn { 
-    margin-top:40px; /* Aumenta o espaço do botão voltar */
+    margin-top:40px;
     display:inline-block; 
     background:var(--pink); 
-    padding:12px 28px; /* Botão maior */
+    padding:12px 28px;
     color:white; 
-    border-radius:30px; /* Bordas mais arredondadas */
+    border-radius:30px;
     cursor:pointer; 
     text-decoration:none; 
     font-size: 1rem;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.15); /* Sombra no botão */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.15);
     transition: background 0.3s ease, transform 0.3s ease;
   }
   .back-btn:hover {
-    background: #e02a7b; /* Cor um pouco mais escura no hover */
+    background: #e02a7b;
     transform: translateY(-2px);
+  }
+  #playMusicBtn {
+    margin-bottom: 20px;
+    background: var(--pink-2);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background 0.3s;
+  }
+  #playMusicBtn:hover {
+    background: #ff4da6;
   }
 
   /* ========= CONTADOR FOFO (NOVO) ========= */
@@ -220,15 +234,22 @@
     transform: translateZ(1px);
     clip-path: polygon(0 40%, 100% 40%, 100% 100%, 0 100%);
   }
+  /* Ajuste do tamanho da caixa da carta */
   .letter{
-    position:absolute; left:8%; right:8%; bottom:12px; height:80%;
-    background:#fff; border-radius:14px; box-shadow:0 10px 20px rgba(0,0,0,.15);
+    position:absolute;
+    left: 5%;
+    right: 5%;
+    bottom: 0;
+    height: 90%;
+    background:#fff;
+    border-radius:14px;
+    box-shadow:0 10px 20px rgba(0,0,0,.15);
     transform: translateY(36%) rotateX(0deg);
     transition: transform .9s cubic-bezier(.2,.8,.2,1);
     padding:18px;
     overflow: hidden;
-    opacity: 0; /* Começa invisível */
-    transition: transform .9s cubic-bezier(.2,.8,.2,1), opacity .5s ease .3s; /* Adicionado transição para opacidade com delay */
+    opacity: 0;
+    transition: transform .9s cubic-bezier(.2,.8,.2,1), opacity .5s ease .3s;
   }
   .letter::after{
     content:''; position:absolute; left:0; right:0; top:0; height:8px;
@@ -243,8 +264,8 @@
   /* estado aberto */
   .envelope.open .env-flap{ transform: rotateX(180deg); }
   .envelope.open .letter{ 
-    transform: translateY(-50%) rotateX(0); /* Ajuste para centralizar mais o texto */
-    opacity: 1; /* Torna a carta visível */
+    transform: translateY(-50%) rotateX(0);
+    opacity: 1;
   }
 
   /* corações */
@@ -278,6 +299,10 @@
 </head>
 <body>
 
+<audio id="momentosAudio" src="https://www.bensound.com/bensound-music/bensound-love.mp3" preload="auto"></audio>
+<audio id="calendarioAudio" src="https://www.bensound.com/bensound-music/bensound-acousticbreeze.mp3" preload="auto"></audio>
+<audio id="cartaAudio" src="https://www.bensound.com/bensound-music/bensound-sweet.mp3" preload="auto"></audio>
+
 <section id="loginPage">
   <img src="https://cdn-icons-png.flaticon.com/512/747/747376.png" alt="Lacinho">
   <h1>Bem-vinda 💕</h1>
@@ -310,6 +335,7 @@
 
 <section id="momentosSection">
   <h2>Nossos Momentos 📸</h2>
+  <button id="playMusicBtn" onclick="togglePlay('momentosAudio')">🎵 Tocar Música</button>
   <div class="gallery">
     <script>
       const gallery = [];
@@ -388,6 +414,37 @@
 </section>
 
 <script>
+  // ---------- MÚSICAS ----------
+  const musicas = {
+    momentosAudio: { src: 'https://cdn.pixabay.com/audio/2023/10/05/audio_244f77c44e.mp3', audio: null, playing: false },
+    calendarioAudio: { src: 'https://cdn.pixabay.com/audio/2023/06/15/audio_f5e6a048a1.mp3', audio: null, playing: false },
+    cartaAudio: { src: 'https://cdn.pixabay.com/audio/2023/06/15/audio_51d5423871.mp3', audio: null, playing: false }
+  };
+
+  function playMusic(audioId) {
+    stopAllMusic();
+    if (!musicas[audioId].audio) {
+      musicas[audioId].audio = new Audio(musicas[audioId].src);
+      musicas[audioId].audio.loop = true;
+    }
+    musicas[audioId].audio.play();
+    musicas[audioId].playing = true;
+  }
+
+  function stopMusic(audioId) {
+    if (musicas[audioId].audio) {
+      musicas[audioId].audio.pause();
+      musicas[audioId].audio.currentTime = 0;
+    }
+    musicas[audioId].playing = false;
+  }
+
+  function stopAllMusic() {
+    for (const key in musicas) {
+      stopMusic(key);
+    }
+  }
+
   // ---------- LOGIN ----------
   const senhaCorreta = "150825";
   let senhaDigitada = "";
@@ -403,6 +460,24 @@
   function showSection(sectionId){
     document.querySelectorAll('section').forEach(sec=>sec.style.display='none');
     document.getElementById(sectionId).style.display='block';
+    
+    // Controlar a música ao mudar de seção
+    stopAllMusic();
+    if (sectionId === 'momentosSection') {
+      // A música de momentos será controlada pelo botão, não toca automaticamente
+    } else if (sectionId === 'contadorSection') {
+      playMusic('calendarioAudio');
+    } else if (sectionId === 'cartaSection') {
+      playMusic('cartaAudio');
+    }
+  }
+  
+  function togglePlay(audioId) {
+    if (musicas[audioId].playing) {
+      stopMusic(audioId);
+    } else {
+      playMusic(audioId);
+    }
   }
 
   // ---------- CONTADOR FOFO (NOVO) ----------
@@ -426,7 +501,6 @@
     document.getElementById("minutos").textContent = fmt2(minutos);
     document.getElementById("segundos").textContent = fmt2(segundos);
 
-    // label
     const dd = String(startDate.getDate()).padStart(2,'0');
     const mm = String(startDate.getMonth()+1).padStart(2,'0');
     const yyyy = startDate.getFullYear();
@@ -446,7 +520,6 @@
     }
   }
 
-  // Acessibilidade pelo teclado
   envelope && envelope.addEventListener('keydown', (e)=>{
     if(e.key === 'Enter' || e.key === ' '){
       e.preventDefault(); toggleCarta();
@@ -457,8 +530,8 @@
     for(let i=0;i<qtd;i++){
       const h = document.createElement('div');
       h.className = 'heart';
-      const offsetX = (Math.random()*160 - 80); // -80 a 80px
-      const delay = Math.random()*0.6; // 0 a .6s
+      const offsetX = (Math.random()*160 - 80);
+      const delay = Math.random()*0.6;
       const scale = 0.8 + Math.random()*0.8;
       h.style.left = offsetX + 'px';
       h.style.top = '0px';
