@@ -67,6 +67,11 @@
     padding:8px 14px;
     box-shadow:var(--shadow);
   }
+  /* Estilo para remover a borda do "Juntos desde" */
+  #contadorSection .since {
+    border: none;
+    box-shadow: none;
+  }
   .timer-grid{
     width:100%;
     display:grid;
@@ -94,20 +99,6 @@
     color:#8a8a8a;
     text-transform:uppercase;
   }
-  .milestones{
-    display:flex; gap:10px; flex-wrap:wrap; justify-content:center; margin-top:6px;
-  }
-  .chip{
-    font-size:clamp(0.7rem,1.6vw,.9rem);
-    background:#fff0f6; border:1px dashed var(--pink);
-    color:#6b2d5b; padding:6px 10px; border-radius:999px;
-  }
-  /* Estilo para remover a borda do "Juntos desde" */
-  #contadorSection .since {
-    border: none;
-    box-shadow: none;
-  }
-
   /* Estilo para a mensagem personalizada */
   #customMessage {
     font-size: clamp(0.9rem, 1.8vw, 1.1rem);
@@ -116,6 +107,7 @@
     border-radius: 999px;
     padding: 8px 14px;
     box-shadow: var(--shadow);
+    margin-top: 15px; /* Adiciona um espaço da contagem */
   }
 
   /* ========= CARTINHA REAL (NOVA) ========= */
@@ -164,21 +156,25 @@
     transition: transform .9s cubic-bezier(.2,.8,.2,1);
     padding:18px; overflow:hidden;
   }
-  .letter::after{ /* “linha” decorativa */
+  /* Borda da carta - novo design */
+  .letter::after{
     content:''; position:absolute; left:0; right:0; top:0; height:8px;
-    background: repeating-linear-gradient(90deg, #ff6cab 0 12px, #7f6bff 12px 24px, #00c2ff 24px 36px);
+    background: linear-gradient(90deg, #ff6cab, #ffb3cf, #ff6cab); /* Degradê mais suave */
     border-top-left-radius:14px; border-top-right-radius:14px;
   }
   .letter-content{
     position:absolute; inset:18px 16px 16px; overflow:auto;
     font-size:clamp(.95rem, 2.2vw, 1.05rem); line-height:1.5; color:#333;
+    opacity: 0; /* Começa invisível */
+    transition: opacity .5s ease-in-out .4s; /* Transição com delay */
   }
 
   /* estado aberto */
   .envelope.open .env-flap{ transform: rotateX(180deg); }
   .envelope.open .letter{ transform: translateY(-46%) rotateX(0); }
+  .envelope.open .letter-content{ opacity: 1; } /* Torna o conteúdo visível ao abrir */
 
-  /* coração */
+  /* corações */
   .hearts{
     position:relative; width:0; height:0;
   }
@@ -283,7 +279,7 @@
       </div>
     </div>
     
-    <div id="customMessage">Cada segundo com você é um presente 💝</div>
+    <div id="customMessage">Cada segundo com você é um presente!! 💝</div>
   </div>
   <div class="back-btn" onclick="showSection('mainPage')">⬅ Voltar</div>
 </section>
@@ -368,7 +364,6 @@
   const envelope = document.getElementById('envelope');
   const heartsAnchor = document.getElementById('heartsAnchor');
   
-  // A carta começa fechada, não há necessidade de uma variável global
   function toggleCarta(){
     envelope.classList.toggle('open');
     if (envelope.classList.contains('open')) {
