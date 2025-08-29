@@ -35,39 +35,115 @@
   .card:hover { transform:scale(1.05); }
   .card h3 { color:#d63384; margin-bottom:15px; }
 
-  /* MOMENTOS */
-  #momentosSection { display:none; }
-  .gallery { display:flex; flex-direction:column; gap:30px; max-width:700px; margin:0 auto; }
-  .gallery-item { background:white; padding:20px; border-radius:15px; box-shadow:0 6px 15px rgba(0,0,0,0.15); }
-  .gallery-item img, .gallery-item video { width:100%; border-radius:12px; margin-bottom:10px; }
-  .gallery-item p { text-align:center; font-size:1rem; color:#d63384; }
-  .back-btn { margin-top:20px; display:inline-block; background:#d63384; padding:10px 20px; color:white; border-radius:20px; cursor:pointer; text-decoration:none; }
-
   /* CONTADOR FOFO */
   #contadorSection { display:none; text-align:center; }
-  #contadorBox { background:white; display:inline-block; padding:30px; border-radius:25px; box-shadow:0 6px 15px rgba(0,0,0,0.15); font-size:1.4rem; color:#d63384; margin-top:30px; }
-  #contadorBox span { font-weight:bold; }
+  #contadorBox {
+    background:linear-gradient(135deg,#ffe0f7,#fcd5ff);
+    display:inline-block; padding:40px;
+    border-radius:25px;
+    box-shadow:0 8px 25px rgba(0,0,0,0.2);
+    font-size:1.6rem;
+    color:#d63384;
+    margin-top:30px;
+    border:3px solid #d63384;
+  }
+  #contadorBox span { font-weight:bold; color:#8c52ff; }
 
-  /* CARTINHA REAL */
+  /* CARTA REAL */
   #cartaSection { display:none; text-align:center; }
-  .carta { position:relative; width:300px; height:200px; margin:50px auto; perspective:1000px; cursor:pointer; }
-  .carta-inner { position:absolute; width:100%; height:100%; background:#fff0f6; border:2px solid #d63384; border-radius:12px; padding:20px; transform-style:preserve-3d; transform:rotateX(-90deg); transition:transform 1s; display:flex; align-items:center; justify-content:center; text-align:center; }
-  .carta.open .carta-inner { transform:rotateX(0); }
-  .carta-inner p { color:#333; font-size:1.1rem; }
-  .open-btn { background:#d63384; color:white; padding:10px 25px; border-radius:25px; cursor:pointer; margin-bottom:20px; }
+  .carta {
+    width: 320px;
+    height: 220px;
+    margin: 50px auto;
+    position: relative;
+    perspective: 1000px;
+    cursor: pointer;
+  }
+  .envelope {
+    width: 100%; height: 100%;
+    background: #ffebf5;
+    border: 2px solid #d63384;
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+  }
+  .flap {
+    width: 0; height: 0;
+    border-left: 160px solid transparent;
+    border-right: 160px solid transparent;
+    border-bottom: 110px solid #d63384;
+    position: absolute;
+    top: 0; left: 0;
+    transform-origin: top;
+    transition: transform 1s;
+  }
+  .carta.open .flap {
+    transform: rotateX(180deg);
+  }
+  .mensagem {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%; height: 100%;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    transition: top 1s;
+    font-size: 1.1rem;
+    color: #333;
+  }
+  .carta.open .mensagem {
+    top: 0;
+  }
+  /* corações */
+  .heart {
+    position: absolute;
+    color: #ff4da6;
+    font-size: 20px;
+    animation: float 2s ease-out forwards;
+  }
+  @keyframes float {
+    0% { opacity:1; transform:translateY(0) scale(1);}
+    100% { opacity:0; transform:translateY(-100px) scale(1.5);}
+  }
 
   /* MOTIVOS */
   #motivosSection { display:none; text-align:center; }
   #motivosBox {
-    background:white;
-    padding:30px;
-    border-radius:25px;
-    box-shadow:0 6px 15px rgba(0,0,0,0.15);
-    font-size:1.3rem;
+    background:linear-gradient(145deg,#fff0f6,#ffe6f9);
+    padding:35px;
+    border-radius:30px;
+    box-shadow:0 8px 25px rgba(0,0,0,0.2);
+    font-size:1.4rem;
     color:#d63384;
     max-width:500px;
     margin:0 auto;
+    border:3px solid #d63384;
     transition: opacity 1s ease;
+    position:relative;
+  }
+  #motivosBox::before {
+    content:"❤";
+    position:absolute;
+    top:-20px; left:-20px;
+    font-size:2rem;
+    color:#ff4da6;
+    animation: pulse 1.5s infinite;
+  }
+  #motivosBox::after {
+    content:"❤";
+    position:absolute;
+    bottom:-20px; right:-20px;
+    font-size:2rem;
+    color:#ff4da6;
+    animation: pulse 1.5s infinite alternate;
+  }
+  @keyframes pulse {
+    0% { transform:scale(1);}
+    50% { transform:scale(1.3);}
+    100% { transform:scale(1);}
   }
 </style>
 </head>
@@ -99,34 +175,10 @@
 <section id="mainPage">
   <h2>Nosso Cantinho 💜</h2>
   <div class="cards">
-    <div class="card" onclick="showSection('momentosSection')"><h3>Nossos Momentos 📸</h3></div>
     <div class="card" onclick="showSection('contadorSection')"><h3>Calendário do Amor ⏳</h3></div>
     <div class="card" onclick="showSection('cartaSection')"><h3>Cartinha do Amor 💌</h3></div>
     <div class="card" onclick="showSection('motivosSection')"><h3>Motivos do Meu Amor 💖</h3></div>
   </div>
-</section>
-
-<!-- MOMENTOS -->
-<section id="momentosSection">
-  <h2>Nossos Momentos 📸</h2>
-  <div class="gallery">
-    <script>
-      const gallery = [];
-      for(let i=1;i<=20;i++){
-        gallery.push({type:'img', src:`https://picsum.photos/400/200?random=${i}`, text:`Texto da foto ${i} 💕`});
-      }
-      for(let i=1;i<=5;i++){
-        gallery.push({type:'video', src:`video${i}.mp4`, text:`Texto do vídeo ${i} 💕`});
-      }
-      gallery.forEach(item=>{
-        document.write('<div class="gallery-item">');
-        if(item.type==='img') document.write(`<img src="${item.src}" alt="Foto">`);
-        else document.write(`<video controls><source src="${item.src}" type="video/mp4"></video>`);
-        document.write(`<p>${item.text}</p></div>`);
-      });
-    </script>
-  </div>
-  <div class="back-btn" onclick="showSection('mainPage')">⬅ Voltar</div>
 </section>
 
 <!-- CONTADOR FOFO -->
@@ -136,15 +188,15 @@
   <div class="back-btn" onclick="showSection('mainPage')">⬅ Voltar</div>
 </section>
 
-<!-- CARTINHA REAL -->
+<!-- CARTA -->
 <section id="cartaSection">
   <h2>Cartinha do Amor 💌</h2>
-  <div class="carta" id="carta">
-    <div class="carta-inner">
-      <p>Minha gatinha, eu te amo infinitamente 💜<br>Cada momento contigo é único e especial.<br>Para sempre, você e eu 💕</p>
+  <div class="carta" id="carta" onclick="abrirCarta()">
+    <div class="envelope">
+      <div class="flap"></div>
+      <div class="mensagem">Minha gatinha, você é o meu mundo 💜<br>Meu porto seguro, meu sorriso, minha vida.<br>Te amo infinitamente! 💕</div>
     </div>
   </div>
-  <div class="open-btn" onclick="document.getElementById('carta').classList.toggle('open')">Abrir/Fechar Cartinha</div>
   <div class="back-btn" onclick="showSection('mainPage')">⬅ Voltar</div>
 </section>
 
@@ -173,7 +225,7 @@
     document.getElementById(sectionId).style.display='block';
   }
 
-  // ---------- CONTADOR FOFO ----------
+  // ---------- CONTADOR ----------
   const startDate = new Date("2025-08-15T00:00:00");
   function atualizarContador(){
     const agora = new Date();
@@ -186,6 +238,23 @@
   }
   setInterval(atualizarContador,1000);
   atualizarContador();
+
+  // ---------- CARTA ----------
+  function abrirCarta(){
+    const carta = document.getElementById("carta");
+    carta.classList.toggle("open");
+    if(carta.classList.contains("open")){
+      for(let i=0;i<10;i++){
+        let heart = document.createElement("div");
+        heart.classList.add("heart");
+        heart.innerHTML="❤";
+        heart.style.left = (50 + Math.random()*100 - 50) + "%";
+        heart.style.top = "50%";
+        document.body.appendChild(heart);
+        setTimeout(()=>heart.remove(),2000);
+      }
+    }
+  }
 
   // ---------- MOTIVOS ----------
   const motivos = [
@@ -213,6 +282,5 @@
   setInterval(trocarMotivo,3000);
   trocarMotivo();
 </script>
-
 </body>
 </html>
