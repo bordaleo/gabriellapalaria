@@ -5,288 +5,209 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Para Minha Gatinha 💜</title>
 <style>
-  :root{
-    --pink:#d63384;
-    --pink-2:#ff80b3;
-    --bg-1:#ffe6f0;
-    --bg-2:#f8e1ff;
-    --card:#ffffff;
-    --shadow:0 6px 18px rgba(0,0,0,0.15);
+  * {
+    box-sizing: border-box;
   }
 
   body, html {
     margin: 0; padding: 0;
     font-family: 'Arial', sans-serif;
     min-height: 100vh;
-    background: var(--bg-1);
-    color: #333;
+    background: linear-gradient(135deg, #ffe6f0, #ffcce0);
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
-  section { display: none; padding: 30px; min-height: 100vh; }
-
-  /* LOGIN */
-  #loginPage {
-    display: flex; flex-direction: column; justify-content: center; align-items: center;
-    height: 100vh; text-align: center; background: linear-gradient(145deg,#ffb6c1,#ffcce0);
+  section {
+    display: none;
+    text-align: center;
+    padding: 20px;
+    width: 100%;
   }
-  #loginPage h1 { font-size: 2.5rem; color: var(--pink); margin-bottom: 15px; }
-  #loginPage img { width: 120px; margin-bottom: 20px; }
-  #passwordDisplay { font-size: 2rem; letter-spacing: 10px; margin-bottom: 20px; color: #444; }
-  .keypad { display: grid; grid-template-columns: repeat(3, 80px); gap: 15px; }
-  .keypad button { font-size: 1.5rem; padding: 15px; border-radius: 12px; border: none; background: var(--pink-2); color: white; cursor: pointer; transition: 0.2s; }
-  .keypad button:hover { background: #ff4da6; }
 
-  /* MAIN PAGE */
-  #mainPage { display: none; background: linear-gradient(120deg,var(--bg-2),#ffe6f9); }
-  h2 { text-align:center; font-size:clamp(1.4rem, 2.5vw, 2rem); color:#8c52ff; margin-bottom:30px; }
-  .cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:25px; }
-  .card { background:white; border-radius:20px; padding:20px; box-shadow:var(--shadow); text-align:center; transition:transform 0.3s ease; cursor:pointer; }
-  .card:hover { transform:scale(1.05); }
-  .card h3 { color:var(--pink); margin-bottom:15px; }
+  #mainPage { display: block; }
 
-  /* MOMENTOS */
-  #momentosSection { display:none; }
-  .gallery { display:flex; flex-direction:column; gap:30px; max-width:700px; margin:0 auto; }
-  .gallery-item { background:white; padding:20px; border-radius:15px; box-shadow:var(--shadow); }
-  .gallery-item img, .gallery-item video { width:100%; border-radius:12px; margin-bottom:10px; }
-  .gallery-item p { text-align:center; font-size:1rem; color:var(--pink); }
-  .back-btn { margin-top:20px; display:inline-block; background:var(--pink); padding:10px 20px; color:white; border-radius:20px; cursor:pointer; text-decoration:none; }
+  h1 {
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    color: #6b2d5b;
+  }
 
-  /* ========= CONTADOR FOFO (NOVO) ========= */
-  #contadorSection { display:none; text-align:center; }
+  h2 {
+    font-size: clamp(1.1rem, 2.2vw, 1.6rem);
+    color: #6b2d5b;
+    margin-bottom: 14px;
+  }
+
+  .btn {
+    background: #ff4d88;
+    color: white;
+    padding: 12px 20px;
+    margin: 8px;
+    border: none;
+    border-radius: 25px;
+    font-size: 1rem;
+    cursor: pointer;
+    box-shadow: 0 6px 14px rgba(0,0,0,.15);
+    transition: transform .2s;
+  }
+  .btn:hover { transform: scale(1.07); }
+
+  .back-btn {
+    margin-top: 20px;
+    font-size: .9rem;
+    color: #6b2d5b;
+    cursor: pointer;
+    text-decoration: underline;
+  }
+
+  /* contador */
   .counter-wrap{
-    display:flex; flex-direction:column; align-items:center; gap:16px;
-    max-width:900px; margin:0 auto;
+    background:#fff;
+    padding:20px;
+    border-radius:16px;
+    display:inline-block;
+    box-shadow:0 8px 20px rgba(0,0,0,.1);
+    min-width:260px;
   }
   .since{
     font-size:clamp(0.9rem, 1.8vw, 1.1rem);
     color:#6b2d5b;
-    background: #fff0f6;
-    border:2px solid var(--pink);
-    border-radius:999px;
-    padding:8px 14px;
-    box-shadow:var(--shadow);
+    background:none;
+    border:none;
+    padding:0;
+    box-shadow:none;
+    margin-bottom:10px;
   }
   .timer-grid{
-    width:100%;
-    display:grid;
-    grid-template-columns: repeat(4, minmax(70px,1fr));
-    gap:12px;
+    display:flex;
+    justify-content:center;
+    gap:14px;
+    margin:14px 0;
   }
-  .unit{
-    background: var(--card);
-    border-radius:18px;
-    padding:16px 12px;
-    box-shadow:var(--shadow);
-    display:flex; flex-direction:column; align-items:center; justify-content:center;
+  .unit .num{
+    font-size:1.5rem;
+    font-weight:bold;
+    color:#ff4d88;
   }
-  .num{
-    font-variant-numeric: tabular-nums;
-    font-weight:800;
-    line-height:1;
-    font-size:clamp(2rem, 7.5vw, 3.2rem);
-    color: var(--pink);
-  }
-  .label{
-    margin-top:6px;
-    letter-spacing:.5px;
-    font-size:clamp(0.7rem, 1.8vw, .9rem);
-    color:#8a8a8a;
-    text-transform:uppercase;
-  }
-  .milestones{
-    display:flex; gap:10px; flex-wrap:wrap; justify-content:center; margin-top:6px;
+  .unit .label{
+    font-size:.8rem;
+    color:#6b2d5b;
   }
   .chip{
-    font-size:clamp(0.7rem,1.6vw,.9rem);
-    background:#fff0f6; border:1px dashed var(--pink);
-    color:#6b2d5b; padding:6px 10px; border-radius:999px;
+    font-size:clamp(0.8rem,1.6vw,1rem);
+    background:#fff0f6;
+    border:1px solid #e0a5c0;
+    color:#6b2d5b;
+    padding:6px 10px;
+    border-radius:12px;
+    min-width:120px;
+    margin:3px;
   }
 
-  /* ========= CARTINHA REAL (NOVA) ========= */
-  #cartaSection { display:none; text-align:center; }
+  /* cartinha */
   .envelope-area{
-    display:flex; flex-direction:column; align-items:center; gap:14px;
+    position:relative;
+    display:inline-block;
   }
   .envelope{
     position:relative;
-    width:min(92vw, 360px);
-    height:240px;
-    perspective:1200px;
+    width:220px;
+    height:160px;
+    background:#ff4d88;
+    margin:auto;
     cursor:pointer;
+    transform-style:preserve-3d;
+    transition:.9s;
+    border-radius:8px;
+    box-shadow:0 6px 20px rgba(0,0,0,.2);
   }
-  /* base do envelope */
-  .env-back{
-    position:absolute; inset:0;
-    background: linear-gradient(180deg, #ffd1e1, #ffb3cf);
-    border-radius:18px;
-    box-shadow:var(--shadow);
+  .env-back, .env-front, .env-flap{
+    position:absolute; left:0; right:0; height:100%;
   }
-  /* tampa */
+  .env-back{background:#ff4d88;border-radius:8px;}
+  .env-front{background:#ff80aa;bottom:0;top:50%;border-radius:0 0 8px 8px;}
   .env-flap{
-    position:absolute; left:0; right:0; top:0; height:55%;
-    background: linear-gradient(180deg, #ff9cc5, #ff6cab);
-    clip-path: polygon(0 0, 100% 0, 50% 100%);
-    transform-origin: top;
-    transition: transform .9s cubic-bezier(.2,.8,.2,1);
-    border-top-left-radius:18px; border-top-right-radius:18px;
+    top:0; height:50%;
+    background:#ff6699;
+    clip-path:polygon(0 0,100% 0,50% 100%);
+    border-radius:8px 8px 0 0;
+    transform-origin:top;
+    transition:.9s;
   }
-  /* frente (bordinha) */
-  .env-front{
-    position:absolute; inset:0;
-    border-radius:18px;
-    background:
-      linear-gradient(180deg, #ffd9e7, #ffc1da);
-    transform: translateZ(1px);
-    clip-path: polygon(0 40%, 100% 40%, 100% 100%, 0 100%);
-  }
+  .envelope.open .env-flap{transform:rotateX(180deg);}
 
-  /* folha (a carta) */
   .letter{
     position:absolute; left:8%; right:8%; bottom:12px; height:80%;
     background:#fff; border-radius:14px; box-shadow:0 10px 20px rgba(0,0,0,.15);
-    transform: translateY(36%) rotateX(0deg);
+    transform: translateY(100%);
     transition: transform .9s cubic-bezier(.2,.8,.2,1);
     padding:18px; overflow:hidden;
   }
-  .letter::after{ /* “linha” decorativa */
-    content:''; position:absolute; left:0; right:0; top:0; height:8px;
-    background: repeating-linear-gradient(90deg, #ff6cab 0 12px, #7f6bff 12px 24px, #00c2ff 24px 36px);
-    border-top-left-radius:14px; border-top-right-radius:14px;
-  }
-  .letter-content{
-    position:absolute; inset:18px 16px 16px; overflow:auto;
-    font-size:clamp(.95rem, 2.2vw, 1.05rem); line-height:1.5; color:#333;
-  }
-
-  /* estado aberto */
-  .envelope.open .env-flap{ transform: rotateX(180deg); }
-  .envelope.open .letter{ transform: translateY(-46%) rotateX(0); }
-
-  /* botão */
-  .open-btn {
-    background:var(--pink); color:white; padding:10px 24px; border-radius:25px;
-    cursor:pointer; border:none; box-shadow:var(--shadow);
-  }
+  .letter-content{ text-align:left; font-size:.9rem; line-height:1.4; color:#333; }
+  .envelope.open .letter{ transform: translateY(-46%); }
 
   /* corações */
   .hearts{
-    position:relative; width:0; height:0;
+    position:absolute;
+    top:-20px; left:50%;
+    pointer-events:none;
   }
   .heart{
-    position:absolute; width:14px; height:14px;
-    transform: rotate(45deg);
-    animation: floatUp 2.4s ease-in forwards;
+    width:18px;height:18px;
+    background:red;
+    position:absolute;
+    opacity:.8;
+    transform:rotate(45deg);
+    animation: subir 2.6s linear forwards;
   }
-  .heart:before, .heart:after{
-    content:""; position:absolute; width:14px; height:14px; background: #ff6cab; border-radius:50%;
+  .heart:before,.heart:after{
+    content:"";
+    width:18px;height:18px;
+    border-radius:50%;
+    background:red;
+    position:absolute;
   }
-  .heart:before{ left:-7px; top:0; }
-  .heart:after{ left:0; top:-7px; }
-  @keyframes floatUp{
-    0% { opacity:0; transform:translateY(0) scale(.6) rotate(45deg); }
-    10%{ opacity:1; }
-    100%{ opacity:0; transform:translateY(-140px) scale(1.2) rotate(45deg); }
-  }
-
-  /* util */
-  @media (max-width:480px){
-    section{ padding:22px; }
-    .timer-grid{ grid-template-columns: repeat(2, minmax(120px,1fr)); }
+  .heart:before{ top:-9px; left:0;}
+  .heart:after{ left:-9px; top:0;}
+  @keyframes subir{
+    0%{transform:translateY(0) scale(1) rotate(45deg);opacity:1;}
+    100%{transform:translateY(-160px) scale(0.7) rotate(45deg);opacity:0;}
   }
 </style>
 </head>
 <body>
 
-<!-- LOGIN -->
-<section id="loginPage">
-  <img src="https://cdn-icons-png.flaticon.com/512/747/747376.png" alt="Lacinho">
-  <h1>Bem-vinda 💕</h1>
-  <p>Data especial para nós</p>
-  <div id="passwordDisplay">••••••</div>
-  <div class="keypad">
-    <button onclick="enterDigit('1')">1</button>
-    <button onclick="enterDigit('2')">2</button>
-    <button onclick="enterDigit('3')">3</button>
-    <button onclick="enterDigit('4')">4</button>
-    <button onclick="enterDigit('5')">5</button>
-    <button onclick="enterDigit('6')">6</button>
-    <button onclick="enterDigit('7')">7</button>
-    <button onclick="enterDigit('8')">8</button>
-    <button onclick="enterDigit('9')">9</button>
-    <button onclick="clearPassword()">⌫</button>
-    <button onclick="enterDigit('0')">0</button>
-    <button onclick="checkPassword()">✔</button>
-  </div>
-</section>
-
-<!-- MAIN PAGE -->
+<!-- ===== PÁGINA PRINCIPAL ===== -->
 <section id="mainPage">
-  <h2>Nosso Cantinho 💜</h2>
-  <div class="cards">
-    <div class="card" onclick="showSection('momentosSection')"><h3>Nossos Momentos 📸</h3></div>
-    <div class="card" onclick="showSection('contadorSection')"><h3>Calendário do Amor ⏳</h3></div>
-    <div class="card" onclick="showSection('cartaSection')"><h3>Cartinha do Amor 💌</h3></div>
-  </div>
+  <h1>Para Minha Gatinha 💜</h1>
+  <button class="btn" onclick="showSection('contadorSection')">Nosso Tempo</button>
+  <button class="btn" onclick="showSection('cartaSection')">Cartinha</button>
 </section>
 
-<!-- MOMENTOS -->
-<section id="momentosSection">
-  <h2>Nossos Momentos 📸</h2>
-  <div class="gallery">
-    <script>
-      const gallery = [];
-      for(let i=1;i<=20;i++){
-        gallery.push({type:'img', src:`https://picsum.photos/400/200?random=${i}`, text:`Texto da foto ${i} 💕`});
-      }
-      for(let i=1;i<=5;i++){
-        gallery.push({type:'video', src:`video${i}.mp4`, text:`Texto do vídeo ${i} 💕`});
-      }
-      gallery.forEach(item=>{
-        document.write('<div class="gallery-item">');
-        if(item.type==='img') document.write(`<img src="${item.src}" alt="Foto">`);
-        else document.write(`<video controls><source src="${item.src}" type="video/mp4"></video>`);
-        document.write(`<p>${item.text}</p></div>`);
-      });
-    </script>
-  </div>
-  <div class="back-btn" onclick="showSection('mainPage')">⬅ Voltar</div>
-</section>
-
-<!-- ========= CONTADOR FOFO (NOVO) ========= -->
+<!-- ===== CONTADOR ===== -->
 <section id="contadorSection">
   <h2>Nosso Amor 💖</h2>
   <div class="counter-wrap">
     <div class="since" id="sinceLabel">Juntos desde 15/08/2025</div>
 
     <div class="timer-grid" role="timer" aria-live="polite">
-      <div class="unit">
-        <div class="num" id="dias">0</div>
-        <div class="label">Dias</div>
-      </div>
-      <div class="unit">
-        <div class="num" id="horas">00</div>
-        <div class="label">Horas</div>
-      </div>
-      <div class="unit">
-        <div class="num" id="minutos">00</div>
-        <div class="label">Minutos</div>
-      </div>
-      <div class="unit">
-        <div class="num" id="segundos">00</div>
-        <div class="label">Segundos</div>
-      </div>
+      <div class="unit"><div class="num" id="dias">0</div><div class="label">Dias</div></div>
+      <div class="unit"><div class="num" id="horas">00</div><div class="label">Horas</div></div>
+      <div class="unit"><div class="num" id="minutos">00</div><div class="label">Minutos</div></div>
+      <div class="unit"><div class="num" id="segundos">00</div><div class="label">Segundos</div></div>
     </div>
 
+    <!-- caixas editáveis -->
     <div class="milestones">
-      <span class="chip" id="semanasChip">0 semanas 💜</span>
-      <span class="chip" id="mesesChip">0 meses ✨</span>
+      <input type="text" class="chip" placeholder="Escreva algo fofo 💜">
+      <input type="text" class="chip" placeholder="Outro detalhe ✨">
     </div>
   </div>
   <div class="back-btn" onclick="showSection('mainPage')">⬅ Voltar</div>
 </section>
 
-<!-- ========= CARTINHA REAL (NOVA) ========= -->
+<!-- ===== CARTINHA ===== -->
 <section id="cartaSection">
   <h2>Cartinha do Amor 💌</h2>
 
@@ -297,6 +218,7 @@
       <div class="env-flap"></div>
       <div class="env-front"></div>
 
+      <!-- folha escondida -->
       <div class="letter">
         <div class="letter-content">
           <p>Minha gatinha,</p>
@@ -308,8 +230,6 @@
         </div>
       </div>
     </div>
-
-    <button class="open-btn" onclick="toggleCarta()">Abrir/Fechar Cartinha</button>
     <div class="hearts" id="heartsAnchor"></div>
   </div>
 
@@ -317,60 +237,28 @@
 </section>
 
 <script>
-  // ---------- LOGIN ----------
-  const senhaCorreta = "150825";
-  let senhaDigitada = "";
-  function enterDigit(num){ if(senhaDigitada.length<senhaCorreta.length){senhaDigitada+=num; atualizarDisplay();} }
-  function clearPassword(){ senhaDigitada = senhaDigitada.slice(0,-1); atualizarDisplay(); }
-  function atualizarDisplay(){ document.getElementById("passwordDisplay").textContent = senhaDigitada.padEnd(senhaCorreta.length,"•"); }
-  function checkPassword(){
-    if(senhaDigitada===senhaCorreta){ showSection('mainPage'); document.getElementById('loginPage').style.display='none'; }
-    else{ alert("Senha incorreta 💔"); senhaDigitada=""; atualizarDisplay(); }
+  function showSection(id){
+    document.querySelectorAll("section").forEach(s=>s.style.display="none");
+    document.getElementById(id).style.display="block";
   }
 
-  // ---------- SHOW SECTIONS ----------
-  function showSection(sectionId){
-    document.querySelectorAll('section').forEach(sec=>sec.style.display='none');
-    document.getElementById(sectionId).style.display='block';
-  }
-
-  // ---------- CONTADOR FOFO (NOVO) ----------
+  // contador
   const startDate = new Date("2025-08-15T00:00:00");
-  const fmt2 = n => String(n).padStart(2,'0');
-
-  function atualizarContador(){
-    const agora = new Date();
-    let diffMs = Math.max(0, agora - startDate);
-
-    const dias = Math.floor(diffMs/(1000*60*60*24));
-    diffMs -= dias*(1000*60*60*24);
-    const horas = Math.floor(diffMs/(1000*60*60));
-    diffMs -= horas*(1000*60*60);
-    const minutos = Math.floor(diffMs/(1000*60));
-    diffMs -= minutos*(1000*60);
-    const segundos = Math.floor(diffMs/1000);
-
-    document.getElementById("dias").textContent = dias;
-    document.getElementById("horas").textContent = fmt2(horas);
-    document.getElementById("minutos").textContent = fmt2(minutos);
-    document.getElementById("segundos").textContent = fmt2(segundos);
-
-    // extras fofos
-    const semanas = Math.floor((agora - startDate)/(1000*60*60*24*7));
-    const meses = Math.max(0, (agora.getFullYear()-startDate.getFullYear())*12 + (agora.getMonth()-startDate.getMonth()) - (agora.getDate()<startDate.getDate()?1:0));
-    document.getElementById("semanasChip").textContent = `${semanas} semanas 💜`;
-    document.getElementById("mesesChip").textContent = `${meses} meses ✨`;
-
-    // label
-    const dd = String(startDate.getDate()).padStart(2,'0');
-    const mm = String(startDate.getMonth()+1).padStart(2,'0');
-    const yyyy = startDate.getFullYear();
-    document.getElementById("sinceLabel").textContent = `Juntos desde ${dd}/${mm}/${yyyy}`;
+  function updateCounter(){
+    const now = new Date();
+    const diff = now - startDate;
+    const d = Math.floor(diff/(1000*60*60*24));
+    const h = Math.floor((diff/(1000*60*60))%24);
+    const m = Math.floor((diff/(1000*60))%60);
+    const s = Math.floor((diff/1000)%60);
+    document.getElementById("dias").textContent = d;
+    document.getElementById("horas").textContent = String(h).padStart(2,"0");
+    document.getElementById("minutos").textContent = String(m).padStart(2,"0");
+    document.getElementById("segundos").textContent = String(s).padStart(2,"0");
   }
-  setInterval(atualizarContador,1000);
-  atualizarContador();
+  setInterval(updateCounter,1000); updateCounter();
 
-  // ---------- CARTINHA REAL (NOVA) ----------
+  // cartinha
   const envelope = document.getElementById('envelope');
   const heartsAnchor = document.getElementById('heartsAnchor');
   let cartaAberta = false;
@@ -381,19 +269,12 @@
     if(cartaAberta) soltarCoracoes(10);
   }
 
-  // Acessibilidade pelo teclado
-  envelope && envelope.addEventListener('keydown', (e)=>{
-    if(e.key === 'Enter' || e.key === ' '){
-      e.preventDefault(); toggleCarta();
-    }
-  });
-
   function soltarCoracoes(qtd=8){
     for(let i=0;i<qtd;i++){
       const h = document.createElement('div');
       h.className = 'heart';
-      const offsetX = (Math.random()*160 - 80); // -80 a 80px
-      const delay = Math.random()*0.6; // 0 a .6s
+      const offsetX = (Math.random()*160 - 80);
+      const delay = Math.random()*0.6;
       const scale = 0.8 + Math.random()*0.8;
       h.style.left = offsetX + 'px';
       h.style.top = '0px';
