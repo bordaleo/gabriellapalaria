@@ -55,7 +55,9 @@
   }
   .cards { 
     display:grid; 
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    /* AJUSTE PARA ENQUADRAMENTO MELHOR EM TELAS PEQUENAS */
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    justify-content: center;
     gap:30px;
     max-width: 1000px;
     width: 100%;
@@ -157,7 +159,17 @@
     width: 100%;
     max-width: 320px;
   }
-
+  .play-btn {
+    background: var(--pink);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    box-shadow: var(--shadow);
+    display: none; /* Inicia oculto */
+    margin-top: 10px;
+  }
   /* ========= CONTADOR FOFO (NOVO) ========= */
   #contadorSection { display:none; text-align:center; }
   .counter-wrap{
@@ -343,9 +355,10 @@
   <div class="music-player">
     <h4>Can't Help Falling in Love</h4>
     <p>Elvis Presley</p>
-    <audio controls loop>
+    <audio id="audio1" controls loop>
       <source src="https://cdn.pixabay.com/audio/2023/10/05/audio_244f77c44e.mp3" type="audio/mpeg">
     </audio>
+    <button class="play-btn" onclick="playMusic('audio1')">▶ Tocar Música</button>
   </div>
   <div class="gallery">
     <script>
@@ -372,9 +385,10 @@
   <div class="music-player">
     <h4>Pense em Mim</h4>
     <p>Jorge e Mateus</p>
-    <audio controls loop>
+    <audio id="audio2" controls loop>
       <source src="https://cdn.pixabay.com/audio/2023/06/15/audio_f5e6a048a1.mp3" type="audio/mpeg">
     </audio>
+    <button class="play-btn" onclick="playMusic('audio2')">▶ Tocar Música</button>
   </div>
   <div class="counter-wrap">
     <div class="since" id="sinceLabel">Juntos desde 15/08/2025</div>
@@ -408,9 +422,10 @@
   <div class="music-player">
     <h4>Those Eyes</h4>
     <p>NewWest</p>
-    <audio controls loop>
+    <audio id="audio3" controls loop>
       <source src="https://cdn.pixabay.com/audio/2023/06/15/audio_51d5423871.mp3" type="audio/mpeg">
     </audio>
+    <button class="play-btn" onclick="playMusic('audio3')">▶ Tocar Música</button>
   </div>
   <div class="envelope-area">
     <div class="envelope" id="envelope" onclick="toggleCarta()"
@@ -437,6 +452,8 @@
 </section>
 
 <script>
+  let currentAudio = null;
+
   // ---------- LOGIN ----------
   const senhaCorreta = "150825";
   let senhaDigitada = "";
@@ -450,8 +467,39 @@
 
   // ---------- SHOW SECTIONS ----------
   function showSection(sectionId){
+    // Pausa o áudio anterior, se houver
+    if (currentAudio) {
+      currentAudio.pause();
+      currentAudio.currentTime = 0; // Opcional: Volta para o início
+    }
+
     document.querySelectorAll('section').forEach(sec=>sec.style.display='none');
     document.getElementById(sectionId).style.display='block';
+
+    // Inicia a música da seção se for uma das que têm player
+    if (sectionId === 'momentosSection') {
+      playMusic('audio1');
+    } else if (sectionId === 'contadorSection') {
+      playMusic('audio2');
+    } else if (sectionId === 'cartaSection') {
+      playMusic('audio3');
+    }
+  }
+
+  // ---------- PLAY MUSIC ----------
+  function playMusic(audioId) {
+    const audio = document.getElementById(audioId);
+    if (!audio) return;
+    currentAudio = audio; // Define o áudio atual
+    
+    // Tenta tocar a música. Se falhar, mostra o botão de "Play"
+    audio.play().catch(error => {
+      console.log("A reprodução automática foi bloqueada. Mostrando botão de play manual.", error);
+      const playBtn = audio.nextElementSibling; // Pega o próximo elemento, que é o botão
+      if (playBtn && playBtn.classList.contains('play-btn')) {
+        playBtn.style.display = 'inline-block';
+      }
+    });
   }
 
   // ---------- CONTADOR FOFO (NOVO) ----------
