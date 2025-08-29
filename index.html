@@ -134,58 +134,28 @@
     transform: translateY(-2px);
   }
 
-  /* ========= PLAYER DE MÚSICA NO ESTILO SPOTIFY ========= */
+  /* ========= PLAYER DE MÚSICA SIMPLIFICADO ========= */
   .music-player {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    gap: 15px;
-    background: #f0f0f0;
-    padding: 15px;
-    border-radius: 12px;
+    gap: 10px;
     margin-bottom: 25px;
-    box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
   }
-  .music-cover {
-    width: 60px;
-    height: 60px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-  }
-  .music-info {
-    flex-grow: 1;
-    text-align: left;
-  }
-  .music-info h4 {
+  .music-player h4 {
     margin: 0;
-    font-size: 1rem;
+    font-size: 1.1rem;
     color: #333;
     font-weight: bold;
   }
-  .music-info p {
+  .music-player p {
     margin: 0;
-    font-size: 0.85rem;
+    font-size: 0.9rem;
     color: #666;
   }
-  .play-pause-btn {
-    width: 45px;
-    height: 45px;
-    background: #1DB954; /* Cor do Spotify */
-    border: none;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    transition: transform 0.2s, background 0.2s;
-  }
-  .play-pause-btn:hover {
-    background: #1ed760;
-    transform: scale(1.05);
-  }
-  .play-pause-btn svg {
-    fill: white;
-    width: 18px;
-    height: 18px;
+  .music-player audio {
+    width: 100%;
+    max-width: 320px;
   }
 
   /* ========= CONTADOR FOFO (NOVO) ========= */
@@ -274,7 +244,6 @@
     transform: translateZ(1px);
     clip-path: polygon(0 40%, 100% 40%, 100% 100%, 0 100%);
   }
-  /* Ajuste do tamanho da caixa da carta */
   .letter{
     position:absolute;
     left: 5%;
@@ -339,14 +308,10 @@
 </head>
 <body>
 
-<audio id="momentosAudio" src="https://www.youtube.com/watch?v=vGJTaP6anOU&list=RDvGJTaP6anOU&start_radio=1" preload="auto"></audio>
-<audio id="calendarioAudio" src="https://cdn.pixabay.com/audio/2023/06/15/audio_f5e6a048a1.mp3" preload="auto"></audio>
-<audio id="cartaAudio" src="https://cdn.pixabay.com/audio/2023/06/15/audio_51d5423871.mp3" preload="auto"></audio>
-
 <section id="loginPage">
   <img src="https://cdn-icons-png.flaticon.com/512/747/747376.png" alt="Lacinho">
   <h1>Bem-vinda 💕</h1>
-  <p>Dica: Uma data especial para nós</p>
+  <p>Data especial para nós?</p>
   <div id="passwordDisplay">••••••</div>
   <div class="keypad">
     <button onclick="enterDigit('1')">1</button>
@@ -376,15 +341,11 @@
 <section id="momentosSection">
   <h2>Nossos Momentos 📸</h2>
   <div class="music-player">
-    <img src="https://picsum.photos/80/80?random=1" alt="Capa da música" class="music-cover">
-    <div class="music-info">
-      <h4>Can't Help Falling in Love</h4>
-      <p>Elvis Presley</p>
-    </div>
-    <button class="play-pause-btn" onclick="togglePlay('momentosAudio', this)">
-      <svg class="play-icon" viewBox="0 0 24 24" style="display: block;"><path d="M8 5v14l11-7z"/></svg>
-      <svg class="pause-icon" viewBox="0 0 24 24" style="display: none;"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
-    </button>
+    <h4>Can't Help Falling in Love</h4>
+    <p>Elvis Presley</p>
+    <audio controls loop>
+      <source src="https://cdn.pixabay.com/audio/2023/10/05/audio_244f77c44e.mp3" type="audio/mpeg">
+    </audio>
   </div>
   <div class="gallery">
     <script>
@@ -409,15 +370,11 @@
 <section id="contadorSection">
   <h2>Nosso Amor 💖</h2>
   <div class="music-player">
-    <img src="https://picsum.photos/80/80?random=2" alt="Capa da música" class="music-cover">
-    <div class="music-info">
-      <h4>Pense em Mim</h4>
-      <p>Jorge e Mateus</p>
-    </div>
-    <button class="play-pause-btn" onclick="togglePlay('calendarioAudio', this)">
-      <svg class="play-icon" viewBox="0 0 24 24" style="display: block;"><path d="M8 5v14l11-7z"/></svg>
-      <svg class="pause-icon" viewBox="0 0 24 24" style="display: none;"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
-    </button>
+    <h4>Pense em Mim</h4>
+    <p>Jorge e Mateus</p>
+    <audio controls loop>
+      <source src="https://cdn.pixabay.com/audio/2023/06/15/audio_f5e6a048a1.mp3" type="audio/mpeg">
+    </audio>
   </div>
   <div class="counter-wrap">
     <div class="since" id="sinceLabel">Juntos desde 15/08/2025</div>
@@ -449,15 +406,11 @@
 <section id="cartaSection">
   <h2>Cartinha do Amor 💌</h2>
   <div class="music-player">
-    <img src="https://picsum.photos/80/80?random=3" alt="Capa da música" class="music-cover">
-    <div class="music-info">
-      <h4>Those Eyes</h4>
-      <p>NewWest</p>
-    </div>
-    <button class="play-pause-btn" onclick="togglePlay('cartaAudio', this)">
-      <svg class="play-icon" viewBox="0 0 24 24" style="display: block;"><path d="M8 5v14l11-7z"/></svg>
-      <svg class="pause-icon" viewBox="0 0 24 24" style="display: none;"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
-    </button>
+    <h4>Those Eyes</h4>
+    <p>NewWest</p>
+    <audio controls loop>
+      <source src="https://cdn.pixabay.com/audio/2023/06/15/audio_51d5423871.mp3" type="audio/mpeg">
+    </audio>
   </div>
   <div class="envelope-area">
     <div class="envelope" id="envelope" onclick="toggleCarta()"
@@ -473,7 +426,6 @@
           Obrigado por ser meu porto seguro, minha melhor amiga e meu amor.</p>
           <p>Prometo cuidar de você, te ouvir, te respeitar e te escolher todos os dias.
           Para sempre, você e eu. 💕</p>
-          <p style="margin-top:12px;">Com amor,<br>Seu bobão</p>
         </div>
       </div>
     </div>
@@ -485,59 +437,6 @@
 </section>
 
 <script>
-  // ---------- MÚSICAS ----------
-  const musicas = {
-    momentosAudio: { src: 'https://cdn.pixabay.com/audio/2023/10/05/audio_244f77c44e.mp3', audio: new Audio('https://cdn.pixabay.com/audio/2023/10/05/audio_244f77c44e.mp3'), playing: false },
-    calendarioAudio: { src: 'https://cdn.pixabay.com/audio/2023/06/15/audio_f5e6a048a1.mp3', audio: new Audio('https://cdn.pixabay.com/audio/2023/06/15/audio_f5e6a048a1.mp3'), playing: false },
-    cartaAudio: { src: 'https://cdn.pixabay.com/audio/2023/06/15/audio_51d5423871.mp3', audio: new Audio('https://cdn.pixabay.com/audio/2023/06/15/audio_51d5423871.mp3'), playing: false }
-  };
-
-  function showPlayingIcon(button) {
-    button.querySelector('.play-icon').style.display = 'none';
-    button.querySelector('.pause-icon').style.display = 'block';
-  }
-
-  function showPausedIcon(button) {
-    button.querySelector('.play-icon').style.display = 'block';
-    button.querySelector('.pause-icon').style.display = 'none';
-  }
-
-  function playMusic(audioId, button) {
-    stopAllMusic();
-    musicas[audioId].audio.loop = true;
-    musicas[audioId].audio.play();
-    musicas[audioId].playing = true;
-    showPlayingIcon(button);
-  }
-
-  function stopMusic(audioId, button) {
-    if (musicas[audioId].audio) {
-      musicas[audioId].audio.pause();
-      musicas[audioId].audio.currentTime = 0;
-    }
-    musicas[audioId].playing = false;
-    showPausedIcon(button);
-  }
-  
-  function stopAllMusic() {
-    document.querySelectorAll('.play-pause-btn').forEach(btn => showPausedIcon(btn));
-    for (const key in musicas) {
-      if (musicas[key].audio) {
-        musicas[key].audio.pause();
-        musicas[key].audio.currentTime = 0;
-      }
-      musicas[key].playing = false;
-    }
-  }
-
-  function togglePlay(audioId, button) {
-    if (musicas[audioId].playing) {
-      stopMusic(audioId, button);
-    } else {
-      playMusic(audioId, button);
-    }
-  }
-
   // ---------- LOGIN ----------
   const senhaCorreta = "150825";
   let senhaDigitada = "";
@@ -553,8 +452,6 @@
   function showSection(sectionId){
     document.querySelectorAll('section').forEach(sec=>sec.style.display='none');
     document.getElementById(sectionId).style.display='block';
-    
-    stopAllMusic();
   }
 
   // ---------- CONTADOR FOFO (NOVO) ----------
@@ -622,4 +519,3 @@
 
 </body>
 </html>
-
