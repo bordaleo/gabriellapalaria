@@ -55,6 +55,20 @@
   .carta.open .carta-inner { transform:rotateX(0); }
   .carta-inner p { color:#333; font-size:1.1rem; }
   .open-btn { background:#d63384; color:white; padding:10px 25px; border-radius:25px; cursor:pointer; margin-bottom:20px; }
+
+  /* MOTIVOS */
+  #motivosSection { display:none; text-align:center; }
+  #motivosBox {
+    background:white;
+    padding:30px;
+    border-radius:25px;
+    box-shadow:0 6px 15px rgba(0,0,0,0.15);
+    font-size:1.3rem;
+    color:#d63384;
+    max-width:500px;
+    margin:0 auto;
+    transition: opacity 1s ease;
+  }
 </style>
 </head>
 <body>
@@ -88,6 +102,7 @@
     <div class="card" onclick="showSection('momentosSection')"><h3>Nossos Momentos 📸</h3></div>
     <div class="card" onclick="showSection('contadorSection')"><h3>Calendário do Amor ⏳</h3></div>
     <div class="card" onclick="showSection('cartaSection')"><h3>Cartinha do Amor 💌</h3></div>
+    <div class="card" onclick="showSection('motivosSection')"><h3>Motivos do Meu Amor 💖</h3></div>
   </div>
 </section>
 
@@ -95,7 +110,6 @@
 <section id="momentosSection">
   <h2>Nossos Momentos 📸</h2>
   <div class="gallery">
-    <!-- Aqui vão as 20 fotos e 5 vídeos -->
     <script>
       const gallery = [];
       for(let i=1;i<=20;i++){
@@ -134,6 +148,13 @@
   <div class="back-btn" onclick="showSection('mainPage')">⬅ Voltar</div>
 </section>
 
+<!-- MOTIVOS -->
+<section id="motivosSection">
+  <h2>Motivos pelos quais eu me apaixono por você todos os dias 💖</h2>
+  <div id="motivosBox">Carregando...</div>
+  <div class="back-btn" onclick="showSection('mainPage')">⬅ Voltar</div>
+</section>
+
 <script>
   // ---------- LOGIN ----------
   const senhaCorreta = "150825";
@@ -165,6 +186,32 @@
   }
   setInterval(atualizarContador,1000);
   atualizarContador();
+
+  // ---------- MOTIVOS ----------
+  const motivos = [
+    "Seu sorriso ilumina o meu dia 🌞",
+    "O jeito que você cuida de mim 💕",
+    "Seu abraço é meu lugar favorito 🤗",
+    "Sua risada é a coisa mais linda 😍",
+    "Você me faz acreditar no amor verdadeiro 💖",
+    "A forma como você olha nos meus olhos ✨",
+    "Seu jeitinho bobo que me encanta 😂",
+    "A paciência que você tem comigo 🥹",
+    "Como você transforma qualquer momento simples em algo especial 💜",
+    "O fato de você ser simplesmente você 💎"
+  ];
+  let motivoIndex = 0;
+  function trocarMotivo(){
+    const box = document.getElementById("motivosBox");
+    box.style.opacity = 0;
+    setTimeout(()=>{
+      box.textContent = motivos[motivoIndex];
+      box.style.opacity = 1;
+      motivoIndex = (motivoIndex+1)%motivos.length;
+    },800);
+  }
+  setInterval(trocarMotivo,3000);
+  trocarMotivo();
 </script>
 
 </body>
