@@ -38,71 +38,76 @@
 
   /* MAIN PAGE - MELHORIAS NO DESIGN */
   #mainPage { 
-    display: none; 
     background: linear-gradient(120deg, var(--bg-2), #ffe6f9); 
-    display: flex; /* Adicionado para centralizar o conteúdo */
+    display: flex; 
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
     min-height: 100vh;
+    padding: 30px; /* Adiciona padding geral para responsividade */
   }
   h2 { 
-    text-align:center; 
-    font-size:clamp(1.4rem, 2.5vw, 2rem); 
+    font-size:clamp(1.8rem, 3.5vw, 2.8rem); /* Aumenta um pouco o tamanho do título */
     color:#8c52ff; 
-    margin-bottom:30px; 
+    margin-bottom:40px; /* Mais espaço abaixo do título */
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.1); /* Sombra suave no texto */
   }
   .cards { 
     display:grid; 
-    grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); 
-    gap:25px; 
-    max-width: 900px;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); /* Ajuste para caixinhas um pouco menores e mais flexíveis */
+    gap:30px; /* Aumenta o espaçamento entre as caixas */
+    max-width: 1000px; /* Largura máxima maior */
     width: 100%;
     padding: 0 15px;
   }
   .card { 
-    background: linear-gradient(145deg, #f8f8f8, #e8e8e8);
-    border-radius:20px; 
-    padding:25px; 
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    background: linear-gradient(145deg, #f0e6ff, #f8d4ff); /* Gradiente mais vivo */
+    border-radius:25px; /* Bordas mais arredondadas */
+    padding:30px; /* Mais padding interno */
+    box-shadow: 0 12px 30px rgba(0,0,0,0.15); /* Sombra mais pronunciada */
     text-align:center; 
-    transition: transform 0.3s ease, box-shadow 0.3s ease; 
+    transition: transform 0.4s ease, box-shadow 0.4s ease, background 0.4s ease; /* Mais transições */
     cursor:pointer; 
-    border: 1px solid #fff;
+    border: none; /* Remove borda sólida */
     position: relative;
     overflow: hidden;
   }
   .card::before {
     content: '';
     position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: rgba(255, 255, 255, 0.1);
+    top: -60%; /* Ajuste para cobrir melhor */
+    left: -60%;
+    width: 220%; /* Ajuste para cobrir melhor */
+    height: 220%;
+    background: rgba(255, 255, 255, 0.2); /* Brilho mais visível */
     transform: rotate(45deg);
-    transition: transform 0.5s ease;
+    transition: transform 0.6s ease; /* Transição mais suave */
+    opacity: 0; /* Começa invisível */
   }
   .card:hover::before {
-    transform: rotate(45deg) scale(1.2);
+    transform: rotate(45deg) scale(1.1);
+    opacity: 1; /* Brilho aparece no hover */
   }
   .card:hover { 
-    transform:scale(1.05); 
-    box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+    transform:scale(1.07); /* Aumenta um pouco mais ao passar o mouse */
+    box-shadow: 0 18px 45px rgba(0,0,0,0.25); /* Sombra ainda maior no hover */
+    background: linear-gradient(145deg, #f4d9ff, #ffd1ff); /* Gradiente muda um pouco no hover */
   }
   .card h3 { 
-    color: var(--pink); 
-    margin-bottom:15px; 
+    color: #6b2d5b; /* Cor mais escura para o texto principal */
+    margin-bottom:10px; 
     position: relative;
     z-index: 1;
-    font-size: 1.25rem;
+    font-size: 1.4rem; /* Texto maior */
+    font-weight: 700;
   }
   .card p {
-    color: #666;
+    color: #888;
     margin: 0;
     position: relative;
     z-index: 1;
+    font-size: 0.95rem;
   }
 
   /* MOMENTOS */
@@ -111,7 +116,23 @@
   .gallery-item { background:white; padding:20px; border-radius:15px; box-shadow:var(--shadow); }
   .gallery-item img, .gallery-item video { width:100%; border-radius:12px; margin-bottom:10px; }
   .gallery-item p { text-align:center; font-size:1rem; color:var(--pink); }
-  .back-btn { margin-top:20px; display:inline-block; background:var(--pink); padding:10px 20px; color:white; border-radius:20px; cursor:pointer; text-decoration:none; }
+  .back-btn { 
+    margin-top:40px; /* Aumenta o espaço do botão voltar */
+    display:inline-block; 
+    background:var(--pink); 
+    padding:12px 28px; /* Botão maior */
+    color:white; 
+    border-radius:30px; /* Bordas mais arredondadas */
+    cursor:pointer; 
+    text-decoration:none; 
+    font-size: 1rem;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.15); /* Sombra no botão */
+    transition: background 0.3s ease, transform 0.3s ease;
+  }
+  .back-btn:hover {
+    background: #e02a7b; /* Cor um pouco mais escura no hover */
+    transform: translateY(-2px);
+  }
 
   /* ========= CONTADOR FOFO (NOVO) ========= */
   #contadorSection { display:none; text-align:center; }
@@ -222,7 +243,7 @@
   /* estado aberto */
   .envelope.open .env-flap{ transform: rotateX(180deg); }
   .envelope.open .letter{ 
-    transform: translateY(-46%) rotateX(0); 
+    transform: translateY(-50%) rotateX(0); /* Ajuste para centralizar mais o texto */
     opacity: 1; /* Torna a carta visível */
   }
 
@@ -250,6 +271,8 @@
   @media (max-width:480px){
     section{ padding:22px; }
     .timer-grid{ grid-template-columns: repeat(2, minmax(120px,1fr)); }
+    .card { padding: 20px; border-radius: 20px;}
+    .card h3 { font-size: 1.1rem; }
   }
 </style>
 </head>
@@ -279,9 +302,9 @@
 <section id="mainPage">
   <h2>Oi, gatinha! Escolha onde quer ir 💜</h2>
   <div class="cards">
-    <div class="card" onclick="showSection('momentosSection')"><h3>Nossos Momentos 📸</h3></div>
-    <div class="card" onclick="showSection('contadorSection')"><h3>Calendário do Amor ⏳</h3></div>
-    <div class="card" onclick="showSection('cartaSection')"><h3>Cartinha do Amor 💌</h3></div>
+    <div class="card" onclick="showSection('momentosSection')"><h3>Nossos Momentos 📸</h3><p>Reviva nossas lembranças mais especiais.</p></div>
+    <div class="card" onclick="showSection('contadorSection')"><h3>Calendário do Amor ⏳</h3><p>Acompanhe cada segundo do nosso amor.</p></div>
+    <div class="card" onclick="showSection('cartaSection')"><h3>Cartinha do Amor 💌</h3><p>Uma mensagem especial, só pra você.</p></div>
   </div>
 </section>
 
