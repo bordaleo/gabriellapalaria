@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Para a Minha Gatinha 💜</title>
 <style>
   :root{
@@ -14,325 +14,139 @@
     --shadow:0 6px 18px rgba(0,0,0,0.15);
   }
 
+  * { box-sizing: border-box; }
+
   body, html {
-    margin: 0; padding: 0;
+    margin:0; padding:0;
     font-family: 'Arial', sans-serif;
-    min-height: 100vh;
+    min-height:100vh;
     background: var(--bg-1);
     color: #333;
   }
 
-  section { display: none; padding: 30px; min-height: 100vh; }
-
-  /* LOGIN */
-  #loginPage {
-    display: flex; flex-direction: column; justify-content: center; align-items: center;
-    height: 100vh; text-align: center; background: linear-gradient(145deg,#ffb6c1,#ffcce0);
-  }
-  #loginPage h1 { font-size: 2.5rem; color: var(--pink); margin-bottom: 15px; }
-  #loginPage img { width: 120px; margin-bottom: 20px; }
-  #passwordDisplay { font-size: 2rem; letter-spacing: 10px; margin-bottom: 20px; color: #444; }
-  .keypad { display: grid; grid-template-columns: repeat(3, 80px); gap: 15px; }
-  .keypad button { font-size: 1.5rem; padding: 15px; border-radius: 12px; border: none; background: var(--pink-2); color: white; cursor: pointer; transition: 0.2s; }
-  .keypad button:hover { background: #ff4da6; }
-
-  /* MAIN PAGE - MELHORIAS NO DESIGN */
-  #mainPage { 
-    background: linear-gradient(120deg, var(--bg-2), #ffe6f9); 
-    display: flex; 
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    min-height: 100vh;
+  /* Todas as sections ficam centralizadas; por padrão escondidas */
+  section { 
+    display: none;
     padding: 30px;
+    min-height: 100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
   }
-  h2 { 
-    font-size:clamp(1.8rem, 3.5vw, 2.8rem);
-    color:#8c52ff; 
-    margin-bottom:40px;
-    text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+
+  /* LOGIN: ficará visível inicialmente */
+  #loginPage { 
+    display:flex;  /* mostra login na carga */
+    flex-direction: column;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    text-align:center;
+    background: linear-gradient(145deg,#ffb6c1,#ffcce0);
   }
-  .cards { 
-    display:grid; 
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-    gap:30px;
-    max-width: 1000px;
-    width: 100%;
-    padding: 0 15px;
-  }
-  .card { 
-    background: linear-gradient(145deg, #f0e6ff, #f8d4ff);
-    border-radius:25px;
-    padding:30px;
-    box-shadow: 0 12px 30px rgba(0,0,0,0.15);
-    text-align:center; 
-    transition: transform 0.4s ease, box-shadow 0.4s ease, background 0.4s ease;
-    cursor:pointer; 
-    border: none;
-    position: relative;
-    overflow: hidden;
-  }
-  .card::before {
-    content: '';
-    position: absolute;
-    top: -60%;
-    left: -60%;
-    width: 220%;
-    height: 220%;
-    background: rgba(255, 255, 255, 0.2);
-    transform: rotate(45deg);
-    transition: transform 0.6s ease;
-    opacity: 0;
-  }
-  .card:hover::before {
-    transform: rotate(45deg) scale(1.1);
-    opacity: 1;
-  }
-  .card:hover { 
-    transform:scale(1.07);
-    box-shadow: 0 18px 45px rgba(0,0,0,0.25);
-    background: linear-gradient(145deg, #f4d9ff, #ffd1ff);
-  }
-  .card h3 { 
-    color: #6b2d5b;
-    margin-bottom:10px; 
-    position: relative;
-    z-index: 1;
-    font-size: 1.4rem;
-    font-weight: 700;
-  }
-  .card p {
-    color: #888;
-    margin: 0;
-    position: relative;
-    z-index: 1;
-    font-size: 0.95rem;
-  }
+  #loginPage h1{ font-size:2.5rem; color:var(--pink); margin-bottom:14px; }
+  #loginPage img{ width:120px; margin-bottom:18px; }
+  #passwordDisplay { font-size:2rem; letter-spacing:10px; margin-bottom:18px; color:#444; }
+
+  .keypad { display:grid; grid-template-columns:repeat(3,80px); gap:12px; }
+  .keypad button { font-size:1.5rem; padding:14px; border-radius:12px; border:none; background:var(--pink-2); color:#fff; cursor:pointer; }
+  .keypad button:hover{ transform:translateY(-2px); }
+
+  /* MAIN PAGE */
+  #mainPage { background: linear-gradient(120deg, var(--bg-2), #ffe6f9); min-height:100vh; padding:30px; display:flex; flex-direction:column; justify-content:center; align-items:center; }
+  h2 { font-size:clamp(1.8rem,3.5vw,2.8rem); color:#8c52ff; margin-bottom:28px; text-shadow: 1px 1px 3px rgba(0,0,0,0.08); }
+
+  .cards { display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:26px; max-width:1000px; width:100%; padding:0 12px; }
+  .card { background: linear-gradient(145deg, #f0e6ff, #f8d4ff); border-radius:24px; padding:26px; box-shadow:var(--shadow); cursor:pointer; transition:transform .25s ease; text-align:center; }
+  .card h3{ margin:0 0 8px 0; color:#6b2d5b; font-size:1.2rem; }
+  .card p{ margin:0; color:#7b5b7e; }
+
+  .card:hover { transform: translateY(-6px); }
 
   /* MOMENTOS */
-  #momentosSection { display:none; }
-  .gallery { display:flex; flex-direction:column; gap:30px; max-width:700px; margin:0 auto; }
-  .gallery-item { background:white; padding:20px; border-radius:15px; box-shadow:var(--shadow); }
-  .gallery-item img, .gallery-item video { width:100%; border-radius:12px; margin-bottom:10px; }
-  .gallery-item video { display:block; }
-  .gallery-item p { text-align:center; font-size:1rem; color:var(--pink); }
+  #momentosSection { display:flex; flex-direction:column; align-items:center; }
+  .music-player { display:flex; align-items:center; gap:12px; background:#f0f0f0; padding:12px; border-radius:12px; margin-bottom:18px; max-width:900px; width:100%; box-shadow: inset 0 2px 4px rgba(0,0,0,0.04); }
+  .music-cover{ width:60px; height:60px; border-radius:8px; object-fit:cover; }
+  .music-info { text-align:left; flex:1; }
+  .music-info h4{ margin:0; font-size:1rem; color:#333; font-weight:700; }
+  .music-info p{ margin:0; font-size:.85rem; color:#666; }
+  .play-pause-btn{ width:45px; height:45px; border-radius:50%; border:none; background:#1DB954; display:flex; align-items:center; justify-content:center; cursor:pointer; }
 
-  /* grupo de vários vídeos na mesma caixinha (últimos V) */
-  .videos-grid{
-    display:grid;
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-    gap:12px;
-  }
-  .videos-grid video{
-    width:100%;
+  .msg-musica{
+    background:#fff0f6;
+    padding:12px 18px;
     border-radius:12px;
+    font-weight:700;
+    color:#6b2d5b;
+    box-shadow:var(--shadow);
+    margin-bottom:18px;
+    max-width:820px;
+    width:100%;
   }
+
+  .gallery { display:flex; flex-direction:column; gap:20px; max-width:900px; width:100%; margin:0 auto; align-items:center; }
+  .gallery-item { background:white; padding:18px; border-radius:14px; box-shadow: var(--shadow); width:100%; }
+  .gallery-item img, .gallery-item video { width:100%; border-radius:12px; display:block; margin:0 auto 10px auto; }
+  .gallery-item p { text-align:center; font-size:1.05rem; font-weight:700; color:#6b2d5b; margin:0; }
+
+  /* frase destacada antes dos vídeos */
+  .frase-palhaca { font-size:1.15rem; font-weight:800; color:var(--pink); margin:6px 0 12px; text-align:center; }
+
+  /* grid de vídeos (pequenos) */
+  .videos-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap:12px; width:100%; }
+  .video-card { display:flex; flex-direction:column; gap:8px; align-items:center; }
+  .video-card video { width:100%; height:auto; border-radius:10px; }
+  .video-card .video-caption { font-size:0.92rem; font-weight:600; color:#6b2d5b; text-align:center; margin:0; }
 
   /* Última foto especial */
-  .especial .special-frame {
-    position: relative;
-    border: 4px solid var(--pink);
-    padding: 18px;
-    border-radius: 20px;
-    background: linear-gradient(145deg, #fff0f6, #ffe6f9);
-    box-shadow: 0 0 20px rgba(214, 51, 132, 0.4);
-  }
+  .especial { display:flex; justify-content:center; }
+  .especial .special-frame { position: relative; border: 4px solid var(--pink); padding: 14px; border-radius: 18px; background: linear-gradient(145deg, #fff0f6, #ffe6f9); box-shadow: 0 0 20px rgba(214,51,132,0.25); max-width:520px; }
   .especial .special-frame::before{
-    content: "✨ Momento Mais Especial ✨";
-    position:absolute; top:-14px; left:50%; transform:translateX(-50%);
-    background: var(--pink); color:#fff; font-size:.85rem; padding:6px 12px; border-radius:999px;
-    box-shadow: var(--shadow);
-  }
-  .especial img { border-radius: 16px; }
-  .especial p { font-size: 1.1rem; color: #6b2d5b; font-weight: bold; margin-top: 10px; }
-
-  .back-btn { 
-    margin-top:40px;
-    display:inline-block; 
-    background:var(--pink); 
-    padding:12px 28px;
-    color:white; 
-    border-radius:30px;
-    cursor:pointer; 
-    text-decoration:none; 
-    font-size: 1rem;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.15);
-    transition: background 0.3s ease, transform 0.3s ease;
-  }
-  .back-btn:hover {
-    background: #e02a7b;
-    transform: translateY(-2px);
-  }
-
-  /* ========= PLAYER DE MÚSICA NO ESTILO SPOTIFY ========= */
-  .music-player {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    background: #f0f0f0;
-    padding: 15px;
-    border-radius: 12px;
-    margin-bottom: 25px;
-    box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
-  }
-  .music-cover {
-    width: 60px;
-    height: 60px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-  }
-  .music-info {
-    flex-grow: 1;
-    text-align: left;
-  }
-  .music-info h4 {
-    margin: 0;
-    font-size: 1rem;
-    color: #333;
-    font-weight: bold;
-  }
-  .music-info p {
-    margin: 0;
-    font-size: 0.85rem;
-    color: #666;
-  }
-  .play-pause-btn {
-    width: 45px;
-    height: 45px;
-    background: #1DB954;
-    border: none;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    transition: transform 0.2s, background 0.2s;
-  }
-  .play-pause-btn:hover { background: #1ed760; transform: scale(1.05); }
-  .play-pause-btn svg { fill: white; width: 18px; height: 18px; }
-
-  /* ========= CONTADOR FOFO (NOVO) ========= */
-  #contadorSection { display:none; text-align:center; }
-  .counter-wrap{
-    display:flex; flex-direction:column; align-items:center; gap:16px;
-    max-width:900px; margin:0 auto;
-  }
-  .since{
-    font-size:clamp(0.9rem, 1.8vw, 1.1rem);
-    color:#6b2d5b;
-    background: #fff0f6;
-    border-radius:999px;
-    padding:8px 14px;
-    box-shadow:var(--shadow);
-    border: none;
-  }
-  .timer-grid{
-    width:100%;
-    display:grid;
-    grid-template-columns: repeat(4, minmax(70px,1fr));
-    gap:12px;
-  }
-  .unit{
-    background: var(--card);
-    border-radius:18px;
-    padding:16px 12px;
-    box-shadow:var(--shadow);
-    display:flex; flex-direction:column; align-items:center; justify-content:center;
-  }
-  .num{
-    font-variant-numeric: tabular-nums;
-    font-weight:800;
-    line-height:1;
-    font-size:clamp(2rem, 7.5vw, 3.2rem);
-    color: var(--pink);
-  }
-  .label{
-    margin-top:6px;
-    letter-spacing:.5px;
-    font-size:clamp(0.7rem, 1.8vw, .9rem);
-    color:#8a8a8a;
-    text-transform:uppercase;
-  }
-  #customMessage {
-    font-size: clamp(0.9rem, 1.8vw, 1.1rem);
-    color: #6b2d5b;
-    background: #fff0f6;
-    border-radius: 999px;
-    padding: 8px 14px;
-    box-shadow: var(--shadow);
-    margin-top: 15px;
-  }
-
-  /* ========= CARTINHA REAL (NOVA) ========= */
-  #cartaSection { display:none; text-align:center; }
-  .envelope-area{
-    display:flex; flex-direction:column; align-items:center; gap:14px;
-  }
-  .envelope{
-    position:relative;
-    width:min(92vw, 360px);
-    height:240px;
-    perspective:1200px;
-    cursor:pointer;
-  }
-  .env-back{
-    position:absolute; inset:0;
-    background: linear-gradient(180deg, #ffd1e1, #ffb3cf);
-    border-radius:18px;
-    box-shadow:var(--shadow);
-  }
-  .env-flap{
-    position:absolute; left:0; right:0; top:0; height:55%;
-    background: linear-gradient(180deg, #ff9cc5, #ff6cab);
-    clip-path: polygon(0 0, 100% 0, 50% 100%);
-    transform-origin: top;
-    transition: transform .9s cubic-bezier(.2,.8,.2,1);
-    border-top-left-radius:18px; border-top-right-radius:18px;
-  }
-  .env-front{
-    position:absolute; inset:0;
-    border-radius:18px;
-    background: linear-gradient(180deg, #ffd9e7, #ffc1da);
-    transform: translateZ(1px);
-    clip-path: polygon(0 40%, 100% 40%, 100% 100%, 0 100%);
-  }
-  .letter{
+    content: "⚠️ SPOILER!";
     position:absolute;
-    left: 5%;
-    right: 5%;
-    bottom: 0;
-    height: 90%;
-    background:#fff;
-    border-radius:14px;
-    box-shadow:0 10px 20px rgba(0,0,0,.15);
-    transform: translateY(36%) rotateX(0deg);
-    padding:18px;
-    overflow: hidden;
-    opacity: 0;
-    transition: transform .9s cubic-bezier(.2,.8,.2,1), opacity .5s ease .3s;
+    top:-14px; left:50%;
+    transform:translateX(-50%);
+    background: var(--pink);
+    color:#fff;
+    font-size:.9rem;
+    padding:6px 12px;
+    border-radius:999px;
+    box-shadow: var(--shadow);
   }
-  .letter::after{
-    content:''; position:absolute; left:0; right:0; top:0; height:8px;
-    background: linear-gradient(90deg, #ff6cab, #ffb3cf, #ff6cab);
-    border-top-left-radius:14px; border-top-right-radius:14px;
-  }
-  .letter-content{
-    position:absolute; inset:18px 16px 16px; overflow:auto;
-    font-size:clamp(.95rem, 2.2vw, 1.05rem); line-height:1.5; color:#333;
-  }
-  .envelope.open .env-flap{ transform: rotateX(180deg); }
-  .envelope.open .letter{ transform: translateY(-50%) rotateX(0); opacity: 1; }
+  .especial img { border-radius:12px; width:100%; display:block; }
 
-  .hearts{ position:relative; width:0; height:0; }
-  .heart{
-    position:absolute; width:14px; height:14px;
-    transform: rotate(45deg);
-    animation: floatUp 2.4s ease-in forwards;
-  }
-  .heart:before, .heart:after{
-    content:""; position:absolute; width:14px; height:14px; background: #ff6cab; border-radius:50%;
-  }
+  .back-btn { margin-top:26px; display:inline-block; background:var(--pink); padding:12px 26px; color:white; border-radius:30px; cursor:pointer; text-decoration:none; font-size:1rem; box-shadow: 0 6px 18px rgba(0,0,0,0.12); }
+
+  /* CONTADOR */
+  #contadorSection { text-align:center; display:flex; flex-direction:column; align-items:center; gap:16px; }
+  .counter-wrap{ display:flex; flex-direction:column; align-items:center; gap:16px; max-width:900px; width:100%; }
+  .since{ font-size:clamp(0.9rem,1.6vw,1.05rem); color:#6b2d5b; background:#fff0f6; padding:8px 12px; border-radius:999px; box-shadow:var(--shadow); }
+  .timer-grid{ width:100%; display:grid; grid-template-columns:repeat(4, minmax(70px,1fr)); gap:12px; }
+  .unit{ background:var(--card); border-radius:14px; padding:14px; box-shadow:var(--shadow); display:flex; flex-direction:column; align-items:center; justify-content:center; }
+  .num{ font-variant-numeric: tabular-nums; font-weight:800; line-height:1; font-size:clamp(1.6rem, 4.8vw, 2.8rem); color:var(--pink); }
+  .label{ margin-top:6px; letter-spacing:.5px; font-size:0.85rem; color:#8a8a8a; text-transform:uppercase; }
+
+  #customMessage { font-size:clamp(0.95rem, 1.6vw, 1.05rem); color:#6b2d5b; background:#fff0f6; border-radius:999px; padding:8px 14px; box-shadow:var(--shadow); margin-top:10px; }
+
+  /* CARTINHA */
+  #cartaSection { display:flex; flex-direction:column; align-items:center; gap:12px; }
+  .envelope-area{ display:flex; flex-direction:column; align-items:center; gap:12px; }
+  .envelope{ position:relative; width:min(92vw,360px); height:240px; perspective:1200px; cursor:pointer; }
+  .env-back{ position:absolute; inset:0; background: linear-gradient(180deg, #ffd1e1, #ffb3cf); border-radius:18px; box-shadow:var(--shadow); }
+  .env-flap{ position:absolute; left:0; right:0; top:0; height:55%; background: linear-gradient(180deg, #ff9cc5, #ff6cab); clip-path: polygon(0 0,100% 0,50% 100%); transform-origin: top; transition: transform .9s cubic-bezier(.2,.8,.2,1); border-top-left-radius:18px; border-top-right-radius:18px; }
+  .env-front{ position:absolute; inset:0; border-radius:18px; background: linear-gradient(180deg,#ffd9e7,#ffc1da); transform: translateZ(1px); clip-path: polygon(0 40%,100% 40%,100% 100%,0 100%); }
+  .letter{ position:absolute; left:5%; right:5%; bottom:0; height:90%; background:#fff; border-radius:14px; box-shadow:0 10px 20px rgba(0,0,0,.15); transform: translateY(36%); padding:18px; overflow:hidden; opacity:0; transition: transform .9s cubic-bezier(.2,.8,.2,1), opacity .45s ease .15s; }
+  .letter::after{ content:''; position:absolute; left:0; right:0; top:0; height:8px; background: linear-gradient(90deg, #ff6cab, #ffb3cf, #ff6cab); border-top-left-radius:14px; border-top-right-radius:14px; }
+  .letter-content{ position:absolute; inset:18px 16px 16px; overflow:auto; font-size:clamp(.95rem,2.2vw,1.05rem); line-height:1.5; color:#333; }
+  .envelope.open .env-flap{ transform: rotateX(180deg); }
+  .envelope.open .letter{ transform: translateY(-50%) rotateX(0); opacity:1; }
+
+  /* coraçõezinhos */
+  #heartsAnchor { position:relative; width:0; height:0; overflow:visible; }
+  .heart{ position:absolute; width:14px; height:14px; transform: rotate(45deg); animation: floatUp 2.4s ease-in forwards; }
+  .heart:before, .heart:after{ content:""; position:absolute; width:14px; height:14px; background:#ff6cab; border-radius:50%; }
   .heart:before{ left:-7px; top:0; }
   .heart:after{ left:0; top:-7px; }
   @keyframes floatUp{
@@ -341,399 +155,400 @@
     100%{ opacity:0; transform:translateY(-140px) scale(1.2) rotate(45deg); }
   }
 
-  /* util */
+  /* util - videos e layout móvel */
+  video { max-width:100%; height:auto; display:block; }
   @media (max-width:480px){
-    section{ padding:22px; }
-    .timer-grid{ grid-template-columns: repeat(2, minmax(120px,1fr)); }
-    .card { padding: 20px; border-radius: 20px;}
-    .card h3 { font-size: 1.1rem; }
+    section{ padding:20px; }
+    .cards { grid-template-columns: 1fr; gap:16px; }
+    .timer-grid{ grid-template-columns: repeat(2, minmax(110px,1fr)); }
   }
 </style>
 </head>
 <body>
 
-<audio id="momentosAudio" src="Elvis Presley - Cant Help Falling In Love.mp3" preload="auto"></audio>
+<!-- Áudios (trocadas: momentos <-> carta) -->
+<!-- momentos agora: "Those Eyes.mpeg" -->
+<audio id="momentosAudio" src="Those Eyes.mpeg" preload="auto"></audio>
+<!-- calendario permanece -->
 <audio id="calendarioAudio" src="Jorge e Mateus - Pense em mim.mpeg" preload="auto"></audio>
-<audio id="cartaAudio" src="Those Eyes.mpeg" preload="auto"></audio>
+<!-- cartinha agora: "Cant Help Falling In Love" -->
+<audio id="cartaAudio" src="Elvis Presley - Cant Help Falling In Love.mp3" preload="auto"></audio>
 
+<!-- LOGIN -->
 <section id="loginPage">
   <img src="https://cdn-icons-png.flaticon.com/512/747/747376.png" alt="Lacinho">
   <h1>Bem-vinda, meu amor 💖</h1>
   <p>Dica: Uma data especial para nós</p>
   <div id="passwordDisplay">••••••</div>
-  <div class="keypad">
-    <button onclick="enterDigit('1')">1</button>
-    <button onclick="enterDigit('2')">2</button>
-    <button onclick="enterDigit('3')">3</button>
-    <button onclick="enterDigit('4')">4</button>
-    <button onclick="enterDigit('5')">5</button>
-    <button onclick="enterDigit('6')">6</button>
-    <button onclick="enterDigit('7')">7</button>
-    <button onclick="enterDigit('8')">8</button>
-    <button onclick="enterDigit('9')">9</button>
-    <button onclick="clearPassword()">⌫</button>
-    <button onclick="enterDigit('0')">0</button>
-    <button onclick="checkPassword()">✔</button>
+  <div class="keypad" aria-label="Teclado">
+    <button onclick="enterDigit('1')">1</button><button onclick="enterDigit('2')">2</button><button onclick="enterDigit('3')">3</button>
+    <button onclick="enterDigit('4')">4</button><button onclick="enterDigit('5')">5</button><button onclick="enterDigit('6')">6</button>
+    <button onclick="enterDigit('7')">7</button><button onclick="enterDigit('8')">8</button><button onclick="enterDigit('9')">9</button>
+    <button onclick="clearPassword()">⌫</button><button onclick="enterDigit('0')">0</button><button onclick="checkPassword()">✔</button>
   </div>
 </section>
 
+<!-- MAIN -->
 <section id="mainPage">
   <h2>BOA! Acertou, gatinha! Agora escolha onde quer ir ❤</h2>
   <div class="cards">
-    <div class="card" onclick="showSection('momentosSection')"><h3>Nossos Momentos 📸</h3><p>Reviva algumas das nossas lembranças.</p></div>
-    <div class="card" onclick="showSection('contadorSection')"><h3>Cronômetro ⏳</h3><p>Acompanhe cada segundo do nosso amor.</p></div>
-    <div class="card" onclick="showSection('cartaSection')"><h3>Cartinha do Amor 💌</h3><p>Uma cartinha especial, para você.</p></div>
+    <div class="card" onclick="showSection('momentosSection')">
+      <h3>Nossos Momentos 📸</h3>
+      <p>Reviva algumas das nossas lembranças.</p>
+    </div>
+    <div class="card" onclick="showSection('contadorSection')">
+      <h3>Cronômetro ⏳</h3>
+      <p>Acompanhe cada segundo do nosso amor.</p>
+    </div>
+    <div class="card" onclick="showSection('cartaSection')">
+      <h3>Cartinha do Amor 💌</h3>
+      <p>Uma cartinha especial, para você.</p>
+    </div>
   </div>
 </section>
 
-<section id="momentosSection">
-  <h2>Nossos Momentos 📸</h2>
-  <div class="music-player">
-    <img src="https://picsum.photos/80/80?random=1" alt="Capa da música" class="music-cover">
-    <div class="music-info">
-      <h4>Can't Help Falling in Love</h4>
-      <p>Elvis Presley</p>
-    </div>
-    <button class="play-pause-btn" onclick="togglePlay('momentosAudio', this)">
-      <svg class="play-icon" viewBox="0 0 24 24" style="display: block;"><path d="M8 5v14l11-7z"/></svg>
-      <svg class="pause-icon" viewBox="0 0 24 24" style="display: none;"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
-    </button>
-  </div>
+<!-- MOMENTOS (com todas as fotos primeiro, vídeos depois) -->
+<section id="momentosSection" aria-labelledby="momentosTitle">
+  <h2 id="momentosTitle">Nossos Momentos 📸</h2>
 
-  <div class="gallery">
-     <p>Dê play na música e veja alguma das nossas lembranças! 💕</p>
-
-    <!-- Sequência: FFF -->
-    <div class="gallery-item"><img src="us1.jpeg" alt="Foto 01"><p>Onde tudo começou ✨</p></div>
-    <div class="gallery-item"><img src="us2.jpeg" alt="Foto 02"><p>A hora que eu cai no seu golpe 🤣</p></div>
-    <div class="gallery-item"><img src="us3.jpeg" alt="Foto 03"><p>Nossa primeira fotinha juntos 📸</p></div>
-
-    <!-- V -->
-    <div class="gallery-item">
-      <video controls preload="metadata"><source src="video1.mp4" type="video/mp4"></video>
-      <p>Aqui eu percebi que não queria mais ninguem, que não existia mais ninguém, era só você e você. ❤️‍🩹</p>
-    </div>
-
-    <!-- FFFFFFFFFFFF (12 Fs) -->
-    <div class="gallery-item"><img src="us4.jpeg" alt="Foto 04"><p>Primeira foto com as minhas duas paixões. ❤️‍🔥</p></div>
-    <div class="gallery-item"><img src="us5.jpeg" alt="Foto 05"><p>Primeira vez que fomos em um dos nossos lugares favoritos. 🤩</p></div>
-    <div class="gallery-item"><img src="us6.jpeg" alt="Foto 06"><p>Hummmm... Lanchinho.😋</p></div>
-    <div class="gallery-item"><img src="us7.jpeg" alt="Foto 07"><p>Eu já estava em seus braços. Já tava completamente rendido a você.🤗</p></div>
-     <div class="gallery-item">
-      <video controls preload="metadata"><source src="videob.mp4" type="video/mp4"></video>
-      <p>Nossa primeira "briga" e eu não podia perder você. O que fiz? Fui me declarar na porta da sua casa às duas horas da manhã. ⚠️</p>
-    </div>
-    <div class="gallery-item"><img src="us8.jpeg" alt="Foto 08"><p>Primeiro soninho juntos💕</p></div>
-    <div class="gallery-item"><img src="us9.jpeg" alt="Foto 09"><p>Nessa foto esse homem está tentando fazer o impossível: te deixar mais linda do que ja é. 💆🏻‍♀️</p></div>
-    <div class="gallery-item"><img src="us10.jpeg" alt="Foto 10"><p>Você já era minhas paz. Já era tudo pra mim. 💓</p></div>
-    <div class="gallery-item"><img src="us11.jpeg" alt="Foto 11"><p>Primeira vez no Hopi-Hari juntinhos. 🎡</p></div>
-    <div class="gallery-item"><img src="us12.jpeg" alt="Foto 12"><p>A minha copilota. 🏎️</p></div>
-    <div class="gallery-item"><img src="us13.jpeg" alt="Foto 13"><p>1st para a gente. 🥇</p></div>
-    <div class="gallery-item"><img src="us15.jpeg" alt="Foto 14"><p>Sua foto favorita nossa. ☀️</p></div>
-    <div class="gallery-item"><img src="us14.jpeg" alt="Foto 15"><p>Minha foto favorita nossa. 🥰</p></div>
-    <div class="gallery-item"><img src="us22.jpeg" alt="Foto 11"><p>Primeiro dia dos "namorados" juntos. 👩🏻‍❤️‍👨🏻</p></div>
-    <div class="gallery-item"><img src="us23.jpeg" alt="Foto 12"><p>O melhor presente que eu já dei para alguém. Desde que te dei, nunca mais te vi sem. 🎁</p></div>
-    <div class="gallery-item"><img src="us17.jpeg" alt="Foto 05"><p>Primeiro date nosso. Te levei pra ver as estrelas, como tinha te prometido. ✨</p></div>
-    <div class="gallery-item"><img src="us16.jpeg" alt="Foto 04"><p>Minha estressadinha 💕</p></div>
-    <div class="gallery-item"><img src="us18.jpeg" alt="Foto 06"><p>O seu cheiro é o melhor cheiro que existe.💘</p></div>
-    <div class="gallery-item"><img src="us19.jpeg" alt="Foto 08"><p>Combinandinhos.😚</p></div>
-    <div class="gallery-item"><img src="us20.jpeg" alt="Foto 09"><p>Já te tinha em meus braços e não quero soltar nunca mais. 🫂</p></div>
-    <div class="gallery-item"><img src="us21.jpeg" alt="Foto 10"><p>Entre todas as mulheres, você é a mais bela! 😍</p></div>
-    <div class="gallery-item"><img src="us24.jpeg" alt="Foto 15"><p>L.😉</p></div>
-    <div class="gallery-item"><img src="us024.jpeg" alt="Foto 13"><p>O dia que ficamos duas grandes divas 😚</p></div>
-        <div class="gallery-item">
-      <video controls preload="metadata"><source src="video024.mp4" type="video/mp4"></video>
-      <p>Sua felicidade é a minha! 😊</p>
-    </div>
-    <div class="gallery-item"><img src="us25.jpeg" alt="Foto 14"><p>Meus dois grandes amores ❤️</p></div>
-    <div class="gallery-item"><img src="us26.jpeg" alt="Foto 15"><p>Olhinhos 👀 </p></div>
-    <div class="gallery-item"><img src="us27.jpeg" alt="Foto 04"><p>Eu, você e nossa filhinha. 🏠</p></div>
-    <div class="gallery-item"><img src="us29.jpeg" alt="Foto 08"><p>Mais uma vez deixando você me maquiar.🧐</p></div>
-    <div class="gallery-item"><img src="us30.jpeg" alt="Foto 09"><p>Você é a minha flor. 🌸</p></div>
-    <div class="gallery-item"><img src="us31.jpeg" alt="Foto 10"><p>Você é o meu sonho. 💭</p></div>
-     <div class="gallery-item">
-      <video controls preload="metadata"><source src="video027.mp4" type="video/mp4"></video>
-      <p>Você é o meu amor. ❤️‍🩹</p>
-    </div>
-     <div class="gallery-item">
-      <video controls preload="metadata"><source src="videoa.mp4" type="video/mp4"></video>
-      <p>Você é tudo pra mim. ❗</p>
-    </div>
-    <div class="gallery-item"><img src="us28.jpeg" alt="Foto 05"><p>Momento do primeiro eu te amo. ❤️</p></div>
-    <div class="gallery-item"><img src="us031.jpeg" alt="Foto 10"><p>O McQueen e a minha Queen. 👑</p></div>
-    <div class="gallery-item"><img src="us33.jpeg" alt="Foto 12"><p>Eu sou seu fã numero 1️⃣. </p></div>
-    <div class="gallery-item"><img src="us34.jpeg" alt="Foto 13"><p>Tudo pronto para te pedir em namoro. 💍</p></div>
-    <div class="gallery-item">
-      <video controls preload="metadata"><source src="video034.mp4" type="video/mp4"></video>
-      <p>Enganei certinho! 😅</p>
-    </div>
-    <div class="gallery-item"><img src="us35.jpeg" alt="Foto 14"><p>E você disse sim. 🥰</p></div>
-    <div class="gallery-item"><img src="us36.jpeg" alt="Foto 15"><p>Seu sorriso. Apenas isso. 😁</p></div>
-    <div class="gallery-item"><img src="us37.jpeg" alt="Foto 04"><p>Finalemnte eu podia dizer. Você é MINHA. 💍</p></div>
-    <div class="gallery-item"><img src="us38.jpeg" alt="Foto 05"><p>E bora pra estrada de novo! Minha copilota para sempre. 🚗</p></div>
-    <div class="gallery-item"><img src="us39.jpeg" alt="Foto 06"><p>Primeiro passeio como namorados. E lá se vamos para o Hopi-Hari novamente. 🎡</p></div>
-    <div class="gallery-item"><img src="us40.jpeg" alt="Foto 07"><p>Pausa para essa vista linda. AH, e também tem o Hopi-Hari atrás. 😉</p></div>
-    <div class="gallery-item"><img src="us41.jpeg" alt="Foto 08"><p>Seu neném. 👶🏻</p></div>
-        <div class="gallery-item">
-      <video controls preload="metadata"><source src="video041.mp4" type="video/mp4"></video>
-      <p>Seu carinho é o melhor que existe. 🥰</p>
-    </div>
-    <div class="gallery-item"><img src="us42.jpeg" alt="Foto 09"><p>Eu tava dodói e você foi cuidar de mim... 💊</p></div>
-    <div class="gallery-item"><img src="us43.jpeg" alt="Foto 10"><p>A minha mimadinha. ❤️</p></div>
-    <div class="gallery-item">
-      <div class="videos-grid">
-        <p>Algumas das nossas palhaçadas juntos. 🤡🤙🏻</p>
-        <video controls preload="metadata"><source src="video2.mp4" type="video/mp4"></video>
-        <video controls preload="metadata"><source src="video3.mp4" type="video/mp4"></video>
-        <video controls preload="metadata"><source src="video4.mp4" type="video/mp4"></video>
-        <video controls preload="metadata"><source src="video5.mp4" type="video/mp4"></video>
-        <video controls preload="metadata"><source src="video6.mp4" type="video/mp4"></video>
-        <video controls preload="metadata"><source src="video7.mp4" type="video/mp4"></video>
-        <video controls preload="metadata"><source src="video8.mp4" type="video/mp4"></video>
-        <video controls preload="metadata"><source src="video9.mp4" type="video/mp4"></video>
-        <video controls preload="metadata"><source src="video10.mp4" type="video/mp4"></video>
-        <video controls preload="metadata"><source src="video11.mp4" type="video/mp4"></video>
-        <video controls preload="metadata"><source src="video16.mp4" type="video/mp4"></video>
-        <video controls preload="metadata"><source src="video13.mp4" type="video/mp4"></video>
-        <video controls preload="metadata"><source src="video14.mp4" type="video/mp4"></video>
-        <video controls preload="metadata"><source src="video15.mp4" type="video/mp4"></video>
-        <video controls preload="metadata"><source src="video12.mp4" type="video/mp4"></video>
-      </div>
-      <p>Os momentos com você são os mais especiais. Com você, sou mais feliz. Faço de tudo para ver o seu sorriso. Vamos por mais, meu amor! ❤️</p>
-    </div>
-
-    <!-- Último F (especial) -->
-    <div class="gallery-item especial">
-      <div class="special-frame">
-        <img src="TheUs.jpeg" alt="SPOILER">
-        <p>Eu ainda vou casar com você. 💖</p>
-      </div>
-    </div>
-
-  </div>
-  <div class="back-btn" onclick="showSection('mainPage')">⬅ Voltar</div>
-</section>
-
-<section id="contadorSection">
-  <h2>Nosso Amor 💖</h2>
-  <div class="music-player">
-    <img src="https://picsum.photos/80/80?random=2" alt="Capa da música" class="music-cover">
-    <div class="music-info">
-      <h4>Pense em Mim</h4>
-      <p>Jorge e Mateus</p>
-    </div>
-    <button class="play-pause-btn" onclick="togglePlay('calendarioAudio', this)">
-      <svg class="play-icon" viewBox="0 0 24 24" style="display: block;"><path d="M8 5v14l11-7z"/></svg>
-      <svg class="pause-icon" viewBox="0 0 24 24" style="display: none;"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
-    </button>
-  </div>
-  <div class="counter-wrap">
-    <div class="since" id="sinceLabel">Juntos desde 15/08/2025</div>
-    
-    <div class="timer-grid" role="timer" aria-live="polite">
-      <div class="unit">
-        <div class="num" id="dias">0</div>
-        <div class="label">Dias</div>
-      </div>
-      <div class="unit">
-        <div class="num" id="horas">00</div>
-        <div class="label">Horas</div>
-      </div>
-      <div class="unit">
-        <div class="num" id="minutos">00</div>
-        <div class="label">Minutos</div>
-      </div>
-      <div class="unit">
-        <div class="num" id="segundos">00</div>
-        <div class="label">Segundos</div>
-      </div>
-    </div>
-    
-    <div id="customMessage">Cada segundo que passa eu fico mais apaixonado em você! 💝</div>
-  </div>
-  <div class="back-btn" onclick="showSection('mainPage')">⬅ Voltar</div>
-</section>
-
-<section id="cartaSection">
-  <h2>Cartinha do Amor 💌</h2>
-  <div class="music-player">
-    <img src="https://picsum.photos/80/80?random=3" alt="Capa da música" class="music-cover">
+  <div class="music-player" role="region" aria-label="Player Nossos Momentos">
+    <img src="https://picsum.photos/80/80?random=1" alt="Capa" class="music-cover">
     <div class="music-info">
       <h4>Those Eyes</h4>
       <p>NewWest</p>
     </div>
-    <button class="play-pause-btn" onclick="togglePlay('cartaAudio', this)">
-      <svg class="play-icon" viewBox="0 0 24 24" style="display: block;"><path d="M8 5v14l11-7z"/></svg>
-      <svg class="pause-icon" viewBox="0 0 24 24" style="display: none;"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+    <button class="play-pause-btn" onclick="togglePlay('momentosAudio', this)" aria-label="Play/Pause momentos">
+      <svg class="play-icon" viewBox="0 0 24 24" style="display:block;"><path d="M8 5v14l11-7z"/></svg>
+      <svg class="pause-icon" viewBox="0 0 24 24" style="display:none;"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
     </button>
   </div>
+
+  <div class="msg-musica">Dê play na música e veja alguma das nossas lembranças! 💕</div>
+
+  <div class="gallery" role="list">
+    <!-- === TODAS AS FOTOS (ordem original preservada) === -->
+    <div class="gallery-item" role="listitem"><img src="us1.jpeg" alt="Foto 01"><p>Onde tudo começou ✨</p></div>
+    <div class="gallery-item" role="listitem"><img src="us2.jpeg" alt="Foto 02"><p>A hora que eu cai no seu golpe 🤣</p></div>
+    <div class="gallery-item" role="listitem"><img src="us3.jpeg" alt="Foto 03"><p>Nossa primeira fotinha juntos 📸</p></div>
+
+    <div class="gallery-item" role="listitem"><img src="us4.jpeg" alt="Foto 04"><p>Primeira foto com as minhas duas paixões. ❤️‍🔥</p></div>
+    <div class="gallery-item" role="listitem"><img src="us5.jpeg" alt="Foto 05"><p>Primeira vez que fomos em um dos nossos lugares favoritos. 🤩</p></div>
+    <div class="gallery-item" role="listitem"><img src="us6.jpeg" alt="Foto 06"><p>Hummmm... Lanchinho.😋</p></div>
+    <div class="gallery-item" role="listitem"><img src="us7.jpeg" alt="Foto 07"><p>Eu já estava em seus braços. Já tava completamente rendido a você.🤗</p></div>
+
+    <div class="gallery-item" role="listitem"><img src="us8.jpeg" alt="Foto 08"><p>Primeiro soninho juntos💕</p></div>
+    <div class="gallery-item" role="listitem"><img src="us9.jpeg" alt="Foto 09"><p>Nessa foto esse homem está tentando fazer o impossível: te deixar mais linda do que ja é. 💆🏻‍♀️</p></div>
+    <div class="gallery-item" role="listitem"><img src="us10.jpeg" alt="Foto 10"><p>Você já era minhas paz. Já era tudo pra mim. 💓</p></div>
+    <div class="gallery-item" role="listitem"><img src="us11.jpeg" alt="Foto 11"><p>Primeira vez no Hopi-Hari juntinhos. 🎡</p></div>
+    <div class="gallery-item" role="listitem"><img src="us12.jpeg" alt="Foto 12"><p>A minha copilota. 🏎️</p></div>
+    <div class="gallery-item" role="listitem"><img src="us13.jpeg" alt="Foto 13"><p>1st para a gente. 🥇</p></div>
+    <div class="gallery-item" role="listitem"><img src="us15.jpeg" alt="Foto 14"><p>Sua foto favorita nossa. ☀️</p></div>
+    <div class="gallery-item" role="listitem"><img src="us14.jpeg" alt="Foto 15"><p>Minha foto favorita nossa. 🥰</p></div>
+
+    <div class="gallery-item" role="listitem"><img src="us22.jpeg" alt="Foto 16"><p>Primeiro dia dos "namorados" juntos. 👩🏻‍❤️‍👨🏻</p></div>
+    <div class="gallery-item" role="listitem"><img src="us23.jpeg" alt="Foto 17"><p>O melhor presente que eu já dei para alguém. Desde que te dei, nunca mais te vi sem. 🎁</p></div>
+    <div class="gallery-item" role="listitem"><img src="us17.jpeg" alt="Foto 18"><p>Primeiro date nosso. Te levei pra ver as estrelas, como tinha te prometido. ✨</p></div>
+    <div class="gallery-item" role="listitem"><img src="us16.jpeg" alt="Foto 19"><p>Minha estressadinha 💕</p></div>
+    <div class="gallery-item" role="listitem"><img src="us18.jpeg" alt="Foto 20"><p>O seu cheiro é o melhor cheiro que existe.💘</p></div>
+    <div class="gallery-item" role="listitem"><img src="us19.jpeg" alt="Foto 21"><p>Combinandinhos.😚</p></div>
+    <div class="gallery-item" role="listitem"><img src="us20.jpeg" alt="Foto 22"><p>Já te tinha em meus braços e não quero soltar nunca mais. 🫂</p></div>
+    <div class="gallery-item" role="listitem"><img src="us21.jpeg" alt="Foto 23"><p>Entre todas as mulheres, você é a mais bela! 😍</p></div>
+
+    <div class="gallery-item" role="listitem"><img src="us24.jpeg" alt="Foto 24"><p>L.😉</p></div>
+    <div class="gallery-item" role="listitem"><img src="us024.jpeg" alt="Foto 25"><p>O dia que ficamos duas grandes divas 😚</p></div>
+
+    <div class="gallery-item" role="listitem"><img src="us25.jpeg" alt="Foto 26"><p>Meus dois grandes amores ❤️</p></div>
+    <div class="gallery-item" role="listitem"><img src="us26.jpeg" alt="Foto 27"><p>Olhinhos 👀</p></div>
+    <div class="gallery-item" role="listitem"><img src="us27.jpeg" alt="Foto 28"><p>Eu, você e nossa filhinha. 🏠</p></div>
+    <div class="gallery-item" role="listitem"><img src="us29.jpeg" alt="Foto 29"><p>Mais uma vez deixando você me maquiar.🧐</p></div>
+    <div class="gallery-item" role="listitem"><img src="us30.jpeg" alt="Foto 30"><p>Você é a minha flor. 🌸</p></div>
+    <div class="gallery-item" role="listitem"><img src="us31.jpeg" alt="Foto 31"><p>Você é o meu sonho. 💭</p></div>
+
+    <div class="gallery-item" role="listitem"><img src="us28.jpeg" alt="Foto 32"><p>Momento do primeiro eu te amo. ❤️</p></div>
+    <div class="gallery-item" role="listitem"><img src="us031.jpeg" alt="Foto 33"><p>O McQueen e a minha Queen. 👑</p></div>
+    <div class="gallery-item" role="listitem"><img src="us33.jpeg" alt="Foto 34"><p>Eu sou seu fã numero 1️⃣. </p></div>
+    <div class="gallery-item" role="listitem"><img src="us34.jpeg" alt="Foto 35"><p>Tudo pronto para te pedir em namoro. 💍</p></div>
+
+    <div class="gallery-item" role="listitem"><img src="us35.jpeg" alt="Foto 36"><p>E você disse sim. 🥰</p></div>
+    <div class="gallery-item" role="listitem"><img src="us36.jpeg" alt="Foto 37"><p>Seu sorriso. Apenas isso. 😁</p></div>
+    <div class="gallery-item" role="listitem"><img src="us37.jpeg" alt="Foto 38"><p>Finalemnte eu podia dizer. Você é MINHA. 💍</p></div>
+    <div class="gallery-item" role="listitem"><img src="us38.jpeg" alt="Foto 39"><p>E bora pra estrada de novo! Minha copilota para sempre. 🚗</p></div>
+    <div class="gallery-item" role="listitem"><img src="us39.jpeg" alt="Foto 40"><p>Primeiro passeio como namorados. E lá se vamos para o Hopi-Hari novamente. 🎡</p></div>
+    <div class="gallery-item" role="listitem"><img src="us40.jpeg" alt="Foto 41"><p>Pausa para essa vista linda. AH, e também tem o Hopi-Hari atrás. 😉</p></div>
+    <div class="gallery-item" role="listitem"><img src="us41.jpeg" alt="Foto 42"><p>Seu neném. 👶🏻</p></div>
+
+    <div class="gallery-item" role="listitem"><img src="us42.jpeg" alt="Foto 43"><p>Eu tava dodói e você foi cuidar de mim... 💊</p></div>
+    <div class="gallery-item" role="listitem"><img src="us43.jpeg" alt="Foto 44"><p>A minha mimadinha. ❤️</p></div>
+
+    <!-- === FRASE + VÍDEOS (após todas as fotos) === -->
+    <div class="gallery-item" role="listitem" aria-label="Vídeos">
+      <div class="frase-palhaca">Algumas das nossas palhaçadas juntos. 🤡🤙🏻</div>
+
+      <div class="videos-grid">
+        <!-- vídeos que tinham captions separadas -->
+        <div class="video-card"><video controls preload="metadata"><source src="video1.mp4" type="video/mp4"></video><p class="video-caption">Aqui eu percebi que não queria mais ninguém, era só você. ❤️‍🩹</p></div>
+
+        <div class="video-card"><video controls preload="metadata"><source src="videob.mp4" type="video/mp4"></video><p class="video-caption">Nossa primeira "briga" — eu fui me declarar às 2h da manhã. ⚠️</p></div>
+
+        <div class="video-card"><video controls preload="metadata"><source src="video024.mp4" type="video/mp4"></video><p class="video-caption">Sua felicidade é a minha! 😊</p></div>
+
+        <div class="video-card"><video controls preload="metadata"><source src="video027.mp4" type="video/mp4"></video><p class="video-caption">Você é o meu amor. ❤️‍🩹</p></div>
+
+        <div class="video-card"><video controls preload="metadata"><source src="videoa.mp4" type="video/mp4"></video><p class="video-caption">Você é tudo pra mim. ❗</p></div>
+
+        <div class="video-card"><video controls preload="metadata"><source src="video034.mp4" type="video/mp4"></video><p class="video-caption">Enganei certinho! 😅</p></div>
+
+        <div class="video-card"><video controls preload="metadata"><source src="video041.mp4" type="video/mp4"></video><p class="video-caption">Seu carinho é o melhor que existe. 🥰</p></div>
+
+        <!-- vídeos pequenos (grid) que estavam dentro do vídeos-grid original -->
+        <div class="video-card"><video controls preload="metadata"><source src="video2.mp4" type="video/mp4"></video></div>
+        <div class="video-card"><video controls preload="metadata"><source src="video3.mp4" type="video/mp4"></video></div>
+        <div class="video-card"><video controls preload="metadata"><source src="video4.mp4" type="video/mp4"></video></div>
+        <div class="video-card"><video controls preload="metadata"><source src="video5.mp4" type="video/mp4"></video></div>
+        <div class="video-card"><video controls preload="metadata"><source src="video6.mp4" type="video/mp4"></video></div>
+        <div class="video-card"><video controls preload="metadata"><source src="video7.mp4" type="video/mp4"></video></div>
+        <div class="video-card"><video controls preload="metadata"><source src="video8.mp4" type="video/mp4"></video></div>
+        <div class="video-card"><video controls preload="metadata"><source src="video9.mp4" type="video/mp4"></video></div>
+        <div class="video-card"><video controls preload="metadata"><source src="video10.mp4" type="video/mp4"></video></div>
+        <div class="video-card"><video controls preload="metadata"><source src="video11.mp4" type="video/mp4"></video></div>
+        <div class="video-card"><video controls preload="metadata"><source src="video16.mp4" type="video/mp4"></video></div>
+        <div class="video-card"><video controls preload="metadata"><source src="video13.mp4" type="video/mp4"></video></div>
+        <div class="video-card"><video controls preload="metadata"><source src="video14.mp4" type="video/mp4"></video></div>
+        <div class="video-card"><video controls preload="metadata"><source src="video15.mp4" type="video/mp4"></video></div>
+        <div class="video-card"><video controls preload="metadata"><source src="video12.mp4" type="video/mp4"></video></div>
+      </div>
+
+      <p style="margin-top:12px; color:#6b2d5b; font-weight:700;">Os momentos com você são os mais especiais. Com você, sou mais feliz. Faço de tudo para ver o seu sorriso. Vamos por mais, meu amor! ❤️</p>
+    </div>
+
+    <!-- Última foto especial (SPOILER) -->
+    <div class="gallery-item especial" role="listitem">
+      <div class="special-frame">
+        <img src="TheUs.jpeg" alt="SPOILER">
+        <p style="margin-top:12px; font-weight:800; color:#6b2d5b;">Eu ainda vou casar com você. 💖</p>
+      </div>
+    </div>
+
+  </div> <!-- end gallery -->
+
+  <div class="back-btn" onclick="showSection('mainPage')">⬅ Voltar</div>
+</section>
+
+<!-- CONTADOR / CRONÔMETRO -->
+<section id="contadorSection" aria-labelledby="contadorTitle">
+  <h2 id="contadorTitle">Nosso Amor 💖</h2>
+
+  <div class="music-player" role="region" aria-label="Player Cronômetro">
+    <img src="https://picsum.photos/80/80?random=2" alt="Capa" class="music-cover">
+    <div class="music-info"><h4>Pense em Mim</h4><p>Jorge e Mateus</p></div>
+    <button class="play-pause-btn" onclick="togglePlay('calendarioAudio', this)" aria-label="Play/Pause cronômetro">
+      <svg class="play-icon" viewBox="0 0 24 24" style="display:block;"><path d="M8 5v14l11-7z"/></svg>
+      <svg class="pause-icon" viewBox="0 0 24 24" style="display:none;"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+    </button>
+  </div>
+
+  <div class="counter-wrap">
+    <div class="since" id="sinceLabel">Juntos desde 15/08/2025</div>
+    <div class="timer-grid" role="timer" aria-live="polite">
+      <div class="unit"><div class="num" id="dias">0</div><div class="label">Dias</div></div>
+      <div class="unit"><div class="num" id="horas">00</div><div class="label">Horas</div></div>
+      <div class="unit"><div class="num" id="minutos">00</div><div class="label">Minutos</div></div>
+      <div class="unit"><div class="num" id="segundos">00</div><div class="label">Segundos</div></div>
+    </div>
+    <div id="customMessage">Cada segundo que passa eu fico mais apaixonado em você! 💝</div>
+  </div>
+
+  <div class="back-btn" onclick="showSection('mainPage')">⬅ Voltar</div>
+</section>
+
+<!-- CARTINHA -->
+<section id="cartaSection" aria-labelledby="cartaTitle">
+  <h2 id="cartaTitle">Cartinha do Amor 💌</h2>
+
+  <div class="music-player" role="region" aria-label="Player Cartinha">
+    <img src="https://picsum.photos/80/80?random=3" alt="Capa" class="music-cover">
+    <div class="music-info"><h4>Can't Help Falling in Love</h4><p>Elvis Presley</p></div>
+    <button class="play-pause-btn" onclick="togglePlay('cartaAudio', this)" aria-label="Play/Pause cartinha">
+      <svg class="play-icon" viewBox="0 0 24 24" style="display:block;"><path d="M8 5v14l11-7z"/></svg>
+      <svg class="pause-icon" viewBox="0 0 24 24" style="display:none;"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+    </button>
+  </div>
+
   <div class="envelope-area">
-    <div class="envelope" id="envelope" onclick="toggleCarta()"
-      role="button" aria-label="Abrir cartinha" tabindex="0">
+    <div class="envelope" id="envelope" onclick="toggleCarta()" role="button" aria-label="Abrir cartinha" tabindex="0">
       <div class="env-back"></div>
       <div class="env-flap"></div>
       <div class="env-front"></div>
-
       <div class="letter">
         <div class="letter-content">
           <p>Minha gatinha,</p>
-          <p>escrever....</p>
+          <p>Escrever...</p>
           <p>Para sempre, você e eu. 💕</p>
           <p style="margin-top:12px;">Com amor,<br>Seu Bobo Romântico</p>
         </div>
       </div>
     </div>
-    
-    <div class="hearts" id="heartsAnchor"></div>
+
+    <div id="heartsAnchor"></div>
   </div>
 
   <div class="back-btn" onclick="showSection('mainPage')">⬅ Voltar</div>
 </section>
 
 <script>
-  // ---------- MÚSICAS ----------
-  const musicas = {
-    momentosAudio: { src: 'Elvis Presley - Cant Help Falling In Love.mp3', audio: new Audio('Elvis Presley - Cant Help Falling In Love.mp3'), playing: false },
-    calendarioAudio: { src: 'Jorge e Mateus - Pense em mim.mpeg', audio: new Audio('Jorge e Mateus - Pense em mim.mpeg'), playing: false },
-    cartaAudio: { src: 'Those Eyes.mpeg', audio: new Audio('Those Eyes.mpeg'), playing: false }
-  };
+/* ===================== MÚSICAS ===================== */
+/* Usamos os elementos <audio> existentes no DOM e controlamos com os botões */
+const musicas = {
+  momentosAudio: { audio: document.getElementById('momentosAudio'), playing: false },
+  calendarioAudio: { audio: document.getElementById('calendarioAudio'), playing: false },
+  cartaAudio: { audio: document.getElementById('cartaAudio'), playing: false }
+};
 
-  function showPlayingIcon(button) {
-    button.querySelector('.play-icon').style.display = 'none';
-    button.querySelector('.pause-icon').style.display = 'block';
+function showPlayingIcon(button){
+  if(!button) return;
+  const play = button.querySelector('.play-icon');
+  const pause = button.querySelector('.pause-icon');
+  if(play) play.style.display = 'none';
+  if(pause) pause.style.display = 'block';
+}
+function showPausedIcon(button){
+  if(!button) return;
+  const play = button.querySelector('.play-icon');
+  const pause = button.querySelector('.pause-icon');
+  if(play) play.style.display = 'block';
+  if(pause) pause.style.display = 'none';
+}
+
+function stopAllMusic(){
+  // atualiza ícones
+  document.querySelectorAll('.play-pause-btn').forEach(btn => showPausedIcon(btn));
+  // pausa e reseta
+  for(const k in musicas){
+    const m = musicas[k];
+    if(m && m.audio){
+      try { m.audio.pause(); m.audio.currentTime = 0; } catch(e){}
+      m.playing = false;
+    }
   }
+}
 
-  function showPausedIcon(button) {
-    button.querySelector('.play-icon').style.display = 'block';
-    button.querySelector('.pause-icon').style.display = 'none';
-  }
-
-  function playMusic(audioId, button) {
+function togglePlay(id, button){
+  const m = musicas[id];
+  if(!m) return;
+  if(m.playing){
+    try { m.audio.pause(); m.audio.currentTime = 0; } catch(e){}
+    m.playing = false;
+    showPausedIcon(button);
+  } else {
+    // para outras músicas antes
     stopAllMusic();
-    musicas[audioId].audio.loop = true;
-    musicas[audioId].audio.play();
-    musicas[audioId].playing = true;
+    try { m.audio.loop = true; m.audio.play(); } catch(e){}
+    m.playing = true;
     showPlayingIcon(button);
   }
+}
 
-  function stopMusic(audioId, button) {
-    if (musicas[audioId].audio) {
-      musicas[audioId].audio.pause();
-      musicas[audioId].audio.currentTime = 0;
-    }
-    musicas[audioId].playing = false;
-    showPausedIcon(button);
+/* ===================== LOGIN ===================== */
+const senhaCorreta = "150825";
+let senhaDigitada = "";
+
+function enterDigit(num){
+  if(senhaDigitada.length < senhaCorreta.length){
+    senhaDigitada += String(num);
+    atualizarDisplay();
   }
-  
-  function stopAllMusic() {
-    document.querySelectorAll('.play-pause-btn').forEach(btn => showPausedIcon(btn));
-    for (const key in musicas) {
-      if (musicas[key].audio) {
-        musicas[key].audio.pause();
-        musicas[key].audio.currentTime = 0;
-      }
-      musicas[key].playing = false;
-    }
+}
+function clearPassword(){
+  senhaDigitada = senhaDigitada.slice(0, -1);
+  atualizarDisplay();
+}
+function atualizarDisplay(){
+  document.getElementById("passwordDisplay").textContent = senhaDigitada.padEnd(senhaCorreta.length, "•");
+}
+function checkPassword(){
+  if(senhaDigitada === senhaCorreta){
+    showSection('mainPage');
+    senhaDigitada = "";
+    atualizarDisplay();
+  } else {
+    alert("Senha incorreta 💔");
+    senhaDigitada = "";
+    atualizarDisplay();
   }
+}
 
-  function togglePlay(audioId, button) {
-    if (musicas[audioId].playing) {
-      stopMusic(audioId, button);
-    } else {
-      playMusic(audioId, button);
-    }
+/* ===================== SHOW SECTIONS ===================== */
+function showSection(sectionId){
+  document.querySelectorAll('section').forEach(sec => sec.style.display = 'none');
+  const s = document.getElementById(sectionId);
+  if(s) s.style.display = 'flex';
+  stopAllMusic();
+}
+
+/* ===================== CONTADOR ===================== */
+const startDate = new Date("2025-08-15T00:00:00");
+const fmt2 = n => String(n).padStart(2,'0');
+function atualizarContador(){
+  const agora = new Date();
+  let diffMs = Math.max(0, agora - startDate);
+  const dias = Math.floor(diffMs/(1000*60*60*24));
+  diffMs -= dias*(1000*60*60*24);
+  const horas = Math.floor(diffMs/(1000*60*60));
+  diffMs -= horas*(1000*60*60);
+  const minutos = Math.floor(diffMs/(1000*60));
+  diffMs -= minutos*(1000*60);
+  const segundos = Math.floor(diffMs/1000);
+  document.getElementById("dias").textContent = dias;
+  document.getElementById("horas").textContent = fmt2(horas);
+  document.getElementById("minutos").textContent = fmt2(minutos);
+  document.getElementById("segundos").textContent = fmt2(segundos);
+  const dd = String(startDate.getDate()).padStart(2,'0');
+  const mm = String(startDate.getMonth()+1).padStart(2,'0');
+  const yyyy = startDate.getFullYear();
+  document.getElementById("sinceLabel").textContent = `Juntos desde ${dd}/${mm}/${yyyy}`;
+}
+setInterval(atualizarContador, 1000);
+atualizarContador();
+
+/* ===================== CARTINHA (CORAÇÕES) ===================== */
+const envelope = document.getElementById('envelope');
+const heartsAnchor = document.getElementById('heartsAnchor');
+
+function toggleCarta(){
+  if(!envelope) return;
+  envelope.classList.toggle('open');
+  if(envelope.classList.contains('open')){
+    soltarCoracoes(10);
   }
-
-  // ---------- LOGIN ----------
-  const senhaCorreta = "150825";
-  let senhaDigitada = "";
-  function enterDigit(num){ if(senhaDigitada.length<senhaCorreta.length){senhaDigitada+=num; atualizarDisplay();} }
-  function clearPassword(){ senhaDigitada = senhaDigitada.slice(0,-1); atualizarDisplay(); }
-  function atualizarDisplay(){ document.getElementById("passwordDisplay").textContent = senhaDigitada.padEnd(senhaCorreta.length,"•"); }
-  function checkPassword(){
-    if(senhaDigitada===senhaCorreta){ showSection('mainPage'); document.getElementById('loginPage').style.display='none'; }
-    else{ alert("Senha incorreta 💔"); senhaDigitada=""; atualizarDisplay(); }
-  }
-
-  // ---------- SHOW SECTIONS ----------
-  function showSection(sectionId){
-    document.querySelectorAll('section').forEach(sec=>sec.style.display='none');
-    document.getElementById(sectionId).style.display='block';
-    stopAllMusic();
-  }
-
-  // ---------- CONTADOR FOFO (NOVO) ----------
-  const startDate = new Date("2025-08-15T00:00:00");
-  const fmt2 = n => String(n).padStart(2,'0');
-
-  function atualizarContador(){
-    const agora = new Date();
-    let diffMs = Math.max(0, agora - startDate);
-
-    const dias = Math.floor(diffMs/(1000*60*60*24));
-    diffMs -= dias*(1000*60*60*24);
-    const horas = Math.floor(diffMs/(1000*60*60));
-    diffMs -= horas*(1000*60*60);
-    const minutos = Math.floor(diffMs/(1000*60));
-    diffMs -= minutos*(1000*60);
-    const segundos = Math.floor(diffMs/1000);
-
-    document.getElementById("dias").textContent = dias;
-    document.getElementById("horas").textContent = fmt2(horas);
-    document.getElementById("minutos").textContent = fmt2(minutos);
-    document.getElementById("segundos").textContent = fmt2(segundos);
-
-    const dd = String(startDate.getDate()).padStart(2,'0');
-    const mm = String(startDate.getMonth()+1).padStart(2,'0');
-    const yyyy = startDate.getFullYear();
-    document.getElementById("sinceLabel").textContent = `Juntos desde ${dd}/${mm}/${yyyy}`;
-  }
-  setInterval(atualizarContador,1000);
-  atualizarContador();
-
-  // ---------- CARTINHA REAL (NOVA) ----------
-  const envelope = document.getElementById('envelope');
-  const heartsAnchor = document.getElementById('heartsAnchor');
-  
-  function toggleCarta(){
-    envelope.classList.toggle('open');
-    if (envelope.classList.contains('open')) {
-      soltarCoracoes(10);
-    }
-  }
-
-  envelope && envelope.addEventListener('keydown', (e)=>{
+}
+if(envelope){
+  envelope.addEventListener('keydown', (e) => {
     if(e.key === 'Enter' || e.key === ' '){
-      e.preventDefault(); toggleCarta();
+      e.preventDefault();
+      toggleCarta();
     }
   });
+}
 
-  function soltarCoracoes(qtd=8){
-    for(let i=0;i<qtd;i++){
-      const h = document.createElement('div');
-      h.className = 'heart';
-      const offsetX = (Math.random()*160 - 80);
-      const delay = Math.random()*0.6;
-      const scale = 0.8 + Math.random()*0.8;
-      h.style.left = offsetX + 'px';
-      h.style.top = '0px';
-      h.style.animationDelay = `${delay}s`;
-      h.style.transform = `translateY(0) scale(${scale}) rotate(45deg)`;
-      heartsAnchor.appendChild(h);
-      setTimeout(()=>h.remove(), 2600);
-    }
+function soltarCoracoes(qtd=8){
+  if(!heartsAnchor) return;
+  for(let i=0;i<qtd;i++){
+    const h = document.createElement('div');
+    h.className = 'heart';
+    const offsetX = (Math.random()*160 - 80); // deslocamento lateral
+    const delay = Math.random() * 0.6;
+    const scale = 0.8 + Math.random()*0.8;
+    h.style.left = offsetX + 'px';
+    h.style.top = '0px';
+    h.style.animationDelay = `${delay}s`;
+    h.style.transform = `translateY(0) scale(${scale}) rotate(45deg)`;
+    heartsAnchor.appendChild(h);
+    setTimeout(()=>{ if(h && h.parentNode) h.parentNode.removeChild(h); }, 2800);
   }
+}
+
+/* === Inicialização: deixamos apenas a tela de login visível (já setado via CSS), outras telas aparecem via showSection === */
 </script>
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
