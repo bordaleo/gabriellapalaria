@@ -115,7 +115,38 @@
   .gallery { display:flex; flex-direction:column; gap:30px; max-width:700px; margin:0 auto; }
   .gallery-item { background:white; padding:20px; border-radius:15px; box-shadow:var(--shadow); }
   .gallery-item img, .gallery-item video { width:100%; border-radius:12px; margin-bottom:10px; }
+  .gallery-item video { display:block; }
   .gallery-item p { text-align:center; font-size:1rem; color:var(--pink); }
+
+  /* grupo de vários vídeos na mesma caixinha (últimos V) */
+  .videos-grid{
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap:12px;
+  }
+  .videos-grid video{
+    width:100%;
+    border-radius:12px;
+  }
+
+  /* Última foto especial */
+  .especial .special-frame {
+    position: relative;
+    border: 4px solid var(--pink);
+    padding: 18px;
+    border-radius: 20px;
+    background: linear-gradient(145deg, #fff0f6, #ffe6f9);
+    box-shadow: 0 0 20px rgba(214, 51, 132, 0.4);
+  }
+  .especial .special-frame::before{
+    content: "✨ Momento Mais Especial ✨";
+    position:absolute; top:-14px; left:50%; transform:translateX(-50%);
+    background: var(--pink); color:#fff; font-size:.85rem; padding:6px 12px; border-radius:999px;
+    box-shadow: var(--shadow);
+  }
+  .especial img { border-radius: 16px; }
+  .especial p { font-size: 1.1rem; color: #6b2d5b; font-weight: bold; margin-top: 10px; }
+
   .back-btn { 
     margin-top:40px;
     display:inline-block; 
@@ -169,7 +200,7 @@
   .play-pause-btn {
     width: 45px;
     height: 45px;
-    background: #1DB954; /* Cor do Spotify */
+    background: #1DB954;
     border: none;
     border-radius: 50%;
     display: flex;
@@ -178,15 +209,8 @@
     cursor: pointer;
     transition: transform 0.2s, background 0.2s;
   }
-  .play-pause-btn:hover {
-    background: #1ed760;
-    transform: scale(1.05);
-  }
-  .play-pause-btn svg {
-    fill: white;
-    width: 18px;
-    height: 18px;
-  }
+  .play-pause-btn:hover { background: #1ed760; transform: scale(1.05); }
+  .play-pause-btn svg { fill: white; width: 18px; height: 18px; }
 
   /* ========= CONTADOR FOFO (NOVO) ========= */
   #contadorSection { display:none; text-align:center; }
@@ -269,12 +293,10 @@
   .env-front{
     position:absolute; inset:0;
     border-radius:18px;
-    background:
-      linear-gradient(180deg, #ffd9e7, #ffc1da);
+    background: linear-gradient(180deg, #ffd9e7, #ffc1da);
     transform: translateZ(1px);
     clip-path: polygon(0 40%, 100% 40%, 100% 100%, 0 100%);
   }
-  /* Ajuste do tamanho da caixa da carta */
   .letter{
     position:absolute;
     left: 5%;
@@ -285,7 +307,6 @@
     border-radius:14px;
     box-shadow:0 10px 20px rgba(0,0,0,.15);
     transform: translateY(36%) rotateX(0deg);
-    transition: transform .9s cubic-bezier(.2,.8,.2,1);
     padding:18px;
     overflow: hidden;
     opacity: 0;
@@ -300,18 +321,10 @@
     position:absolute; inset:18px 16px 16px; overflow:auto;
     font-size:clamp(.95rem, 2.2vw, 1.05rem); line-height:1.5; color:#333;
   }
-
-  /* estado aberto */
   .envelope.open .env-flap{ transform: rotateX(180deg); }
-  .envelope.open .letter{ 
-    transform: translateY(-50%) rotateX(0);
-    opacity: 1;
-  }
+  .envelope.open .letter{ transform: translateY(-50%) rotateX(0); opacity: 1; }
 
-  /* corações */
-  .hearts{
-    position:relative; width:0; height:0;
-  }
+  .hearts{ position:relative; width:0; height:0; }
   .heart{
     position:absolute; width:14px; height:14px;
     transform: rotate(45deg);
@@ -386,22 +399,77 @@
       <svg class="pause-icon" viewBox="0 0 24 24" style="display: none;"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
     </button>
   </div>
+
   <div class="gallery">
-    <script>
-      const gallery = [];
-      for(let i=1;i<=20;i++){
-        gallery.push({type:'img', src:`https://picsum.photos/400/200?random=${i}`, text:`Texto da foto ${i} 💕`});
-      }
-      for(let i=1;i<=5;i++){
-        gallery.push({type:'video', src:`video${i}.mp4`, text:`Texto do vídeo ${i} 💕`});
-      }
-      gallery.forEach(item=>{
-        document.write('<div class="gallery-item">');
-        if(item.type==='img') document.write(`<img src="${item.src}" alt="Foto">`);
-        else document.write(`<video controls><source src="${item.src}" type="video/mp4"></video>`);
-        document.write(`<p>${item.text}</p></div>`);
-      });
-    </script>
+
+    <!-- Sequência: FFF -->
+    <div class="gallery-item"><img src="foto01.jpg" alt="Foto 01"><p>Seu texto da foto 01 💕</p></div>
+    <div class="gallery-item"><img src="foto02.jpg" alt="Foto 02"><p>Seu texto da foto 02 💕</p></div>
+    <div class="gallery-item"><img src="foto03.jpg" alt="Foto 03"><p>Seu texto da foto 03 💕</p></div>
+
+    <!-- V -->
+    <div class="gallery-item">
+      <video controls preload="metadata"><source src="video01.mp4" type="video/mp4"></video>
+      <p>Seu texto do vídeo 01 💕</p>
+    </div>
+
+    <!-- FFFFFFFFFFFF (12 Fs) -->
+    <div class="gallery-item"><img src="foto04.jpg" alt="Foto 04"><p>Seu texto da foto 04 💕</p></div>
+    <div class="gallery-item"><img src="foto05.jpg" alt="Foto 05"><p>Seu texto da foto 05 💕</p></div>
+    <div class="gallery-item"><img src="foto06.jpg" alt="Foto 06"><p>Seu texto da foto 06 💕</p></div>
+    <div class="gallery-item"><img src="foto07.jpg" alt="Foto 07"><p>Seu texto da foto 07 💕</p></div>
+    <div class="gallery-item"><img src="foto08.jpg" alt="Foto 08"><p>Seu texto da foto 08 💕</p></div>
+    <div class="gallery-item"><img src="foto09.jpg" alt="Foto 09"><p>Seu texto da foto 09 💕</p></div>
+    <div class="gallery-item"><img src="foto10.jpg" alt="Foto 10"><p>Seu texto da foto 10 💕</p></div>
+    <div class="gallery-item"><img src="foto11.jpg" alt="Foto 11"><p>Seu texto da foto 11 💕</p></div>
+    <div class="gallery-item"><img src="foto12.jpg" alt="Foto 12"><p>Seu texto da foto 12 💕</p></div>
+    <div class="gallery-item"><img src="foto13.jpg" alt="Foto 13"><p>Seu texto da foto 13 💕</p></div>
+    <div class="gallery-item"><img src="foto14.jpg" alt="Foto 14"><p>Seu texto da foto 14 💕</p></div>
+    <div class="gallery-item"><img src="foto15.jpg" alt="Foto 15"><p>Seu texto da foto 15 💕</p></div>
+
+    <!-- V -->
+    <div class="gallery-item">
+      <video controls preload="metadata"><source src="video02.mp4" type="video/mp4"></video>
+      <p>Seu texto do vídeo 02 💕</p>
+    </div>
+
+    <!-- FF -->
+    <div class="gallery-item"><img src="foto16.jpg" alt="Foto 16"><p>Seu texto da foto 16 💕</p></div>
+    <div class="gallery-item"><img src="foto17.jpg" alt="Foto 17"><p>Seu texto da foto 17 💕</p></div>
+
+    <!-- V -->
+    <div class="gallery-item">
+      <video controls preload="metadata"><source src="video03.mp4" type="video/mp4"></video>
+      <p>Seu texto do vídeo 03 💕</p>
+    </div>
+
+    <!-- FFFFF -->
+    <div class="gallery-item"><img src="foto18.jpg" alt="Foto 18"><p>Seu texto da foto 18 💕</p></div>
+    <div class="gallery-item"><img src="foto19.jpg" alt="Foto 19"><p>Seu texto da foto 19 💕</p></div>
+    <div class="gallery-item"><img src="foto20.jpg" alt="Foto 20"><p>Seu texto da foto 20 💕</p></div>
+    <div class="gallery-item"><img src="foto21.jpg" alt="Foto 21"><p>Seu texto da foto 21 💕</p></div>
+    <div class="gallery-item"><img src="foto22.jpg" alt="Foto 22"><p>Seu texto da foto 22 💕</p></div>
+
+    <!-- VVVVV (últimos V juntos na mesma caixinha) -->
+    <div class="gallery-item">
+      <div class="videos-grid">
+        <video controls preload="metadata"><source src="video04.mp4" type="video/mp4"></video>
+        <video controls preload="metadata"><source src="video05.mp4" type="video/mp4"></video>
+        <video controls preload="metadata"><source src="video06.mp4" type="video/mp4"></video>
+        <video controls preload="metadata"><source src="video07.mp4" type="video/mp4"></video>
+        <video controls preload="metadata"><source src="video08.mp4" type="video/mp4"></video>
+      </div>
+      <p>Nossos vídeos juntinhos 💕</p>
+    </div>
+
+    <!-- Último F (especial) -->
+    <div class="gallery-item especial">
+      <div class="special-frame">
+        <img src="foto23.jpg" alt="Foto Especial">
+        <p>Escreva aqui o textinho do momento mais especial 💖</p>
+      </div>
+    </div>
+
   </div>
   <div class="back-btn" onclick="showSection('mainPage')">⬅ Voltar</div>
 </section>
@@ -470,8 +538,7 @@
         <div class="letter-content">
           <p>Minha gatinha,</p>
           <p>escrever....</p>
-          <p>
-          Para sempre, você e eu. 💕</p>
+          <p>Para sempre, você e eu. 💕</p>
           <p style="margin-top:12px;">Com amor,<br>Seu Bobo Romântico</p>
         </div>
       </div>
@@ -552,7 +619,6 @@
   function showSection(sectionId){
     document.querySelectorAll('section').forEach(sec=>sec.style.display='none');
     document.getElementById(sectionId).style.display='block';
-    
     stopAllMusic();
   }
 
@@ -621,10 +687,3 @@
 
 </body>
 </html>
-
-
-
-
-
-
-
