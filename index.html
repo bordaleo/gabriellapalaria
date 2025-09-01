@@ -116,18 +116,33 @@
   .gallery-item { background:white; padding:20px; border-radius:15px; box-shadow:var(--shadow); }
   .gallery-item img, .gallery-item video { width:100%; border-radius:12px; margin-bottom:10px; }
   .gallery-item video { display:block; }
-  .gallery-item p { text-align:center; font-size:1rem; color:var(--pink); }
+  .gallery-item p {
+  text-align: center;
+  font-size: 1.1rem;
+  color: #6b2d5b;
+  font-weight: 600;
+}
 
   /* grupo de vários vídeos na mesma caixinha (últimos V) */
-  .videos-grid{
-    display:grid;
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-    gap:12px;
-  }
-  .videos-grid video{
-    width:100%;
-    border-radius:12px;
-  }
+ .videos-grid{
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap:20px;
+  justify-items: center;
+}
+.videos-grid video{
+  width:100%;
+  max-width:320px;
+  border-radius:12px;
+}
+  .cards, .counter-wrap, .envelope-area {
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+
 
   /* Última foto especial */
   .especial .special-frame {
@@ -139,7 +154,7 @@
     box-shadow: 0 0 20px rgba(214, 51, 132, 0.4);
   }
   .especial .special-frame::before{
-    content: "✨ Momento Mais Especial ✨";
+    content: "SPOILER! ⚠️ ";
     position:absolute; top:-14px; left:50%; transform:translateX(-50%);
     background: var(--pink); color:#fff; font-size:.85rem; padding:6px 12px; border-radius:999px;
     box-shadow: var(--shadow);
@@ -348,6 +363,44 @@
     .card { padding: 20px; border-radius: 20px;}
     .card h3 { font-size: 1.1rem; }
   }
+  /* ===== CSS novo para centralizar e deixar textos visíveis ===== */
+.message-box {
+  background: #fff0f6;
+  color: #6b2d5b;
+  border-radius: 15px;
+  padding: 12px 20px;
+  box-shadow: var(--shadow);
+  text-align: center;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.gallery-item p {
+  text-align: center;
+  font-size: 1.1rem;
+  color: #6b2d5b;
+  font-weight: 600;
+}
+
+.videos-grid{
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap:20px;
+  justify-items: center;
+}
+.videos-grid video{
+  width:100%;
+  max-width:320px;
+  border-radius:12px;
+}
+
+.cards, .counter-wrap, .envelope-area {
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
 </style>
 </head>
 <body>
@@ -401,7 +454,7 @@
   </div>
 
   <div class="gallery">
-     <p>Dê play na música e veja alguma das nossas lembranças! 💕</p>
+    <div class="message-box">Dê play na música e veja alguma das nossas lembranças! 💕</div>
 
     <!-- Sequência: FFF -->
     <div class="gallery-item"><img src="us1.jpeg" alt="Foto 01"><p>Onde tudo começou ✨</p></div>
@@ -727,6 +780,7 @@
 
 </body>
 </html>
+
 
 
 
