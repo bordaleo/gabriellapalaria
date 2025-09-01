@@ -55,14 +55,23 @@
   }
 /* DEPOIS (Modificado) */
 .cards { 
-  display: flex; /* Mudei de 'grid' para 'flex' para facilitar a centralização */
-  flex-direction: column; /* Coloca os itens em uma coluna */
-  align-items: center; /* Centraliza os itens horizontalmente */
-  gap:30px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  justify-content: center;      /* centraliza os cards */
+  align-items: start;           /* alinha cards no topo */
   max-width: 1000px;
   width: 100%;
   padding: 0 15px;
 }
+
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;  /* garante altura uniforme */
+  height: 220px;                   /* fixa altura igual para todas */
+}
+
   .card { 
     background: linear-gradient(145deg, #f0e6ff, #f8d4ff);
     border-radius:25px;
@@ -465,7 +474,8 @@
 
     <!-- V -->
     <div class="gallery-item">
-      <video controls preload="metadata"><source src="video1.mp4" type="video/mp4"></video>
+      <video controls preload="metadata" poster="video1.jpg">
+  <source src="video1.mp4" type="video/mp4">></video>
       <p>Aqui eu percebi que não queria mais ninguem, que não existia mais ninguém, era só você e você. ❤️‍🩹</p>
     </div>
 
@@ -782,6 +792,7 @@
 
 </body>
 </html>
+
 
 
 
