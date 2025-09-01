@@ -55,14 +55,14 @@
   }
 /* DEPOIS (Modificado) */
 .cards { 
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  display: flex;
+  justify-content: center;  /* centraliza os cards na horizontal */
+  align-items: stretch;     /* deixa todos alinhados em altura */
   gap: 30px;
-  justify-content: line;      /* centraliza os cards */
-  align-items: line;           /* alinha cards no topo */
+  flex-wrap: wrap;          /* quebra para baixo no celular */
   max-width: 1000px;
   width: 100%;
-  padding: 0 15px;
+  margin: 0 auto;           /* centraliza no meio da tela */
 }
 
 .card {
@@ -146,7 +146,7 @@
   max-width:320px;
   border-radius:12px;
 }
-  .cards, .counter-wrap, .envelope-area {
+.counter-wrap, .envelope-area {
   display:flex;
   flex-direction: column;
   align-items: center;
@@ -791,6 +791,7 @@
 
 </body>
 </html>
+
 
 
 
