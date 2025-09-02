@@ -136,7 +136,7 @@
 
   /* MOMENTOS */
   #momentosSection { display:none; }
-  .gallery { display:flex; flex-direction:column; gap:30px; max-width:700px; margin:0 auto; }
+  .gallery { display:flex; flex-direction:column; gap:10px; max-width:700px; margin:0 auto; }
   .gallery-item { background:white; padding:20px; border-radius:15px; box-shadow:var(--shadow); }
   .gallery-item img, .gallery-item video { width:100%; border-radius:12px; margin-bottom:10px; }
   .gallery-item video { display:block; }
@@ -462,7 +462,11 @@
     <div class="card" onclick="showSection('cartaSection')"><h3>Cartinha do Amor 💌</h3><p>Uma cartinha especial, para você.</p></div>
   </div>
 </section>
-
+  
+  </div>
+  <div class="back-btn" onclick="showSection('mainPage')">⬅ Voltar</div>
+</section>
+  
 <section id="momentosSection">
   <h2>Nossos Momentos 📸</h2>
   <div class="music-player">
@@ -804,6 +808,7 @@
 
 </body>
 </html>
+
 
 
 
