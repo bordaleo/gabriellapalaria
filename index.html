@@ -432,6 +432,8 @@
 <audio id="momentosAudio" src="Elvis Presley - Cant Help Falling In Love.mp3" preload="auto"></audio>
 <audio id="calendarioAudio" src="Jorge e Mateus - Pense em mim.mpeg" preload="auto"></audio>
 <audio id="cartaAudio" src="Those Eyes.mpeg" preload="auto"></audio>
+<audio id="palhacasAudio" src="Messy.mp3" preload="auto"></audio>
+
 
 <section id="loginPage">
   <img src="https://cdn-icons-png.flaticon.com/512/747/747376.png" alt="Lacinho">
@@ -457,9 +459,11 @@
 <section id="mainPage">
   <h2>BOA! Acertou, gatinha! Agora escolha onde quer ir ❤</h2>
   <div class="cards">
-    <div class="card" onclick="showSection('momentosSection')"><h3>Nossos Momentos 📸</h3><p>Reviva algumas das nossas lembranças.</p></div>
+    <div class="card" onclick="showSection('momentosSection')"><h3>Linha do Tempo ⏱️</h3><p>Reviva algumas das nossas lembranças.</p></div>
+     <div class="card" onclick="showSection('palhacasSection')"><h3>Algumas das nossas palhaçadas 🤡</h3><p>Momentos engraçados juntos.</p></div>
     <div class="card" onclick="showSection('contadorSection')"><h3>Cronômetro ⏳</h3><p>Acompanhe cada segundo do nosso amor.</p></div>
     <div class="card" onclick="showSection('cartaSection')"><h3>Cartinha do Amor 💌</h3><p>Uma cartinha especial, para você.</p></div>
+
   </div>
 </section>
   
@@ -468,7 +472,7 @@
 </section>
   
 <section id="momentosSection">
-  <h2>Nossos Momentos 📸</h2>
+  <h2>Linha do Tempo ⏱️</h2>
   <div class="music-player">
     <img src="https://picsum.photos/80/80?random=1" alt="Capa da música" class="music-cover">
     <div class="music-info">
@@ -595,6 +599,20 @@
   <div class="back-btn" onclick="showSection('mainPage')">⬅ Voltar</div>
 </section>
 
+  <section id="palhacasSection">
+  <h2>Algumas das nossas palhaçadas 🤡</h2>
+  <div class="gallery">
+    <div class="message-box">Rindo juntos é sempre melhor! 😂❤️</div>
+    <div class="videos-grid">
+      <video controls preload="metadata"><source src="videoPalhaca1.mp4" type="video/mp4"></video>
+      <video controls preload="metadata"><source src="videoPalhaca2.mp4" type="video/mp4"></video>
+    </div>
+    <p>Esses momentos engraçados só mostram o quanto eu amo cada segundo com você. 🥰</p>
+  </div>
+  <div class="back-btn" onclick="showSection('mainPage')">⬅ Voltar</div>
+</section>
+
+
 <section id="contadorSection">
   <h2>Nosso Amor 💖</h2>
   <div class="music-player">
@@ -675,6 +693,7 @@
   // ---------- MÚSICAS ----------
   const musicas = {
     momentosAudio: { src: 'Elvis Presley - Cant Help Falling In Love.mp3', audio: new Audio('Elvis Presley - Cant Help Falling In Love.mp3'), playing: false },
+    palhacasAudio: { src: 'Messy.mp3', audio: new Audio('Messy.mp3'), playing: false },
     calendarioAudio: { src: 'Jorge e Mateus - Pense em mim.mpeg', audio: new Audio('Jorge e Mateus - Pense em mim.mpeg'), playing: false },
     cartaAudio: { src: 'Those Eyes.mpeg', audio: new Audio('Those Eyes.mpeg'), playing: false }
   };
@@ -808,6 +827,7 @@
 
 </body>
 </html>
+
 
 
 
