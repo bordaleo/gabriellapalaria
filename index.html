@@ -425,6 +425,14 @@
   justify-content: center;
 }
 
+  .floating-back {
+  position: fixed;
+  bottom: 20px;   /* distância do rodapé */
+  right: 20px;    /* distância da lateral */
+  z-index: 9999;  /* fica por cima do conteúdo */
+}
+
+
 </style>
 </head>
 <body>
@@ -465,10 +473,6 @@
     <div class="card" onclick="showSection('cartaSection')"><h3>Cartinha do Amor 💌</h3><p>Uma cartinha especial, para você.</p></div>
 
   </div>
-</section>
-  
-  </div>
-  <div class="back-btn" onclick="showSection('mainPage')">⬅ Voltar</div>
 </section>
   
 <section id="momentosSection">
@@ -577,7 +581,7 @@
     </div>
 
   </div>
-  <div class="back-btn" onclick="showSection('mainPage')">⬅ Voltar</div>
+ <div class="back-btn floating-back" onclick="showSection('mainPage')">⬅ Voltar</div>
 </section>
 
 <section id="palhacasSection">
@@ -616,8 +620,7 @@
         <video controls preload="metadata"><source src="video12.mp4" type="video/mp4"></video>
       </div>
       <p>Os momentos com você são os mais especiais. Com você, sou mais feliz. Faço de tudo para ver o seu sorriso. Vamos por mais, meu amor! ❤️</p>
-    </div>
-  <div class="back-btn" onclick="showSection('mainPage')">⬅ Voltar</div>
+    </div><div class="back-btn floating-back" onclick="showSection('mainPage')">⬅ Voltar</div>
 </section>
 
   
@@ -659,7 +662,7 @@
     
     <div id="customMessage">Cada segundo que passa eu fico mais apaixonado em você! 💝</div>
   </div>
-  <div class="back-btn" onclick="showSection('mainPage')">⬅ Voltar</div>
+<div class="back-btn floating-back" onclick="showSection('mainPage')">⬅ Voltar</div>
 </section>
 
 <section id="cartaSection">
@@ -695,7 +698,7 @@
     <div class="hearts" id="heartsAnchor"></div>
   </div>
 
-  <div class="back-btn" onclick="showSection('mainPage')">⬅ Voltar</div>
+  <div class="back-btn floating-back" onclick="showSection('mainPage')">⬅ Voltar</div>
 </section>
 
 <script>
@@ -836,6 +839,7 @@
 
 </body>
 </html>
+
 
 
 
