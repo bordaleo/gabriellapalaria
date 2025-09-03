@@ -772,7 +772,31 @@
     document.querySelectorAll('section').forEach(sec=>sec.style.display='none');
     document.getElementById(sectionId).style.display='block';
     stopAllMusic();
+
+    //Aqui Quando qualquer vídeo terminar, volta a tocar a música da seção atual
+document.querySelectorAll("video").forEach(video => {
+  video.addEventListener("ended", () => {
+    // identifica qual seção está aberta (está com display: block)
+    const activeSection = document.querySelector("section[style*='display: block']");
+    
+    if (activeSection) {
+      // pega o botão do player dessa seção
+      const btn = activeSection.querySelector(".play-pause-btn");
+      if (btn) {
+        // descobre o ID do áudio que está vinculado a esse botão
+        const audioId = btn.getAttribute("onclick").match(/'([^']+)'/)[1];
+        
+        // toca a música novamente
+        playMusic(audioId, btn);
+      }
+    }
+  });
+});
+
+    //AQUI
+
   }
+  
 
   // ---------- CONTADOR FOFO (NOVO) ----------
   const startDate = new Date("2025-08-15T00:00:00");
@@ -839,6 +863,7 @@
 
 </body>
 </html>
+
 
 
 
