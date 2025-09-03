@@ -755,6 +755,39 @@
       playMusic(audioId, button);
     }
   }
+  // ---------- AUTOPLAY MÚSICA COM VÍDEO ----------
+document.querySelectorAll('video').forEach(video => {
+  video.addEventListener('play', () => {
+    // Pausa todas as músicas quando o vídeo começar
+    for (const key in musicas) {
+      if (musicas[key].playing) {
+        musicas[key].audio.pause();
+        musicas[key].wasPlaying = true; // marca que estava tocando
+        showPausedIcon(document.querySelector(`[onclick="togglePlay('${key}', this)"]`));
+      } else {
+        musicas[key].wasPlaying = false;
+      }
+    }
+  });
+
+  video.addEventListener('pause', () => {
+    // Retoma as músicas que estavam tocando antes
+    for (const key in musicas) {
+      if (musicas[key].wasPlaying) {
+        musicas[key].audio.play();
+        musicas[key].playing = true;
+        showPlayingIcon(document.querySelector(`[onclick="togglePlay('${key}', this)"]`));
+        musicas[key].wasPlaying = false;
+      }
+    }
+  });
+
+  video.addEventListener('ended', () => {
+    // Mesmo comportamento que pause
+    video.pause();
+  });
+});
+
 
   // ---------- LOGIN ----------
   const senhaCorreta = "150825";
@@ -772,28 +805,6 @@
     document.querySelectorAll('section').forEach(sec=>sec.style.display='none');
     document.getElementById(sectionId).style.display='block';
     stopAllMusic();
-
-    //Aqui Quando qualquer vídeo terminar, volta a tocar a música da seção atual
-document.querySelectorAll("video").forEach(video => {
-  video.addEventListener("ended", () => {
-    // identifica qual seção está aberta (está com display: block)
-    const activeSection = document.querySelector("section[style*='display: block']");
-    
-    if (activeSection) {
-      // pega o botão do player dessa seção
-      const btn = activeSection.querySelector(".play-pause-btn");
-      if (btn) {
-        // descobre o ID do áudio que está vinculado a esse botão
-        const audioId = btn.getAttribute("onclick").match(/'([^']+)'/)[1];
-        
-        // toca a música novamente
-        playMusic(audioId, btn);
-      }
-    }
-  });
-});
-
-    //AQUI
 
   }
   
@@ -863,6 +874,7 @@ document.querySelectorAll("video").forEach(video => {
 
 </body>
 </html>
+
 
 
 
