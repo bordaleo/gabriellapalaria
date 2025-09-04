@@ -337,21 +337,21 @@
     transform: translateZ(1px);
     clip-path: polygon(0 40%, 100% 40%, 100% 100%, 0 100%);
   }
-.letter {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) rotateX(0deg); /* centralizado no meio */
-    width: 90%;   /* quase toda a largura da tela */
-    height: 85%;  /* quase toda a altura da tela */
-    background: #fff;
-    border-radius: 18px;
-    box-shadow: 0 10px 25px rgba(0,0,0,.2);
-    padding: 28px;
-    overflow-y: auto; /* permite rolar o texto se for muito grande */
+ .letter{
+    position:absolute;
+    left: 5%;
+    right: 5%;
+    bottom: 0;
+    height: 90%;
+    background:#fff;
+    border-radius:14px;
+    box-shadow:0 10px 20px rgba(0,0,0,.15);
+    transform: translateY(36%) rotateX(0deg);
+    padding:18px;
+    overflow: hidden;
     opacity: 0;
     transition: transform .9s cubic-bezier(.2,.8,.2,1), opacity .5s ease .3s;
-}
+  }
   .letter::after{
     content:''; position:absolute; left:0; right:0; top:0; height:8px;
     background: linear-gradient(90deg, #ff6cab, #ffb3cf, #ff6cab);
@@ -469,7 +469,7 @@
   <h2>BOA! Acertou, gatinha! Agora escolha onde quer ir ❤</h2>
   <div class="cards">
     <div class="card" onclick="showSection('momentosSection')"><h3>Linha do Tempo ⏱️</h3><p>Reviva algumas das nossas lembranças.</p></div>
-     <div class="card" onclick="showSection('palhacasSection')"><h3>Algumas das Nossas Palhaçadas 🤡</h3><p>Momentos engraçados juntos.</p></div>
+     <div class="card" onclick="showSection('palhacasSection')"><h3>Algumas das Nossas Palhaçadas 🤡</h3><p>Brincadeiras e mais brincadeiras.</p></div>
     <div class="card" onclick="showSection('contadorSection')"><h3>Cronômetro ⏳</h3><p>Acompanhe cada segundo do nosso amor.</p></div>
     <div class="card" onclick="showSection('cartaSection')"><h3>Cartinha do Amor 💌</h3><p>Uma cartinha especial, para você.</p></div>
 
@@ -893,6 +893,7 @@ document.querySelectorAll('video').forEach(video => {
 
 </body>
 </html>
+
 
 
 
