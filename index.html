@@ -38,8 +38,8 @@
 
   /* MAIN PAGE - MELHORIAS NO DESIGN */
   #mainPage { 
+    display: none;
     background: linear-gradient(120deg, var(--bg-2), #ffe6f9); 
-    display: flex; 
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -47,6 +47,7 @@
     min-height: 100vh;
     padding: 30px;
   }
+  
   h2 { 
     font-size:clamp(1.8rem, 3.5vw, 2.8rem);
     color:#8c52ff; 
@@ -336,21 +337,21 @@
     transform: translateZ(1px);
     clip-path: polygon(0 40%, 100% 40%, 100% 100%, 0 100%);
   }
-  .letter{
+ .letter {
     position:absolute;
     left: 5%;
     right: 5%;
     bottom: 0;
-    height: 90%;
+    height: 120%; /* antes era 90% */
     background:#fff;
     border-radius:14px;
     box-shadow:0 10px 20px rgba(0,0,0,.15);
     transform: translateY(36%) rotateX(0deg);
-    padding:18px;
-    overflow: hidden;
+    padding:22px; /* aumentei o padding */
+    overflow-y: auto; /* habilita rolagem */
     opacity: 0;
     transition: transform .9s cubic-bezier(.2,.8,.2,1), opacity .5s ease .3s;
-  }
+}
   .letter::after{
     content:''; position:absolute; left:0; right:0; top:0; height:8px;
     background: linear-gradient(90deg, #ff6cab, #ffb3cf, #ff6cab);
@@ -892,6 +893,7 @@ document.querySelectorAll('video').forEach(video => {
 
 </body>
 </html>
+
 
 
 
