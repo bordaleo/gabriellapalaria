@@ -337,18 +337,18 @@
     transform: translateZ(1px);
     clip-path: polygon(0 40%, 100% 40%, 100% 100%, 0 100%);
   }
- .letter {
-    position:absolute;
-    left: 5%;
-    right: 5%;
-    bottom: 0;
-    height: 120%; /* antes era 90% */
-    background:#fff;
-    border-radius:14px;
-    box-shadow:0 10px 20px rgba(0,0,0,.15);
-    transform: translateY(36%) rotateX(0deg);
-    padding:22px; /* aumentei o padding */
-    overflow-y: auto; /* habilita rolagem */
+.letter {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotateX(0deg); /* centraliza no meio */
+    width: 80%;   /* aumenta largura (pode trocar 80% por 90%) */
+    height: 70%;  /* aumenta altura (pode ajustar se quiser ainda maior) */
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 10px 20px rgba(0,0,0,.15);
+    padding: 25px;
+    overflow-y: auto; /* ativa rolagem se passar do tamanho */
     opacity: 0;
     transition: transform .9s cubic-bezier(.2,.8,.2,1), opacity .5s ease .3s;
 }
@@ -893,6 +893,7 @@ document.querySelectorAll('video').forEach(video => {
 
 </body>
 </html>
+
 
 
 
