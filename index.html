@@ -434,44 +434,6 @@
 }
 
 
-  .music-player {
-  position: fixed;
-  bottom: 0; /* fixa no rodapé */
-  left: 0;
-  width: 100%;
-  background: #222;
-  color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 10px;
-  box-shadow: 0 -2px 5px rgba(0,0,0,0.4);
-  z-index: 999;
-}
-
-.music-player img.music-cover {
-  width: 50px;
-  height: 50px;
-  border-radius: 8px;
-  margin-right: 10px;
-}
-
-.music-info {
-  flex-grow: 1;
-}
-
-.play-pause-btn {
-  font-size: 20px;
-  padding: 5px 10px;
-  background: #444;
-  border: none;
-  border-radius: 6px;
-  color: #fff;
-  cursor: pointer;
-}
-
-
-
 </style>
 </head>
 <body>
@@ -761,66 +723,6 @@
 </section>
 
 <script>
-
-<!-- PLAYER FIXO -->
-<div class="music-player" id="globalPlayer">
-  <img id="cover" src="PicCant.jpeg" class="music-cover">
-  <div class="music-info">
-    <h4 id="title">Can't Help Falling in Love</h4>
-    <p id="artist">Elvis Presley</p>
-  </div>
-  <button class="play-pause-btn" onclick="toggleGlobalPlay()">▶</button>
-  <button onclick="prevTrack()">⏮</button>
-  <button onclick="nextTrack()">⏭</button>
-</div>
-
-<audio id="audio"></audio>
-
-  // Lista de músicas
-const playlist = [
-  {title: "Can't Help Falling in Love", artist: "Elvis Presley", src: "Elvis Presley - Cant Help Falling In Love.mp3", cover: "PicCant.jpeg"},
-  {title: "Messy", artist: "Lola Young", src: "Messy.mpeg", cover: "PicMessy.jpg"},
-  {title: "Pense em Mim", artist: "Jorge e Mateus", src: "Jorge e Mateus - Pense em mim.mpeg", cover: "PicPense.jpeg"},
-  {title: "Those Eyes", artist: "NewWest", src: "Those Eyes.mpeg", cover: "PicEyes.jpeg"}
-];
-
-let currentTrack = 0;
-const audio = document.getElementById("audio");
-
-function loadTrack(i) {
-  const song = playlist[i];
-  document.getElementById("cover").src = song.cover;
-  document.getElementById("title").innerText = song.title;
-  document.getElementById("artist").innerText = song.artist;
-  audio.src = song.src;
-}
-
-function toggleGlobalPlay() {
-  if(audio.paused){
-    audio.play();
-  } else {
-    audio.pause();
-  }
-}
-
-function nextTrack() {
-  currentTrack = (currentTrack + 1) % playlist.length;
-  loadTrack(currentTrack);
-  audio.play();
-}
-
-function prevTrack() {
-  currentTrack = (currentTrack - 1 + playlist.length) % playlist.length;
-  loadTrack(currentTrack);
-  audio.play();
-}
-
-// inicia a primeira música
-loadTrack(currentTrack);
-
-
-
-  
   // ---------- MÚSICAS ----------
   const musicas = {
     momentosAudio: { src: 'Elvis Presley - Cant Help Falling In Love.mp3', audio: new Audio('Elvis Presley - Cant Help Falling In Love.mp3'), playing: false },
@@ -993,8 +895,6 @@ document.querySelectorAll('video').forEach(video => {
 
 </body>
 </html>
-
-
 
 
 
