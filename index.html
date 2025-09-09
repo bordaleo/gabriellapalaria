@@ -267,12 +267,13 @@
     box-shadow:var(--shadow);
     border: none;
   }
-  .timer-grid{
-    width:100%;
-    display:grid;
-    grid-template-columns: repeat(4, minmax(70px,1fr));
-    gap:12px;
-  }
+  .timer-grid
+  @media (max-width:480px){
+    section{ padding:22px; }
+    .timer-grid{ grid-template-columns: repeat(3, minmax(80px, 1fr)); } /* Agora 3 colunas */
+    .card { padding: 20px; border-radius: 20px;}
+    .card h3 { font-size: 1.1rem; }
+  }
   .unit{
     background: var(--card);
     border-radius:18px;
@@ -662,11 +663,6 @@
       <div class="num" id="dias">0</div>
       <div class="label">Dias</div>
     </div>
-    <div class="timer-grid" role="timer" aria-live="polite">
-      <div class="unit">
-        <div class="num" id="dias">0</div>
-        <div class="label">Dias</div>
-      </div>
       <div class="unit">
         <div class="num" id="horas">00</div>
         <div class="label">Horas</div>
@@ -924,6 +920,7 @@ document.querySelectorAll('video').forEach(video => {
 
 </body>
 </html>
+
 
 
 
