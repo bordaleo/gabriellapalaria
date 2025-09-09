@@ -648,37 +648,34 @@
     </button>
   </div>
   <div class="counter-wrap">
-    <div class="since" id="sinceLabel">Juntos desde 15/08/2025</div>
+    <div class="since" id="sinceLabel">Juntos desde 15/08/2025</div>
+    
+    <div class="timer-grid" role="timer" aria-live="polite">
+      <div class="unit">
+        <div class="num" id="meses">0</div>
+        <div class="label">Meses</div>
+      </div>
+      <div class="unit">
+        <div class="num" id="dias">0</div>
+        <div class="label">Dias</div>
+      </div>
+      <div class="unit">
+        <div class="num" id="horas">00</div>
+        <div class="label">Horas</div>
+      </div>
+      <div class="unit">
+        <div class="num" id="minutos">00</div>
+        <div class="label">Minutos</div>
+      </div>
+      <div class="unit">
+        <div class="num" id="segundos">00</div>
+        <div class="label">Segundos</div>
+      </div>
+    </div>
+</div>
 
-    <div class="timer-grid" role="timer" aria-live="polite">
-    <div class="unit">
-      <div class="num" id="anos">0</div>
-      <div class="label">Anos</div>
-    </div>
-    <div class="unit">
-      <div class="num" id="meses">0</div>
-      <div class="label">Meses</div>
-    </div>
-    <div class="unit">
-      <div class="num" id="dias">0</div>
-      <div class="label">Dias</div>
-    </div>
-      <div class="unit">
-        <div class="num" id="horas">00</div>
-        <div class="label">Horas</div>
-      </div>
-      <div class="unit">
-        <div class="num" id="minutos">00</div>
-        <div class="label">Minutos</div>
-      </div>
-      <div class="unit">
-        <div class="num" id="segundos">00</div>
-        <div class="label">Segundos</div>
-      </div>
+<div id="customMessage">Cada segundo que passa eu fico mais apaixonado em você! 💝</div>
     </div>
-    
-    <div id="customMessage">Cada segundo que passa eu fico mais apaixonado em você! 💝</div>
-  </div>
 <div class="back-btn floating-back" onclick="showSection('mainPage')">⬅ Voltar</div>
 </section>
 
@@ -883,6 +880,7 @@ document.querySelectorAll('video').forEach(video => {
 }
   setInterval(atualizarContador,1000);
   atualizarContador();
+  
 
   // ---------- CARTINHA REAL (NOVA) ----------
   const envelope = document.getElementById('envelope');
@@ -920,6 +918,7 @@ document.querySelectorAll('video').forEach(video => {
 
 </body>
 </html>
+
 
 
 
