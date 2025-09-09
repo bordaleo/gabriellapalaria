@@ -650,16 +650,18 @@
     <div class="since" id="sinceLabel">Juntos desde 15/08/2025</div>
 
     <div class="timer-grid" role="timer" aria-live="polite">
-      <div class="unit">
-        <div class="num" id="anos">0</div>
-        <div class="label">Anos</div>
-      </div>
-      <div class="timer-grid" role="timer" aria-live="polite">
-      <div class="unit">
-        <div class="num" id="meses">0</div>
-        <div class="label">Meses</div>
-      </div>
-    
+    <div class="unit">
+      <div class="num" id="anos">0</div>
+      <div class="label">Anos</div>
+    </div>
+    <div class="unit">
+      <div class="num" id="meses">0</div>
+      <div class="label">Meses</div>
+    </div>
+    <div class="unit">
+      <div class="num" id="dias">0</div>
+      <div class="label">Dias</div>
+    </div>
     <div class="timer-grid" role="timer" aria-live="polite">
       <div class="unit">
         <div class="num" id="dias">0</div>
@@ -842,31 +844,35 @@ document.querySelectorAll('video').forEach(video => {
   
 
   // ---------- CONTADOR FOFO (NOVO) ----------
- const startDate = new Date("2025-08-15T00:00:00");
-const fmt2 = n => String(n).padStart(2,'0');
+  const startDate = new Date("2025-08-15T00:00:00");
+  const fmt2 = n => String(n).padStart(2,'0');
 
-function atualizarContador(){
+  function atualizarContador() {
   const agora = new Date();
-  let diffMs = Math.max(0, agora - startDate);
+  const diffAnos = agora.getFullYear() - startDate.getFullYear();
+  const diffMeses = agora.getMonth() - startDate.getMonth();
+  const diffDias = agora.getDate() - startDate.getDate();
 
-  // 👉 calcular anos e meses
-  let anos = agora.getFullYear() - startDate.getFullYear();
-  let meses = agora.getMonth() - startDate.getMonth();
+  let anos = diffAnos;
+  let meses = diffMeses;
+  let dias = diffDias;
+
+  if (dias < 0) {
+    meses--;
+    const ultimoDiaDoMesAnterior = new Date(agora.getFullYear(), agora.getMonth(), 0).getDate();
+    dias += ultimoDiaDoMesAnterior;
+  }
 
   if (meses < 0) {
     anos--;
     meses += 12;
   }
 
-  const dias = Math.floor(diffMs/(1000*60*60*24));
-  diffMs -= dias*(1000*60*60*24);
-  const horas = Math.floor(diffMs/(1000*60*60));
-  diffMs -= horas*(1000*60*60);
-  const minutos = Math.floor(diffMs/(1000*60));
-  diffMs -= minutos*(1000*60);
-  const segundos = Math.floor(diffMs/1000);
+  const diffMs = agora - startDate;
+  const horas = Math.floor((diffMs % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutos = Math.floor((diffMs % (1000 * 60 * 60)) / (1000 * 60));
+  const segundos = Math.floor((diffMs % (1000 * 60)) / 1000);
 
-  // 👉 atualizar HTML
   document.getElementById("anos").textContent = anos;
   document.getElementById("meses").textContent = meses;
   document.getElementById("dias").textContent = dias;
@@ -874,14 +880,13 @@ function atualizarContador(){
   document.getElementById("minutos").textContent = fmt2(minutos);
   document.getElementById("segundos").textContent = fmt2(segundos);
 
-  const dd = String(startDate.getDate()).padStart(2,'0');
-  const mm = String(startDate.getMonth()+1).padStart(2,'0');
+  const dd = String(startDate.getDate()).padStart(2, '0');
+  const mm = String(startDate.getMonth() + 1).padStart(2, '0');
   const yyyy = startDate.getFullYear();
   document.getElementById("sinceLabel").textContent = `Juntos desde ${dd}/${mm}/${yyyy}`;
 }
-setInterval(atualizarContador,1000);
-atualizarContador();
-
+  setInterval(atualizarContador,1000);
+  atualizarContador();
 
   // ---------- CARTINHA REAL (NOVA) ----------
   const envelope = document.getElementById('envelope');
@@ -919,8 +924,6 @@ atualizarContador();
 
 </body>
 </html>
-
-
 
 
 
