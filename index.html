@@ -831,33 +831,46 @@ document.querySelectorAll('video').forEach(video => {
   
 
   // ---------- CONTADOR FOFO (NOVO) ----------
-  const startDate = new Date("2025-08-15T00:00:00");
-  const fmt2 = n => String(n).padStart(2,'0');
+ const startDate = new Date("2025-08-15T00:00:00");
+const fmt2 = n => String(n).padStart(2,'0');
 
-  function atualizarContador(){
-    const agora = new Date();
-    let diffMs = Math.max(0, agora - startDate);
+function atualizarContador(){
+  const agora = new Date();
+  let diffMs = Math.max(0, agora - startDate);
 
-    const dias = Math.floor(diffMs/(1000*60*60*24));
-    diffMs -= dias*(1000*60*60*24);
-    const horas = Math.floor(diffMs/(1000*60*60));
-    diffMs -= horas*(1000*60*60);
-    const minutos = Math.floor(diffMs/(1000*60));
-    diffMs -= minutos*(1000*60);
-    const segundos = Math.floor(diffMs/1000);
+  // 👉 calcular anos e meses
+  let anos = agora.getFullYear() - startDate.getFullYear();
+  let meses = agora.getMonth() - startDate.getMonth();
 
-    document.getElementById("dias").textContent = dias;
-    document.getElementById("horas").textContent = fmt2(horas);
-    document.getElementById("minutos").textContent = fmt2(minutos);
-    document.getElementById("segundos").textContent = fmt2(segundos);
-
-    const dd = String(startDate.getDate()).padStart(2,'0');
-    const mm = String(startDate.getMonth()+1).padStart(2,'0');
-    const yyyy = startDate.getFullYear();
-    document.getElementById("sinceLabel").textContent = `Juntos desde ${dd}/${mm}/${yyyy}`;
+  if (meses < 0) {
+    anos--;
+    meses += 12;
   }
-  setInterval(atualizarContador,1000);
-  atualizarContador();
+
+  const dias = Math.floor(diffMs/(1000*60*60*24));
+  diffMs -= dias*(1000*60*60*24);
+  const horas = Math.floor(diffMs/(1000*60*60));
+  diffMs -= horas*(1000*60*60);
+  const minutos = Math.floor(diffMs/(1000*60));
+  diffMs -= minutos*(1000*60);
+  const segundos = Math.floor(diffMs/1000);
+
+  // 👉 atualizar HTML
+  document.getElementById("anos").textContent = anos;
+  document.getElementById("meses").textContent = meses;
+  document.getElementById("dias").textContent = dias;
+  document.getElementById("horas").textContent = fmt2(horas);
+  document.getElementById("minutos").textContent = fmt2(minutos);
+  document.getElementById("segundos").textContent = fmt2(segundos);
+
+  const dd = String(startDate.getDate()).padStart(2,'0');
+  const mm = String(startDate.getMonth()+1).padStart(2,'0');
+  const yyyy = startDate.getFullYear();
+  document.getElementById("sinceLabel").textContent = `Juntos desde ${dd}/${mm}/${yyyy}`;
+}
+setInterval(atualizarContador,1000);
+atualizarContador();
+
 
   // ---------- CARTINHA REAL (NOVA) ----------
   const envelope = document.getElementById('envelope');
@@ -895,6 +908,7 @@ document.querySelectorAll('video').forEach(video => {
 
 </body>
 </html>
+
 
 
 
