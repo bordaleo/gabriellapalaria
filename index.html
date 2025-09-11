@@ -655,7 +655,11 @@
   <div class="counter-wrap">
     <div class="since" id="sinceLabel">Juntos desde 15/08/2025</div>
     
- <div class="timer-grid" role="timer" aria-live="polite">
+<div class="timer-grid" role="timer" aria-live="polite">
+  <div class="unit">
+    <div class="num" id="anos">0</div>
+    <div class="label">Anos</div>
+  </div>
   <div class="unit">
     <div class="num" id="meses">0</div>
     <div class="label">Meses</div>
@@ -848,19 +852,27 @@ function atualizarContador(){
   const agora = new Date();
 
   // cálculo de anos e meses
-  let anos = agora.getFullYear() - startDate.getFullYear();
-  let meses = agora.getMonth() - startDate.getMonth();
-  if (meses < 0) {
-    anos--;
-    meses += 12;
-  }
-  if (agora.getDate() < startDate.getDate()) {
+ let anos = agora.getFullYear() - startDate.getFullYear();
+let meses = agora.getMonth() - startDate.getMonth();
+
+// se o mês atual for menor, ou for igual mas o dia ainda não chegou → ainda não completou ano
+if (
+  meses < 0 ||
+  (meses === 0 && agora.getDate() < startDate.getDate())
+) {
+  anos--;
+  meses += 12;
+}
+
+// se ainda não chegou no "dia do mês", tira 1 mês
+if (agora.getDate() < startDate.getDate()) {
   meses--;
   if (meses < 0) {
     meses = 11;
     anos--;
   }
 }
+
 
   // cálculo do restante (dias, horas, minutos, segundos)
   let diffMs = Math.max(0, agora - startDate);
@@ -872,7 +884,8 @@ function atualizarContador(){
   diffMs -= minutos*(1000*60);
   const segundos = Math.floor(diffMs/1000);
 
-
+  
+    document.getElementById("anos").textContent = anos;
     document.getElementById("meses").textContent = meses;
     document.getElementById("dias").textContent = dias;
     document.getElementById("horas").textContent = fmt2(horas);
@@ -923,6 +936,7 @@ function atualizarContador(){
 
 </body>
 </html>
+
 
 
 
