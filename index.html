@@ -826,25 +826,25 @@ document.querySelectorAll('video').forEach(video => {
   }
 
   // ---------- SHOW SECTIONS ----------
- function showSection(sectionId, addHistory = true){
+ function showSection(sectionId){
   document.querySelectorAll('section').forEach(sec=>sec.style.display='none');
   document.getElementById(sectionId).style.display='block';
   stopAllMusic();
 
-  // Atualiza URL e histórico
-  if(addHistory){
-    history.pushState({section: sectionId}, "", "#" + sectionId);
-  }
+  // Atualiza só o hash da URL, sem criar histórico extra
+  window.location.hash = sectionId;
 }
-// Quando o usuário clicar no botão voltar/avançar do navegador
-window.onpopstate = function(event){
-  if(event.state && event.state.section){
-    showSection(event.state.section, false);
-  } else {
-    // se não tiver state, volta pro login por padrão
-    showSection("loginPage", false);
+
+// 👉 AQUI entra o hashchange
+window.addEventListener("hashchange", () => {
+  const hash = window.location.hash.substring(1); // tira o "#"
+  if(hash && document.getElementById(hash)){
+    showSection(hash);
+    if(hash !== "loginPage"){
+      document.getElementById("loginPage").style.display = "none";
+    }
   }
-};
+});
 
   
 
@@ -943,11 +943,10 @@ if (agora.getDate() < startDate.getDate()) {
   document.querySelector(".spoiler-btn").style.display = "none";
 }
 
-  // Abrir seção conforme o hash da URL
 window.addEventListener("load", () => {
-  const hash = window.location.hash.substring(1); // remove o #
+  const hash = window.location.hash.substring(1);
   if(hash && document.getElementById(hash)){
-    showSection(hash, false);
+    showSection(hash);
     if(hash !== "loginPage"){
       document.getElementById("loginPage").style.display = "none";
     }
@@ -955,10 +954,12 @@ window.addEventListener("load", () => {
 });
 
 
+
 </script>
 
 </body>
 </html>
+
 
 
 
