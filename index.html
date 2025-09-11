@@ -426,11 +426,21 @@
   justify-content: center;
 }
 
-  .floating-back {
+/* Padrão: computador (desktop) */
+.floating-back {
   position: fixed;
-  bottom: 20px;   /* distância do rodapé */
-  right: 20px;    /* distância da lateral */
-  z-index: 9999;  /* fica por cima do conteúdo */
+  top: 20px;     /* topo */
+  left: 20px;    /* esquerda */
+  z-index: 9999;
+}
+
+/* Celular */
+@media (max-width: 768px) {
+  .floating-back {
+    top: auto;       /* desliga o topo */
+    bottom: 20px;    /* joga pra baixo */
+    left: 20px;      /* continua na esquerda */
+  }
 }
 
 
@@ -936,6 +946,7 @@ if (agora.getDate() < startDate.getDate()) {
 
 </body>
 </html>
+
 
 
 
