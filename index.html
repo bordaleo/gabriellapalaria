@@ -835,21 +835,30 @@ document.querySelectorAll('video').forEach(video => {
   
 
   // ---------- CONTADOR FOFO (NOVO) ----------
-  const startDate = new Date("2025-08-15T00:00:00");
-  const fmt2 = n => String(n).padStart(2,'0');
+const startDate = new Date("2025-08-15T00:00:00");
+const fmt2 = n => String(n).padStart(2,'0');
 
-  function atualizarContador(){
-    const agora = new Date();
-    let diffMs = Math.max(0, agora - startDate);
+function atualizarContador(){
+  const agora = new Date();
 
-const meses = Math.floor(diffMs/(1000*60*60*24*30));
-diffMs -= meses*(1000*60*60*24*30);
-const dias = Math.floor(diffMs/(1000*60*60*24));
-diffMs -= dias*(1000*60*60*24);
-const horas = Math.floor(diffMs/(1000*60*60));
-    const minutos = Math.floor(diffMs/(1000*60));
-    diffMs -= minutos*(1000*60);
-    const segundos = Math.floor(diffMs/1000);
+  // cálculo de anos e meses
+  let anos = agora.getFullYear() - startDate.getFullYear();
+  let meses = agora.getMonth() - startDate.getMonth();
+  if (meses < 0) {
+    anos--;
+    meses += 12;
+  }
+
+  // cálculo do restante (dias, horas, minutos, segundos)
+  let diffMs = Math.max(0, agora - startDate);
+  const dias = Math.floor(diffMs/(1000*60*60*24));
+  diffMs -= dias*(1000*60*60*24);
+  const horas = Math.floor(diffMs/(1000*60*60));
+  diffMs -= horas*(1000*60*60);
+  const minutos = Math.floor(diffMs/(1000*60));
+  diffMs -= minutos*(1000*60);
+  const segundos = Math.floor(diffMs/1000);
+
 
     document.getElementById("meses").textContent = meses;
     document.getElementById("dias").textContent = dias;
@@ -901,3 +910,4 @@ const horas = Math.floor(diffMs/(1000*60*60));
 
 </body>
 </html>
+
