@@ -848,6 +848,13 @@ function atualizarContador(){
     anos--;
     meses += 12;
   }
+  if (agora.getDate() < startDate.getDate()) {
+  meses--;
+  if (meses < 0) {
+    meses = 11;
+    anos--;
+  }
+}
 
   // cálculo do restante (dias, horas, minutos, segundos)
   let diffMs = Math.max(0, agora - startDate);
@@ -910,4 +917,5 @@ function atualizarContador(){
 
 </body>
 </html>
+
 
