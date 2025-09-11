@@ -267,12 +267,12 @@
     box-shadow:var(--shadow);
     border: none;
   }
-  .timer-grid{
-    width:100%;
-    display:grid;
-    grid-template-columns: repeat(4, minmax(70px,1fr));
-    gap:12px;
-  }
+.timer-grid{
+  width:100%;
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(70px,1fr));
+  gap:12px;
+}
   .unit{
     background: var(--card);
     border-radius:18px;
@@ -936,6 +936,7 @@ if (agora.getDate() < startDate.getDate()) {
 
 </body>
 </html>
+
 
 
 
