@@ -169,23 +169,41 @@
 
 
 
-  /* Última foto especial */
-  .especial .special-frame {
-    position: relative;
-    border: 4px solid var(--pink);
-    padding: 18px;
-    border-radius: 20px;
-    background: linear-gradient(145deg, #fff0f6, #ffe6f9);
-    box-shadow: 0 0 20px rgba(214, 51, 132, 0.4);
-  }
-  .especial .special-frame::before{
-    content: "SPOILER! ⚠️ ";
-    position:absolute; top:-14px; left:50%; transform:translateX(-50%);
-    background: var(--pink); color:#fff; font-size:.85rem; padding:6px 12px; border-radius:999px;
-    box-shadow: var(--shadow);
-  }
-  .especial img { border-radius: 16px; }
-  .especial p { font-size: 1.1rem; color: #6b2d5b; font-weight: bold; margin-top: 10px; }
+ .especial .special-frame {
+  position: relative;
+  border: 4px solid var(--pink);
+  padding: 18px;
+  border-radius: 20px;
+  background: linear-gradient(145deg, #fff0f6, #ffe6f9);
+  box-shadow: 0 0 20px rgba(214, 51, 132, 0.4);
+}
+
+
+.especial img { border-radius: 16px; }
+.especial p { 
+  font-size: 1.1rem; 
+  color: #6b2d5b; 
+  font-weight: bold; 
+  margin-top: 10px; 
+}
+
+/* botão do spoiler */
+.spoiler-btn {
+  background: var(--pink);
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+.spoiler-btn:hover {
+  background: #e02a7b;
+  transform: scale(1.05);
+}
 
   .back-btn { 
   margin-top:20px;
@@ -586,14 +604,14 @@
     
     
 
-
-    <!-- Último F (especial) -->
-    <div class="gallery-item especial">
-      <div class="special-frame">
-        <img src="TheUs.jpeg" alt="SPOILER">
-        <p>Eu ainda vou casar com você. 💖</p>
-      </div>
-    </div>
+<!-- Último F (especial) -->
+<div class="gallery-item especial">
+  <div class="special-frame" id="spoilerBox">
+    <button onclick="mostrarSpoiler()" class="spoiler-btn">Clique para ver o SPOILER! ⚠️</button>
+    <img src="TheUs.jpeg" alt="SPOILER" id="spoilerImg" style="display:none;">
+    <p id="spoilerText" style="display:none;">Eu ainda vou casar com você. 💖</p>
+  </div>
+</div>
 
   </div>
  <div class="back-btn floating-back" onclick="showSection('mainPage')">⬅ Voltar</div>
@@ -942,10 +960,18 @@ if (agora.getDate() < startDate.getDate()) {
       setTimeout(()=>h.remove(), 2600);
     }
   }
+  
+  function mostrarSpoiler(){
+  document.getElementById("spoilerImg").style.display = "block";
+  document.getElementById("spoilerText").style.display = "block";
+  document.querySelector(".spoiler-btn").style.display = "none";
+}
+
 </script>
 
 </body>
 </html>
+
 
 
 
