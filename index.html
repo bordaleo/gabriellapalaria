@@ -614,7 +614,8 @@
 </div>
 
   </div>
- <div class="back-btn floating-back" onclick="showSection('mainPage')">⬅ Voltar</div>
+<div class="back-btn floating-back" onclick="window.history.back()">⬅ Voltar</div>
+
 </section>
 
 <section id="palhacasSection">
@@ -662,7 +663,8 @@
         <video controls preload="metadata"><source src="video041.mp4" type="video/mp4"></video>
       </div>
        <div class="message-box">Os momentos com você são os mais especiais. Com você, sou mais feliz. Faço de tudo para ver o seu sorriso. Vamos por mais, minha princesa! ❤️</div>
-    </div><div class="back-btn floating-back" onclick="showSection('mainPage')">⬅ Voltar</div>
+  <div class="back-btn floating-back" onclick="window.history.back()">⬅ Voltar</div>
+
 </section>
 
   
@@ -712,7 +714,8 @@
     
     <div id="customMessage">Cada segundo que passa eu fico mais apaixonado em você! 💝</div>
   </div>
-<div class="back-btn floating-back" onclick="showSection('mainPage')">⬅ Voltar</div>
+<div class="back-btn floating-back" onclick="window.history.back()">⬅ Voltar</div>
+
 </section>
 
 <section id="cartaSection">
@@ -761,7 +764,8 @@
     <div class="hearts" id="heartsAnchor"></div
   </div>
 
-  <div class="back-btn floating-back" onclick="showSection('mainPage')">⬅ Voltar</div>
+  <div class="back-btn floating-back" onclick="window.history.back()">⬅ Voltar</div>
+
 </section>
 
 <script>
@@ -864,12 +868,26 @@ document.querySelectorAll('video').forEach(video => {
   }
 
   // ---------- SHOW SECTIONS ----------
-  function showSection(sectionId){
-    document.querySelectorAll('section').forEach(sec=>sec.style.display='none');
-    document.getElementById(sectionId).style.display='block';
-    stopAllMusic();
+ function showSection(sectionId, addHistory = true){
+  document.querySelectorAll('section').forEach(sec=>sec.style.display='none');
+  document.getElementById(sectionId).style.display='block';
+  stopAllMusic();
 
+  // Atualiza URL e histórico
+  if(addHistory){
+    history.pushState({section: sectionId}, "", "#" + sectionId);
   }
+}
+// Quando o usuário clicar no botão voltar/avançar do navegador
+window.onpopstate = function(event){
+  if(event.state && event.state.section){
+    showSection(event.state.section, false);
+  } else {
+    // se não tiver state, volta pro login por padrão
+    showSection("loginPage", false);
+  }
+};
+
   
 
   // ---------- CONTADOR FOFO (NOVO) ----------
@@ -967,10 +985,23 @@ if (agora.getDate() < startDate.getDate()) {
   document.querySelector(".spoiler-btn").style.display = "none";
 }
 
+  // Abrir seção conforme o hash da URL
+window.addEventListener("load", () => {
+  const hash = window.location.hash.substring(1); // remove o #
+  if(hash && document.getElementById(hash)){
+    showSection(hash, false);
+    if(hash !== "loginPage"){
+      document.getElementById("loginPage").style.display = "none";
+    }
+  }
+});
+
+
 </script>
 
 </body>
 </html>
+
 
 
 
