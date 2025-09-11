@@ -267,13 +267,12 @@
     box-shadow:var(--shadow);
     border: none;
   }
-  .timer-grid
-  @media (max-width:480px){
-    section{ padding:22px; }
-    .timer-grid{ grid-template-columns: repeat(3, minmax(80px, 1fr)); } /* Agora 3 colunas */
-    .card { padding: 20px; border-radius: 20px;}
-    .card h3 { font-size: 1.1rem; }
-  }
+  .timer-grid{
+    width:100%;
+    display:grid;
+    grid-template-columns: repeat(4, minmax(70px,1fr));
+    gap:12px;
+  }
   .unit{
     background: var(--card);
     border-radius:18px;
@@ -648,34 +647,33 @@
     </button>
   </div>
   <div class="counter-wrap">
-    <div class="since" id="sinceLabel">Juntos desde 15/08/2025</div>
-    
-    <div class="timer-grid" role="timer" aria-live="polite">
-      <div class="unit">
-        <div class="num" id="meses">0</div>
-        <div class="label">Meses</div>
-      </div>
-      <div class="unit">
-        <div class="num" id="dias">0</div>
-        <div class="label">Dias</div>
-      </div>
-      <div class="unit">
-        <div class="num" id="horas">00</div>
-        <div class="label">Horas</div>
-      </div>
-      <div class="unit">
-        <div class="num" id="minutos">00</div>
-        <div class="label">Minutos</div>
-      </div>
-      <div class="unit">
-        <div class="num" id="segundos">00</div>
-        <div class="label">Segundos</div>
-      </div>
-    </div>
-</div>
-
-<div id="customMessage">Cada segundo que passa eu fico mais apaixonado em você! 💝</div>
-    </div>
+    <div class="since" id="sinceLabel">Juntos desde 15/08/2025</div>
+    
+ <div class="timer-grid" role="timer" aria-live="polite">
+  <div class="unit">
+    <div class="num" id="meses">0</div>
+    <div class="label">Meses</div>
+  </div>
+  <div class="unit">
+    <div class="num" id="dias">0</div>
+    <div class="label">Dias</div>
+  </div>
+  <div class="unit">
+    <div class="num" id="horas">00</div>
+    <div class="label">Horas</div>
+  </div>
+  <div class="unit">
+    <div class="num" id="minutos">00</div>
+    <div class="label">Minutos</div>
+  </div>
+  <div class="unit">
+    <div class="num" id="segundos">00</div>
+    <div class="label">Segundos</div>
+  </div>
+</div> 
+    
+    <div id="customMessage">Cada segundo que passa eu fico mais apaixonado em você! 💝</div>
+  </div>
 <div class="back-btn floating-back" onclick="showSection('mainPage')">⬅ Voltar</div>
 </section>
 
@@ -840,47 +838,32 @@ document.querySelectorAll('video').forEach(video => {
   const startDate = new Date("2025-08-15T00:00:00");
   const fmt2 = n => String(n).padStart(2,'0');
 
-  function atualizarContador() {
-  const agora = new Date();
-  const diffAnos = agora.getFullYear() - startDate.getFullYear();
-  const diffMeses = agora.getMonth() - startDate.getMonth();
-  const diffDias = agora.getDate() - startDate.getDate();
+  function atualizarContador(){
+    const agora = new Date();
+    let diffMs = Math.max(0, agora - startDate);
 
-  let anos = diffAnos;
-  let meses = diffMeses;
-  let dias = diffDias;
+const meses = Math.floor(diffMs/(1000*60*60*24*30));
+diffMs -= meses*(1000*60*60*24*30);
+const dias = Math.floor(diffMs/(1000*60*60*24));
+diffMs -= dias*(1000*60*60*24);
+const horas = Math.floor(diffMs/(1000*60*60));
+    const minutos = Math.floor(diffMs/(1000*60));
+    diffMs -= minutos*(1000*60);
+    const segundos = Math.floor(diffMs/1000);
 
-  if (dias < 0) {
-    meses--;
-    const ultimoDiaDoMesAnterior = new Date(agora.getFullYear(), agora.getMonth(), 0).getDate();
-    dias += ultimoDiaDoMesAnterior;
+    document.getElementById("meses").textContent = meses;
+    document.getElementById("dias").textContent = dias;
+    document.getElementById("horas").textContent = fmt2(horas);
+    document.getElementById("minutos").textContent = fmt2(minutos);
+    document.getElementById("segundos").textContent = fmt2(segundos);
+
+    const dd = String(startDate.getDate()).padStart(2,'0');
+    const mm = String(startDate.getMonth()+1).padStart(2,'0');
+    const yyyy = startDate.getFullYear();
+    document.getElementById("sinceLabel").textContent = `Juntos desde ${dd}/${mm}/${yyyy}`;
   }
-
-  if (meses < 0) {
-    anos--;
-    meses += 12;
-  }
-
-  const diffMs = agora - startDate;
-  const horas = Math.floor((diffMs % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  const minutos = Math.floor((diffMs % (1000 * 60 * 60)) / (1000 * 60));
-  const segundos = Math.floor((diffMs % (1000 * 60)) / 1000);
-
-  document.getElementById("anos").textContent = anos;
-  document.getElementById("meses").textContent = meses;
-  document.getElementById("dias").textContent = dias;
-  document.getElementById("horas").textContent = fmt2(horas);
-  document.getElementById("minutos").textContent = fmt2(minutos);
-  document.getElementById("segundos").textContent = fmt2(segundos);
-
-  const dd = String(startDate.getDate()).padStart(2, '0');
-  const mm = String(startDate.getMonth() + 1).padStart(2, '0');
-  const yyyy = startDate.getFullYear();
-  document.getElementById("sinceLabel").textContent = `Juntos desde ${dd}/${mm}/${yyyy}`;
-}
   setInterval(atualizarContador,1000);
   atualizarContador();
-  
 
   // ---------- CARTINHA REAL (NOVA) ----------
   const envelope = document.getElementById('envelope');
@@ -918,50 +901,3 @@ document.querySelectorAll('video').forEach(video => {
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
