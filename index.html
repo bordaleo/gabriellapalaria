@@ -831,9 +831,16 @@ document.querySelectorAll('video').forEach(video => {
 
   // ---------- SHOW SECTIONS ----------
  function showSection(sectionId){
+  // esconde todas as sections
   document.querySelectorAll('section').forEach(sec=>sec.style.display='none');
+  // mostra a section desejada
   document.getElementById(sectionId).style.display='block';
   stopAllMusic();
+
+  // controla visibilidade do botão de voltar
+  document.querySelectorAll('.floating-back').forEach(btn => {
+    btn.style.display = (sectionId === 'mainPage') ? 'none' : 'block';
+  });
 
   // Atualiza só o hash da URL, sem criar histórico extra
   window.location.hash = sectionId;
@@ -963,6 +970,7 @@ window.addEventListener("load", () => {
 
 </body>
 </html>
+
 
 
 
