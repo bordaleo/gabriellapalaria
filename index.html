@@ -830,30 +830,41 @@ document.querySelectorAll('video').forEach(video => {
   }
 
   // ---------- SHOW SECTIONS ----------
- function showSection(sectionId){
+function showSection(sectionId){
   // esconde todas as sections
   document.querySelectorAll('section').forEach(sec=>sec.style.display='none');
   // mostra a section desejada
   document.getElementById(sectionId).style.display='block';
   stopAllMusic();
 
-  // controla visibilidade do botão de voltar
+  // controla visibilidade do botão de voltar fixo
   document.querySelectorAll('.floating-back').forEach(btn => {
     btn.style.display = (sectionId === 'mainPage') ? 'none' : 'block';
   });
 
-  // Atualiza só o hash da URL, sem criar histórico extra
-  window.location.hash = sectionId;
+  // Atualiza a URL:
+  if(sectionId === "mainPage"){
+    // limpa o hash → deixa só index.html
+    history.replaceState(null, null, window.location.pathname);
+  } else {
+    // coloca o hash normal
+    window.location.hash = sectionId;
+  }
 }
 
-// 👉 AQUI entra o hashchange
+// 👉 Lida com o "voltar/avançar" do navegador
 window.addEventListener("hashchange", () => {
   const hash = window.location.hash.substring(1); // tira o "#"
+
   if(hash && document.getElementById(hash)){
     showSection(hash);
+
     if(hash !== "loginPage"){
       document.getElementById("loginPage").style.display = "none";
     }
+  } else {
+    // se não tem hash → sempre volta pro mainPage
+    showSection("mainPage");
   }
 });
 
@@ -970,6 +981,7 @@ window.addEventListener("load", () => {
 
 </body>
 </html>
+
 
 
 
