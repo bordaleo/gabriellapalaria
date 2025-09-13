@@ -606,31 +606,32 @@
   <!-- GALERIA DE PALHAÇADAS -->
   <div class="gallery">
       <div class="videos-grid">
-        <video controls preload="metadata"><source src="video2.mp4" type="video/mp4"></video>
+        <video controls preload="metadata"><source src="video2.mp4" type="video/mp4"></video> 
         <video controls preload="metadata"><source src="video3.mp4" type="video/mp4"></video>
-        <video controls preload="metadata"><source src="video9.mp4" type="video/mp4"></video>
-        <video controls preload="metadata"><source src="video5.mp4" type="video/mp4"></video>
-        <video controls preload="metadata"><source src="video6.mp4" type="video/mp4"></video>
-        <video controls preload="metadata"><source src="video7.mp4" type="video/mp4"></video>
-        <video controls preload="metadata"><source src="video8.mp4" type="video/mp4"></video>
-        <video controls preload="metadata"><source src="video10.mp4" type="video/mp4"></video>
-        <video controls preload="metadata"><source src="video11.mp4" type="video/mp4"></video>
-        <video controls preload="metadata"><source src="video13.mp4" type="video/mp4"></video>
-        <video controls preload="metadata"><source src="video14.mp4" type="video/mp4"></video>
-        <video controls preload="metadata"><source src="video15.mp4" type="video/mp4"></video>
-        <video controls preload="metadata"><source src="video12.mp4" type="video/mp4"></video>
-        <video controls preload="metadata"><source src="video17.mp4" type="video/mp4"></video>
-        <video controls preload="metadata"><source src="video18.mp4" type="video/mp4"></video>
-        <video controls preload="metadata"><source src="video19.mp4" type="video/mp4"></video>
-        <video controls preload="metadata"><source src="video20.mp4" type="video/mp4"></video>
-        <video controls preload="metadata"><source src="video21.mp4" type="video/mp4"></video>
-        <video controls preload="metadata"><source src="video23.mp4" type="video/mp4"></video>
-        <video controls preload="metadata"><source src="video24.mp4" type="video/mp4"></video>
-        <video controls preload="metadata"><source src="video041.mp4" type="video/mp4"></video>
-        <video controls preload="metadata"><source src="videod.mp4" type="video/mp4"></video>
-        <video controls preload="metadata"><source src="videoa.mp4" type="video/mp4"></video>
-        <video controls preload="metadata"><source src="video22.mp4" type="video/mp4"></video>
-        <video controls preload="metadata"><source src="videoe.mp4" type="video/mp4"></video>
+        <video controls preload="metadata"><source src="video9.mp4" type="video/mp4"></video> 
+        <video controls preload="metadata"><source src="video5.mp4" type="video/mp4"></video> 
+        <video controls preload="metadata"><source src="video4.mp4" type="video/mp4"></video>
+        <video controls preload="metadata"><source src="video6.mp4" type="video/mp4"></video> 
+        <video controls preload="metadata"><source src="video23.mp4" type="video/mp4"></video> 
+        <video controls preload="metadata"><source src="video14.mp4" type="video/mp4"></video> 
+        <video controls preload="metadata"><source src="videoa.mp4" type="video/mp4"></video> 
+        <video controls preload="metadata"><source src="video21.mp4" type="video/mp4"></video> 
+        <video controls preload="metadata"><source src="video7.mp4" type="video/mp4"></video> 
+        <video controls preload="metadata"><source src="video8.mp4" type="video/mp4"></video> 
+        <video controls preload="metadata"><source src="video10.mp4" type="video/mp4"></video> 
+        <video controls preload="metadata"><source src="video13.mp4" type="video/mp4"></video> 
+        <video controls preload="metadata"><source src="video11.mp4" type="video/mp4"></video> 
+        <video controls preload="metadata"><source src="video17.mp4" type="video/mp4"></video> 
+        <video controls preload="metadata"><source src="video18.mp4" type="video/mp4"></video> 
+        <video controls preload="metadata"><source src="video19.mp4" type="video/mp4"></video> 
+        <video controls preload="metadata"><source src="video20.mp4" type="video/mp4"></video> 
+        <video controls preload="metadata"><source src="videod.mp4" type="video/mp4"></video> 
+        <video controls preload="metadata"><source src="video15.mp4" type="video/mp4"></video> 
+        <video controls preload="metadata"><source src="video041.mp4" type="video/mp4"></video> 
+        <video controls preload="metadata"><source src="video24.mp4" type="video/mp4"></video> 
+        <video controls preload="metadata"><source src="video12.mp4" type="video/mp4"></video> 
+        <video controls preload="metadata"><source src="video22.mp4" type="video/mp4"></video> 
+        <video controls preload="metadata"><source src="videoe.mp4" type="video/mp4"></video> 
       </div>
        <div class="message-box">Os momentos com você são os mais especiais. Com você, sou mais feliz. Faço de tudo para ver o seu sorriso. Vamos por mais, minha princesa! ❤️</div>
 
@@ -798,13 +799,14 @@ document.querySelectorAll('video').forEach(video => {
         musicas[key].wasPlaying = true; // marca que estava tocando
         showPausedIcon(document.querySelector(`[onclick="togglePlay('${key}', this)"]`));
       } else {
-        musicas[key].wasPlaying = false;
+        musicas[key].wasPlaying = false; 
       }
     }
   });
 
   video.addEventListener('pause', () => {
     // Retoma as músicas que estavam tocando antes
+
     for (const key in musicas) {
       if (musicas[key].wasPlaying) {
         musicas[key].audio.play();
@@ -985,6 +987,7 @@ window.addEventListener("load", () => {
 
 </body>
 </html>
+
 
 
 
