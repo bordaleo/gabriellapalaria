@@ -1084,9 +1084,49 @@ window.addEventListener("load", () => {
 </div>
 <!-- ================================================================ -->
 
+  <script>
+  let password = "";
+  const correctPassword = "150824"; // 🔑 coloque aqui a senha correta (ex: data especial)
+
+  function enterDigit(digit) {
+    if (password.length < 6) { // limite de 6 dígitos
+      password += digit;
+      updatePasswordDisplay();
+    }
+  }
+
+  function clearPassword() {
+    password = password.slice(0, -1);
+    updatePasswordDisplay();
+  }
+
+  function updatePasswordDisplay() {
+    const display = document.getElementById("passwordDisplay");
+    display.textContent = "•".repeat(password.length).padEnd(6, "•");
+  }
+
+  function checkPassword() {
+    if (password === correctPassword) {
+      document.getElementById("loginPage").style.display = "none";
+      document.getElementById("mainPage").style.display = "flex";
+    } else {
+      alert("Senha incorreta, tente de novo!");
+      password = "";
+      updatePasswordDisplay();
+    }
+  }
+
+  function showSection(sectionId) {
+    document.querySelectorAll("section").forEach(sec => sec.style.display = "none");
+    document.getElementById(sectionId).style.display = "block";
+  }
+</script>
+
+
 
 </body>
 </html>
+
 
 
 
