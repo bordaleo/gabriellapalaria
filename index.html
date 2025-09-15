@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -433,6 +434,11 @@
 </head>
 <body>
 
+<audio id="momentosAudio" src="Elvis Presley - Cant Help Falling In Love.mp3" preload="auto"></audio>
+<audio id="calendarioAudio" src="Jorge e Mateus - Pense em mim.mpeg" preload="auto"></audio>
+<audio id="cartaAudio" src="Those Eyes.mpeg" preload="auto"></audio>
+<audio id="palhacasAudio" src="Messy.mpeg" preload="auto"></audio>
+
 
 <section id="loginPage">
   <img src="https://cdn-icons-png.flaticon.com/512/747/747376.png" alt="Lacinho">
@@ -473,7 +479,7 @@
       <h4>Can't Help Falling in Love</h4>
       <p>Elvis Presley</p>
     </div>
-    <button class="play-pause-btn" onclick="playTrack('momentos', this)">
+    <button class="play-pause-btn" onclick="togglePlay('momentosAudio', this)">
       <svg class="play-icon" viewBox="0 0 24 24" style="display: block;"><path d="M8 5v14l11-7z"/></svg>
       <svg class="pause-icon" viewBox="0 0 24 24" style="display: none;"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
     </button>
@@ -600,7 +606,8 @@
     <div class="music-info">
       <h4>Messy</h4>
       <p>Lola Young</p>
-    </div><button class="play-pause-btn" onclick="playTrack('palhacas', this)">
+    </div>
+    <button class="play-pause-btn" onclick="togglePlay('palhacasAudio', this)">
       <svg class="play-icon" viewBox="0 0 24 24" style="display: block;"><path d="M8 5v14l11-7z"/></svg>
       <svg class="pause-icon" viewBox="0 0 24 24" style="display: none;"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
     </button>
@@ -651,7 +658,7 @@
       <h4>Pense em Mim</h4>
       <p>Jorge e Mateus</p>
     </div>
- <button class="play-pause-btn" onclick="playTrack('calendario', this)">
+    <button class="play-pause-btn" onclick="togglePlay('calendarioAudio', this)">
       <svg class="play-icon" viewBox="0 0 24 24" style="display: block;"><path d="M8 5v14l11-7z"/></svg>
       <svg class="pause-icon" viewBox="0 0 24 24" style="display: none;"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
     </button>
@@ -699,7 +706,7 @@
       <h4>Those Eyes</h4>
       <p>NewWest</p>
     </div>
-<button class="play-pause-btn" onclick="playTrack('carta', this)">
+    <button class="play-pause-btn" onclick="togglePlay('cartaAudio', this)">
       <svg class="play-icon" viewBox="0 0 24 24" style="display: block;"><path d="M8 5v14l11-7z"/></svg>
       <svg class="pause-icon" viewBox="0 0 24 24" style="display: none;"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
     </button>
@@ -714,7 +721,7 @@
       <div class="letter">
         <div class="letter-content">
           <p>Minha gatinha,</p>
-          <p>Depois de ter visto tudo isso, espero que tenha entendido e acabado nossa discussão: Eu Amo Mais. 
+          <p>
             Todo momento com você é um sonho que eu vivo. 
             Eu amo cada segundo ao seu lado, amo te irritar, amo ouvir sua risada.
             Cada piada que faço, saiba que é com esse intuito: ver o seu sorriso.
@@ -740,161 +747,92 @@
 </section>
 
 <script>
-/* ======= PLAYER GLOBAL ======= */
-const tracks = {
-  momentos: {
-    src: 'Elvis Presley - Cant Help Falling In Love.mp3',
-    title: "Can't Help Falling in Love",
-    artist: 'Elvis Presley',
-    cover: 'PicCant.jpeg'
-  },
-  palhacas: {
-    src: 'Messy.mpeg',
-    title: 'Messy',
-    artist: 'Lola Young',
-    cover: 'PicMessy.jpg'
-  },
-  calendario: {
-    src: 'Jorge e Mateus - Pense em mim.mpeg',
-    title: 'Pense em Mim',
-    artist: 'Jorge e Mateus',
-    cover: 'PicPense.jpeg'
-  },
-  carta: {
-    src: 'Those Eyes.mpeg',
-    title: 'Those Eyes',
-    artist: 'NewWest',
-    cover: 'PicEyes.jpeg'
+  // ---------- MÚSICAS ----------
+  const musicas = {
+    momentosAudio: { src: 'Elvis Presley - Cant Help Falling In Love.mp3', audio: new Audio('Elvis Presley - Cant Help Falling In Love.mp3'), playing: false },
+    palhacasAudio: { src: 'Messy.mpeg', audio: new Audio('Messy.mpeg'), playing: false },
+    calendarioAudio: { src: 'Jorge e Mateus - Pense em mim.mpeg', audio: new Audio('Jorge e Mateus - Pense em mim.mpeg'), playing: false },
+    cartaAudio: { src: 'Those Eyes.mpeg', audio: new Audio('Those Eyes.mpeg'), playing: false }
+  };
+
+  function showPlayingIcon(button) {
+    button.querySelector('.play-icon').style.display = 'none';
+    button.querySelector('.pause-icon').style.display = 'block';
   }
-};
 
-const globalAudio = document.getElementById('globalPlayer');
-let currentKey = null;
-let wasPlayingBeforeVideo = false;
-
-/* UI refs */
-const gpTitle = document.getElementById('gp-title');
-const gpArtist = document.getElementById('gp-artist');
-const gpCover = document.getElementById('gp-cover');
-const gpPlayBtn = document.getElementById('gp-play');
-const gpSeek = document.getElementById('gp-seek');
-const gpQueue = document.getElementById('gp-queue');
-const gpPrev = document.getElementById('gp-prev');
-const gpNext = document.getElementById('gp-next');
-
-function updateUIForKey(key) {
-  if(!key){ gpTitle.textContent='—'; gpArtist.textContent='—'; gpCover.src=''; return; }
-  const t = tracks[key];
-  gpTitle.textContent = t.title;
-  gpArtist.textContent = t.artist;
-  gpCover.src = t.cover || '';
-  // atualiza select
-  gpQueue.value = key;
-}
-
-/* carregar e tocar uma faixa (substitui play direto) */
-function playTrack(key, btnRef) {
-  if(!tracks[key]) return;
-  // se já está tocando a mesma música, alterna play/pause
-  if(currentKey === key && !globalAudio.paused) {
-    // pausar
-    globalAudio.pause();
-    showPlayIcon();
-    return;
+  function showPausedIcon(button) {
+    button.querySelector('.play-icon').style.display = 'block';
+    button.querySelector('.pause-icon').style.display = 'none';
   }
-  currentKey = key;
-  globalAudio.src = tracks[key].src;
-  globalAudio.loop = true;
-  globalAudio.play();
-  updateUIForKey(key);
-  showPauseIcon();
-}
 
-/* botões do próprio player */
-function toggleGlobalPlay(){
-  if(globalAudio.paused){
-    if(!globalAudio.src && gpQueue.value) {
-      // se nada carregado, carrega a selecionada
-      selectTrack(gpQueue.value);
+  function playMusic(audioId, button) {
+    stopAllMusic();
+    musicas[audioId].audio.loop = true;
+    musicas[audioId].audio.play();
+    musicas[audioId].playing = true;
+    showPlayingIcon(button);
+  }
+
+  function stopMusic(audioId, button) {
+    if (musicas[audioId].audio) {
+      musicas[audioId].audio.pause();
+      musicas[audioId].audio.currentTime = 0;
     }
-    globalAudio.play();
-    showPauseIcon();
-  } else {
-    globalAudio.pause();
-    showPlayIcon();
+    musicas[audioId].playing = false;
+    showPausedIcon(button);
   }
-}
-function showPauseIcon(){
-  gpPlayBtn.querySelector('.play-icon').style.display='none';
-  gpPlayBtn.querySelector('.pause-icon').style.display='block';
-}
-function showPlayIcon(){
-  gpPlayBtn.querySelector('.play-icon').style.display='block';
-  gpPlayBtn.querySelector('.pause-icon').style.display='none';
-}
-
-function selectTrack(key){
-  if(!tracks[key]) return;
-  currentKey = key;
-  globalAudio.src = tracks[key].src;
-  updateUIForKey(key);
-  globalAudio.play();
-  showPauseIcon();
-}
-function prevTrack(){
-  const keys = Object.keys(tracks);
-  if(!currentKey) return;
-  const i = keys.indexOf(currentKey);
-  const idx = (i - 1 + keys.length) % keys.length;
-  selectTrack(keys[idx]);
-}
-function nextTrack(){
-  const keys = Object.keys(tracks);
-  if(!currentKey) {
-    selectTrack(keys[0]);
-    return;
+  
+  function stopAllMusic() {
+    document.querySelectorAll('.play-pause-btn').forEach(btn => showPausedIcon(btn));
+    for (const key in musicas) {
+      if (musicas[key].audio) {
+        musicas[key].audio.pause();
+        musicas[key].audio.currentTime = 0;
+      }
+      musicas[key].playing = false;
+    }
   }
-  const i = keys.indexOf(currentKey);
-  const idx = (i + 1) % keys.length;
-  selectTrack(keys[idx]);
-}
 
-/* seek UI */
-globalAudio.addEventListener('timeupdate', ()=>{
-  if(globalAudio.duration){
-    gpSeek.value = (globalAudio.currentTime / globalAudio.duration) * 100;
+  function togglePlay(audioId, button) {
+    if (musicas[audioId].playing) {
+      stopMusic(audioId, button);
+    } else {
+      playMusic(audioId, button);
+    }
   }
-});
-gpSeek.addEventListener('input', ()=>{
-  if(globalAudio.duration){
-    globalAudio.currentTime = (gpSeek.value / 100) * globalAudio.duration;
-  }
-});
-
-/* prev/next handlers */
-gpPrev.addEventListener('click', prevTrack);
-gpNext.addEventListener('click', nextTrack);
-gpQueue.addEventListener('change', ()=> selectTrack(gpQueue.value));
-gpPlayBtn.addEventListener('click', toggleGlobalPlay);
-
-/* Quando o player termina (se não estiver em loop), pode avançar */
-globalAudio.addEventListener('ended', nextTrack);
-
-/* Vídeos: pausar o player global ao tocar vídeos e (opcionalmente) restituir no pause */
+  // ---------- AUTOPLAY MÚSICA COM VÍDEO ----------
 document.querySelectorAll('video').forEach(video => {
   video.addEventListener('play', () => {
-    if(!globalAudio.paused) { wasPlayingBeforeVideo = true; globalAudio.pause(); showPlayIcon(); }
+    // Pausa todas as músicas quando o vídeo começar
+    for (const key in musicas) {
+      if (musicas[key].playing) {
+        musicas[key].audio.pause();
+        musicas[key].wasPlaying = true; // marca que estava tocando
+        showPausedIcon(document.querySelector(`[onclick="togglePlay('${key}', this)"]`));
+      } else {
+        musicas[key].wasPlaying = false; 
+      }
+    }
   });
+
   video.addEventListener('pause', () => {
-    if(wasPlayingBeforeVideo){ globalAudio.play(); showPauseIcon(); wasPlayingBeforeVideo = false; }
+    // Retoma as músicas que estavam tocando antes
+
+    for (const key in musicas) {
+      if (musicas[key].wasPlaying) {
+        musicas[key].audio.play();
+        musicas[key].playing = true;
+        showPlayingIcon(document.querySelector(`[onclick="togglePlay('${key}', this)"]`));
+        musicas[key].wasPlaying = false;
+      }
+    }
   });
+
   video.addEventListener('ended', () => {
-    if(wasPlayingBeforeVideo){ globalAudio.play(); showPauseIcon(); wasPlayingBeforeVideo = false; }
+    // Mesmo comportamento que pause
+    video.pause();
   });
 });
-
-/* função que outras partes do site podem chamar para pausar o global player */
-function pauseGlobal(){ globalAudio.pause(); showPlayIcon(); }
 
 
   // ---------- LOGIN ----------
@@ -911,8 +849,10 @@ function pauseGlobal(){ globalAudio.pause(); showPlayIcon(); }
   // ---------- SHOW SECTIONS ----------
 function showSection(sectionId){
   // esconde todas as sections
-document.getElementById(sectionId).style.display='block';
-pauseGlobal();
+  document.querySelectorAll('section').forEach(sec=>sec.style.display='none');
+  // mostra a section desejada
+  document.getElementById(sectionId).style.display='block';
+  stopAllMusic();
 
   // controla visibilidade do botão de voltar fixo
   document.querySelectorAll('.floating-back').forEach(btn => {
@@ -1051,85 +991,13 @@ window.addEventListener("load", () => {
     }
   }
 });
+
+
+
 </script>
-  <!-- ================= GLOBAL MUSIC PLAYER (fixo) ================= -->
-<audio id="globalPlayer" preload="auto"></audio>
-
-<div id="globalPlayerContainer" style="position:fixed;left:12px;right:12px;bottom:14px;z-index:9999;display:flex;justify-content:center;pointer-events:auto;">
-  <div class="global-player" style="width:min(980px,calc(100% - 40px));display:flex;align-items:center;gap:12px;padding:10px;border-radius:12px;background:rgba(255,255,255,0.98);box-shadow:var(--shadow);">
-    <img id="gp-cover" src="" alt="cover" class="music-cover" style="width:56px;height:56px;border-radius:8px;object-fit:cover;">
-    <div style="flex:1;min-width:0">
-      <div id="gp-title" style="font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">—</div>
-      <div id="gp-artist" style="font-size:0.85rem;color:#666;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">—</div>
-      <input id="gp-seek" type="range" min="0" max="100" value="0" style="width:100%;margin-top:6px">
-    </div>
-
-    <button id="gp-prev" title="Anterior" class="play-pause-btn" style="width:40px;height:40px;border-radius:8px;padding:6px;">⏮</button>
-
-    <button id="gp-play" class="play-pause-btn" title="Play/Pause" style="width:48px;height:48px;border-radius:50%;background:#1DB954;">
-      <svg class="play-icon" viewBox="0 0 24 24" style="width:18px;height:18px;display:block;fill:white;"><path d="M8 5v14l11-7z"/></svg>
-      <svg class="pause-icon" viewBox="0 0 24 24" style="width:18px;height:18px;display:none;fill:white;"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
-    </button>
-
-    <button id="gp-next" title="Próxima" class="play-pause-btn" style="width:40px;height:40px;border-radius:8px;padding:6px;">⏭</button>
-
-    <select id="gp-queue" style="margin-left:8px;max-width:220px">
-      <option value="">Selecionar música...</option>
-      <option value="momentos">Can't Help Falling in Love — Elvis Presley</option>
-      <option value="calendario">Pense em Mim — Jorge & Mateus</option>
-      <option value="carta">Those Eyes — NewWest</option>
-      <option value="palhacas">Messy — Lola Young</option>
-    </select>
-  </div>
-</div>
-<!-- ================================================================ -->
-
-  <script>
-  let password = "";
-  const correctPassword = "150824"; // 🔑 coloque aqui a senha correta (ex: data especial)
-
-  function enterDigit(digit) {
-    if (password.length < 6) { // limite de 6 dígitos
-      password += digit;
-      updatePasswordDisplay();
-    }
-  }
-
-  function clearPassword() {
-    password = password.slice(0, -1);
-    updatePasswordDisplay();
-  }
-
-  function updatePasswordDisplay() {
-    const display = document.getElementById("passwordDisplay");
-    display.textContent = "•".repeat(password.length).padEnd(6, "•");
-  }
-
-  function checkPassword() {
-    if (password === correctPassword) {
-      document.getElementById("loginPage").style.display = "none";
-      document.getElementById("mainPage").style.display = "flex";
-    } else {
-      alert("Senha incorreta, tente de novo!");
-      password = "";
-      updatePasswordDisplay();
-    }
-  }
-
-  function showSection(sectionId) {
-    document.querySelectorAll("section").forEach(sec => sec.style.display = "none");
-    document.getElementById(sectionId).style.display = "block";
-  }
-</script>
-
-
 
 </body>
 </html>
-
-
-
-
 
 
 
