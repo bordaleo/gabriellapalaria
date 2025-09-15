@@ -783,11 +783,24 @@
 };
 
 // 🎵 Playlist só da linha do tempo
-const playlist = ["momentosAudio", "coldAudio", "foundAudio"];
+let playlist = [];
 let currentIndex = 0;
 
 function setCurrentIndex(audioId) {
-  currentIndex = playlist.indexOf(audioId);
+  // sempre recria a playlist começando da escolhida
+  const base = ["momentosAudio", "coldAudio", "elvisAudio"];
+  
+  // coloca a escolhida em primeiro
+  playlist = [audioId];
+  
+  // adiciona as outras em ordem aleatória
+  const restantes = base.filter(id => id !== audioId);
+  while (restantes.length) {
+    const idx = Math.floor(Math.random() * restantes.length);
+    playlist.push(restantes.splice(idx, 1)[0]);
+  }
+  
+  currentIndex = 0;
 }
 
 
@@ -803,25 +816,28 @@ function setCurrentIndex(audioId) {
 
 function playMusic(audioId, button) {
   stopAllMusic();
-  setCurrentIndex(audioId); // guarda posição atual na playlist
-  musicas[audioId].audio.loop = false; // tira loop infinito
+  
+  // se for clique manual, recria a playlist
+  if (playlist.length === 0 || playlist[0] !== audioId) {
+    setCurrentIndex(audioId);
+  }
+  
+  musicas[audioId].audio.loop = false;
   musicas[audioId].audio.play();
   musicas[audioId].playing = true;
   showPlayingIcon(button);
 
-  // quando acabar, chama a próxima
   musicas[audioId].audio.onended = () => playNext();
 }
+
   
 function playNext() {
-  if (playlist.length <= 1) return;
-
-  let nextIndex;
-  do {
-    nextIndex = Math.floor(Math.random() * playlist.length);
-  } while (nextIndex === currentIndex); // nunca repete a mesma imediatamente
-
-  currentIndex = nextIndex;
+  currentIndex++;
+  if (currentIndex >= playlist.length) {
+    playlist = []; // esvazia quando acaba
+    return;
+  }
+  
   const nextId = playlist[currentIndex];
   const btn = document.querySelector(`[onclick="togglePlay('${nextId}', this)"]`);
   playMusic(nextId, btn);
@@ -1047,6 +1063,7 @@ window.addEventListener("load", () => {
 
 </body>
 </html>
+
 
 
 
