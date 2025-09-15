@@ -437,6 +437,8 @@
 <audio id="calendarioAudio" src="Jorge e Mateus - Pense em mim.mpeg" preload="auto"></audio>
 <audio id="cartaAudio" src="Those Eyes.mpeg" preload="auto"></audio>
 <audio id="palhacasAudio" src="Messy.mpeg" preload="auto"></audio>
+<audio id="clocksAudio" src="Clocks.mpeg" preload="auto"></audio>
+<audio id="untilAudio" src="Found.mpeg" preload="auto"></audio>
 
 
 <section id="loginPage">
@@ -483,6 +485,31 @@
       <svg class="pause-icon" viewBox="0 0 24 24" style="display: none;"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
     </button>
   </div>
+
+  
+  <div class="music-player">
+  <img src="Clocks.jpeg" alt="Capa da música" class="music-cover">
+  <div class="music-info">
+    <h4>Clocks</h4>
+    <p>Coldplay</p>
+  </div>
+  <button class="play-pause-btn" onclick="togglePlay('clocksAudio', this)">
+    <svg class="play-icon" viewBox="0 0 24 24" style="display: block;"><path d="M8 5v14l11-7z"/></svg>
+    <svg class="pause-icon" viewBox="0 0 24 24" style="display: none;"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+  </button>
+</div>
+
+<div class="music-player">
+  <img src="Found.jpeg" alt="Capa da música" class="music-cover">
+  <div class="music-info">
+    <h4>Until I Found You</h4>
+    <p>Stephen Sanchez</p>
+  </div>
+  <button class="play-pause-btn" onclick="togglePlay('untilAudio', this)">
+    <svg class="play-icon" viewBox="0 0 24 24" style="display: block;"><path d="M8 5v14l11-7z"/></svg>
+    <svg class="pause-icon" viewBox="0 0 24 24" style="display: none;"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+  </button>
+</div>
 
   <div class="gallery">
     <div class="message-box">Dê play na música e veja alguma das nossas lembranças! 💕</div>
@@ -991,6 +1018,7 @@ window.addEventListener("load", () => {
 
 </body>
 </html>
+
 
 
 
