@@ -433,12 +433,12 @@
 </head>
 <body>
 
-<audio id="momentosAudio" src="Elvis Presley - Cant Help Falling In Love.mp3" preload="auto"></audio>
-<audio id="calendarioAudio" src="Jorge e Mateus - Pense em mim.mpeg" preload="auto"></audio>
-<audio id="cartaAudio" src="Those Eyes.mpeg" preload="auto"></audio>
+<audio id="momentosAudio" src="Jorge e Mateus - Pense em mim.mpeg" preload="auto"></audio>
+<audio id="calendarioAudio" src="Those Eyes.mpeg" preload="auto"></audio>
+<audio id="cartaAudio" src="Found.mpeg" preload="auto"></audio>
 <audio id="palhacasAudio" src="Messy.mpeg" preload="auto"></audio>
 <audio id="coldAudio" src="Clocks.mpeg" preload="auto"></audio>
-<audio id="foundAudio" src="Found.mpeg" preload="auto"></audio>
+<audio id="elvisAudio" src="Elvis Presley - Cant Help Falling In Love.mp3" preload="auto"></audio>
 
 
 <section id="loginPage">
@@ -474,42 +474,32 @@
   
 <section id="momentosSection">
   <h2>Linha do Tempo ⏱️</h2>
-  <div class="music-player">
-    <img src="PicCant.jpeg" alt="Capa da música" class="music-cover">
-    <div class="music-info">
-      <h4>Can't Help Falling in Love</h4>
-      <p>Elvis Presley</p>
-    </div>
-    <button class="play-pause-btn" onclick="togglePlay('momentosAudio', this)">
+<div class="music-player">
+  <img src="PicPense.jpeg" alt="Capa da música" class="music-cover">
+  <div class="music-info">
+    <h4>Pense em Mim</h4>
+    <p>Jorge e Mateus</p>
+  </div>
+  <button class="play-pause-btn" onclick="togglePlay('momentosAudio', this)">
       <svg class="play-icon" viewBox="0 0 24 24" style="display: block;"><path d="M8 5v14l11-7z"/></svg>
       <svg class="pause-icon" viewBox="0 0 24 24" style="display: none;"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
     </button>
   </div>
 
-  
-  <div class="music-player">
-  <img src="Clocks.jpg" alt="Capa da música" class="music-cover">
+ <div class="music-player">
+  <img src="PicCant.jpeg" alt="Capa da música" class="music-cover">
   <div class="music-info">
-    <h4>Clocks</h4>
-    <p>Coldplay</p>
+    <h4>Can't Help Falling in Love</h4>
+    <p>Elvis Presley</p>
   </div>
-  <button class="play-pause-btn" onclick="togglePlay('coldAudio', this)">
+  <button class="play-pause-btn" onclick="togglePlay('elvisAudio', this)">
+
+
     <svg class="play-icon" viewBox="0 0 24 24" style="display: block;"><path d="M8 5v14l11-7z"/></svg>
     <svg class="pause-icon" viewBox="0 0 24 24" style="display: none;"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
   </button>
 </div>
 
-<div class="music-player">
-  <img src="found.jpg" alt="Capa da música" class="music-cover">
-  <div class="music-info">
-    <h4>Until I Found You</h4>
-    <p>Stephen Sanchez</p>
-  </div>
-  <button class="play-pause-btn" onclick="togglePlay('foundAudio', this)">
-    <svg class="play-icon" viewBox="0 0 24 24" style="display: block;"><path d="M8 5v14l11-7z"/></svg>
-    <svg class="pause-icon" viewBox="0 0 24 24" style="display: none;"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
-  </button>
-</div>
 
   <div class="gallery">
     <div class="message-box">Dê play na música e veja alguma das nossas lembranças! 💕</div>
@@ -679,12 +669,12 @@
 <section id="contadorSection">
   <h2>Cronômetro ⏳</h2>
   <div class="music-player">
-    <img src="PicPense.jpeg" alt="Capa da música" class="music-cover">
-    <div class="music-info">
-      <h4>Pense em Mim</h4>
-      <p>Jorge e Mateus</p>
-    </div>
-    <button class="play-pause-btn" onclick="togglePlay('calendarioAudio', this)">
+  <img src="PicEyes.jpeg" alt="Capa da música" class="music-cover">
+  <div class="music-info">
+    <h4>Those Eyes</h4>
+    <p>NewWest</p>
+  </div>
+  <button class="play-pause-btn" onclick="togglePlay('calendarioAudio', this)">
       <svg class="play-icon" viewBox="0 0 24 24" style="display: block;"><path d="M8 5v14l11-7z"/></svg>
       <svg class="pause-icon" viewBox="0 0 24 24" style="display: none;"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
     </button>
@@ -726,13 +716,13 @@
 
 <section id="cartaSection">
   <h2>Cartinha do Amor 💌</h2>
-  <div class="music-player">
-    <img src="PicEyes.jpeg" alt="Capa da música" class="music-cover">
-    <div class="music-info">
-      <h4>Those Eyes</h4>
-      <p>NewWest</p>
-    </div>
-    <button class="play-pause-btn" onclick="togglePlay('cartaAudio', this)">
+<div class="music-player">
+  <img src="found.jpg" alt="Capa da música" class="music-cover">
+  <div class="music-info">
+    <h4>Until I Found You</h4>
+    <p>Stephen Sanchez</p>
+  </div>
+  <button class="play-pause-btn" onclick="togglePlay('cartaAudio', this)">
       <svg class="play-icon" viewBox="0 0 24 24" style="display: block;"><path d="M8 5v14l11-7z"/></svg>
       <svg class="pause-icon" viewBox="0 0 24 24" style="display: none;"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
     </button>
@@ -774,14 +764,15 @@
 
 <script>
   // ---------- MÚSICAS ----------
-  const musicas = {
-    momentosAudio: { src: 'Elvis Presley - Cant Help Falling In Love.mp3', audio: new Audio('Elvis Presley - Cant Help Falling In Love.mp3'), playing: false },
-    palhacasAudio: { src: 'Messy.mpeg', audio: new Audio('Messy.mpeg'), playing: false },
-    calendarioAudio: { src: 'Jorge e Mateus - Pense em mim.mpeg', audio: new Audio('Jorge e Mateus - Pense em mim.mpeg'), playing: false },
-    cartaAudio: { src: 'Those Eyes.mpeg', audio: new Audio('Those Eyes.mpeg'), playing: false },
-    coldAudio: { src: 'Clocks.mpeg', audio: new Audio('Clocks.mpeg'), playing: false },          // 🔥 adicionado
-    foundAudio: { src: 'Found.mpeg', audio: new Audio('Found.mpeg'), playing: false }           // 🔥 adicionado
-  };
+const musicas = {
+  momentosAudio: { src: 'Jorge e Mateus - Pense em mim.mpeg', audio: new Audio('Jorge e Mateus - Pense em mim.mpeg'), playing: false },
+  palhacasAudio: { src: 'Messy.mpeg', audio: new Audio('Messy.mpeg'), playing: false },
+  calendarioAudio: { src: 'Those Eyes.mpeg', audio: new Audio('Those Eyes.mpeg'), playing: false },
+  cartaAudio: { src: 'Found.mpeg', audio: new Audio('Found.mpeg'), playing: false },
+  coldAudio: { src: 'Clocks.mpeg', audio: new Audio('Clocks.mpeg'), playing: false },
+  elvisAudio: { src: 'Elvis Presley - Cant Help Falling In Love.mp3', audio: new Audio('Elvis Presley - Cant Help Falling In Love.mp3'), playing: false }
+};
+
 
   function showPlayingIcon(button) {
     button.querySelector('.play-icon').style.display = 'none';
@@ -1068,6 +1059,7 @@ window.addEventListener("load", () => {
 
 </body>
 </html>
+
 
 
 
