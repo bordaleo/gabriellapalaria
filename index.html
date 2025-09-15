@@ -433,13 +433,12 @@
 </head>
 <body>
 
-<audio id="momentosAudio" src="Jorge e Mateus - Pense em mim.mp3" preload="auto"></audio>
-<audio id="coldAudio" src="Clocks.mp3" preload="auto"></audio>
-<audio id="elvisAudio" src="Elvis Presley - Cant Help Falling In Love.mp3" preload="auto"></audio>
-
-<audio id="palhacasAudio" src="Messy.mp3" preload="auto"></audio>
-<audio id="calendarioAudio" src="Those Eyes.mp3" preload="auto"></audio>
-<audio id="cartaAudio" src="Found.mp3" preload="auto"></audio>
+<audio id="momentosAudio" src="Elvis Presley - Cant Help Falling In Love.mp3" preload="auto"></audio>
+<audio id="calendarioAudio" src="Jorge e Mateus - Pense em mim.mpeg" preload="auto"></audio>
+<audio id="cartaAudio" src="Those Eyes.mpeg" preload="auto"></audio>
+<audio id="palhacasAudio" src="Messy.mpeg" preload="auto"></audio>
+<audio id="coldAudio" src="Clocks.mpeg" preload="auto"></audio>
+<audio id="foundAudio" src="Found.mpeg" preload="auto"></audio>
 
 
 <section id="loginPage">
@@ -475,36 +474,40 @@
   
 <section id="momentosSection">
   <h2>Linha do Tempo ⏱️</h2>
- <div class="music-player">
-  <img src="PicPense.jpeg" alt="Capa da música" class="music-cover">
-  <div class="music-info">
-    <h4>Pense em Mim</h4>
-    <p>Jorge e Mateus</p>
+  <div class="music-player">
+    <img src="PicCant.jpeg" alt="Capa da música" class="music-cover">
+    <div class="music-info">
+      <h4>Can't Help Falling in Love</h4>
+      <p>Elvis Presley</p>
+    </div>
+    <button class="play-pause-btn" onclick="togglePlay('momentosAudio', this)">
+      <svg class="play-icon" viewBox="0 0 24 24" style="display: block;"><path d="M8 5v14l11-7z"/></svg>
+      <svg class="pause-icon" viewBox="0 0 24 24" style="display: none;"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+    </button>
   </div>
-  <button class="play-pause-btn" onclick="togglePlay('momentosAudio', this)">
-    ...
-  </button>
-</div>
 
-<div class="music-player">
+  
+  <div class="music-player">
   <img src="Clocks.jpg" alt="Capa da música" class="music-cover">
   <div class="music-info">
     <h4>Clocks</h4>
     <p>Coldplay</p>
   </div>
   <button class="play-pause-btn" onclick="togglePlay('coldAudio', this)">
-    ...
+    <svg class="play-icon" viewBox="0 0 24 24" style="display: block;"><path d="M8 5v14l11-7z"/></svg>
+    <svg class="pause-icon" viewBox="0 0 24 24" style="display: none;"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
   </button>
 </div>
 
 <div class="music-player">
-  <img src="PicCant.jpeg" alt="Capa da música" class="music-cover">
+  <img src="found.jpg" alt="Capa da música" class="music-cover">
   <div class="music-info">
-    <h4>Can't Help Falling in Love</h4>
-    <p>Elvis Presley</p>
+    <h4>Until I Found You</h4>
+    <p>Stephen Sanchez</p>
   </div>
-  <button class="play-pause-btn" onclick="togglePlay('elvisAudio', this)">
-    ...
+  <button class="play-pause-btn" onclick="togglePlay('foundAudio', this)">
+    <svg class="play-icon" viewBox="0 0 24 24" style="display: block;"><path d="M8 5v14l11-7z"/></svg>
+    <svg class="pause-icon" viewBox="0 0 24 24" style="display: none;"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
   </button>
 </div>
 
@@ -675,19 +678,17 @@
 
 <section id="contadorSection">
   <h2>Cronômetro ⏳</h2>
-<div class="music-player">
-  <img src="PicEyes.jpeg" alt="Capa da música" class="music-cover">
-  <div class="music-info">
-    <h4>Those Eyes</h4>
-    <p>NewWest</p>
-  </div>
-  <button class="play-pause-btn" onclick="togglePlay('calendarioAudio', this)">
-
-<svg class="play-icon" viewBox="0 0 24 24" style="display: block;"><path d="M8 5v14l11-7z"/></svg>
-<svg class="pause-icon" viewBox="0 0 24 24" style="display: none;"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+  <div class="music-player">
+    <img src="PicPense.jpeg" alt="Capa da música" class="music-cover">
+    <div class="music-info">
+      <h4>Pense em Mim</h4>
+      <p>Jorge e Mateus</p>
+    </div>
+    <button class="play-pause-btn" onclick="togglePlay('calendarioAudio', this)">
+      <svg class="play-icon" viewBox="0 0 24 24" style="display: block;"><path d="M8 5v14l11-7z"/></svg>
+      <svg class="pause-icon" viewBox="0 0 24 24" style="display: none;"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
     </button>
   </div>
-  
   <div class="counter-wrap">
     <div class="since" id="sinceLabel">✨Juntos desde 15/08/2025✨</div>
     
@@ -725,13 +726,13 @@
 
 <section id="cartaSection">
   <h2>Cartinha do Amor 💌</h2>
-<div class="music-player">
-  <img src="found.jpg" alt="Capa da música" class="music-cover">
-  <div class="music-info">
-    <h4>Until I Found You</h4>
-    <p>Stephen Sanchez</p>
-  </div>
-  <button class="play-pause-btn" onclick="togglePlay('cartaAudio', this)">
+  <div class="music-player">
+    <img src="PicEyes.jpeg" alt="Capa da música" class="music-cover">
+    <div class="music-info">
+      <h4>Those Eyes</h4>
+      <p>NewWest</p>
+    </div>
+    <button class="play-pause-btn" onclick="togglePlay('cartaAudio', this)">
       <svg class="play-icon" viewBox="0 0 24 24" style="display: block;"><path d="M8 5v14l11-7z"/></svg>
       <svg class="pause-icon" viewBox="0 0 24 24" style="display: none;"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
     </button>
@@ -773,36 +774,14 @@
 
 <script>
   // ---------- MÚSICAS ----------
- const musicas = {
-  momentosAudio: { src: 'Elvis Presley - Cant Help Falling In Love.mp3', audio: new Audio('Elvis Presley - Cant Help Falling In Love.mp3'), playing: false },
-  palhacasAudio: { src: 'Messy.mp3', audio: new Audio('Messy.mp3'), playing: false },
-  calendarioAudio: { src: 'Jorge e Mateus - Pense em mim.mp3', audio: new Audio('Jorge e Mateus - Pense em mim.mp3'), playing: false },
-  cartaAudio: { src: 'Those Eyes.mp3', audio: new Audio('Those Eyes.mp3'), playing: false },
-  coldAudio: { src: 'Clocks.mp3', audio: new Audio('Clocks.mp3'), playing: false },
-  foundAudio: { src: 'Found.mp3', audio: new Audio('Found.mp3'), playing: false }
-};
-
-// 🎵 Playlist só da linha do tempo
-let playlist = [];
-let currentIndex = 0;
-
-function setCurrentIndex(audioId) {
-  // sempre recria a playlist começando da escolhida
-  const base = ["momentosAudio", "coldAudio", "elvisAudio"];
-  
-  // coloca a escolhida em primeiro
-  playlist = [audioId];
-  
-  // adiciona as outras em ordem aleatória
-  const restantes = base.filter(id => id !== audioId);
-  while (restantes.length) {
-    const idx = Math.floor(Math.random() * restantes.length);
-    playlist.push(restantes.splice(idx, 1)[0]);
-  }
-  
-  currentIndex = 0;
-}
-
+  const musicas = {
+    momentosAudio: { src: 'Elvis Presley - Cant Help Falling In Love.mp3', audio: new Audio('Elvis Presley - Cant Help Falling In Love.mp3'), playing: false },
+    palhacasAudio: { src: 'Messy.mpeg', audio: new Audio('Messy.mpeg'), playing: false },
+    calendarioAudio: { src: 'Jorge e Mateus - Pense em mim.mpeg', audio: new Audio('Jorge e Mateus - Pense em mim.mpeg'), playing: false },
+    cartaAudio: { src: 'Those Eyes.mpeg', audio: new Audio('Those Eyes.mpeg'), playing: false },
+    coldAudio: { src: 'Clocks.mpeg', audio: new Audio('Clocks.mpeg'), playing: false },          // 🔥 adicionado
+    foundAudio: { src: 'Found.mpeg', audio: new Audio('Found.mpeg'), playing: false }           // 🔥 adicionado
+  };
 
   function showPlayingIcon(button) {
     button.querySelector('.play-icon').style.display = 'none';
@@ -814,35 +793,13 @@ function setCurrentIndex(audioId) {
     button.querySelector('.pause-icon').style.display = 'none';
   }
 
-function playMusic(audioId, button) {
-  stopAllMusic();
-  
-  // se for clique manual, recria a playlist
-  if (playlist.length === 0 || playlist[0] !== audioId) {
-    setCurrentIndex(audioId);
+  function playMusic(audioId, button) {
+    stopAllMusic();
+    musicas[audioId].audio.loop = true;
+    musicas[audioId].audio.play();
+    musicas[audioId].playing = true;
+    showPlayingIcon(button);
   }
-  
-  musicas[audioId].audio.loop = false;
-  musicas[audioId].audio.play();
-  musicas[audioId].playing = true;
-  showPlayingIcon(button);
-
-  musicas[audioId].audio.onended = () => playNext();
-}
-
-  
-function playNext() {
-  currentIndex++;
-  if (currentIndex >= playlist.length) {
-    playlist = []; // esvazia quando acaba
-    return;
-  }
-  
-  const nextId = playlist[currentIndex];
-  const btn = document.querySelector(`[onclick="togglePlay('${nextId}', this)"]`);
-  playMusic(nextId, btn);
-}
-
 
   function stopMusic(audioId, button) {
     if (musicas[audioId].audio) {
@@ -1063,10 +1020,6 @@ window.addEventListener("load", () => {
 
 </body>
 </html>
-
-
-
-
 
 
 
