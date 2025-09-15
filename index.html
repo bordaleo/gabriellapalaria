@@ -799,8 +799,6 @@ const musicas = {
     button.querySelector('.pause-icon').style.display = 'none';
   }
 
-let filaMusicas = []; // fila embaralhada atual
-
 function playMusic(audioId, button) {
   stopAllMusic();
 
@@ -827,13 +825,15 @@ function playMusic(audioId, button) {
   }
 }
 
+let filaMusicas = []; // fila embaralhada atual
+
 function playNextUnique(currentId) {
   // remove a que acabou de tocar
   filaMusicas.shift();
 
   if (filaMusicas.length === 0) {
     // se acabou a fila, cria uma nova embaralhada
-    filaMusicas = embaralhar(["momentosAudio", "coldAudio", "foundAudio"]);
+    filaMusicas = embaralhar(["momentosAudio", "coldAudio", "elvisAudio"]);
   }
 
   const nextId = filaMusicas[0];
@@ -853,6 +853,7 @@ function embaralhar(array) {
   }
   return arr;
 }
+
 
 
   function stopMusic(audioId, button) {
@@ -1074,6 +1075,7 @@ window.addEventListener("load", () => {
 
 </body>
 </html>
+
 
 
 
