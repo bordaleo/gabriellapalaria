@@ -774,14 +774,23 @@
 
 <script>
   // ---------- MÚSICAS ----------
-  const musicas = {
-    momentosAudio: { src: 'Elvis Presley - Cant Help Falling In Love.mp3', audio: new Audio('Elvis Presley - Cant Help Falling In Love.mp3'), playing: false },
-    palhacasAudio: { src: 'Messy.mpeg', audio: new Audio('Messy.mpeg'), playing: false },
-    calendarioAudio: { src: 'Jorge e Mateus - Pense em mim.mpeg', audio: new Audio('Jorge e Mateus - Pense em mim.mpeg'), playing: false },
-    cartaAudio: { src: 'Those Eyes.mpeg', audio: new Audio('Those Eyes.mpeg'), playing: false },
-    coldAudio: { src: 'Clocks.mpeg', audio: new Audio('Clocks.mpeg'), playing: false },          // 🔥 adicionado
-    foundAudio: { src: 'Found.mpeg', audio: new Audio('Found.mpeg'), playing: false }           // 🔥 adicionado
-  };
+ const musicas = {
+  momentosAudio: { src: 'Elvis Presley - Cant Help Falling In Love.mp3', audio: new Audio('Elvis Presley - Cant Help Falling In Love.mp3'), playing: false },
+  palhacasAudio: { src: 'Messy.mp3', audio: new Audio('Messy.mp3'), playing: false },
+  calendarioAudio: { src: 'Jorge e Mateus - Pense em mim.mp3', audio: new Audio('Jorge e Mateus - Pense em mim.mp3'), playing: false },
+  cartaAudio: { src: 'Those Eyes.mp3', audio: new Audio('Those Eyes.mp3'), playing: false },
+  coldAudio: { src: 'Clocks.mp3', audio: new Audio('Clocks.mp3'), playing: false },
+  foundAudio: { src: 'Found.mp3', audio: new Audio('Found.mp3'), playing: false }
+};
+
+// 🎵 Playlist só da linha do tempo
+const playlist = ["momentosAudio", "coldAudio", "foundAudio"];
+let currentIndex = 0;
+
+function setCurrentIndex(audioId) {
+  currentIndex = playlist.indexOf(audioId);
+}
+
 
   function showPlayingIcon(button) {
     button.querySelector('.play-icon').style.display = 'none';
@@ -793,13 +802,32 @@
     button.querySelector('.pause-icon').style.display = 'none';
   }
 
-  function playMusic(audioId, button) {
-    stopAllMusic();
-    musicas[audioId].audio.loop = true;
-    musicas[audioId].audio.play();
-    musicas[audioId].playing = true;
-    showPlayingIcon(button);
-  }
+function playMusic(audioId, button) {
+  stopAllMusic();
+  setCurrentIndex(audioId); // guarda posição atual na playlist
+  musicas[audioId].audio.loop = false; // tira loop infinito
+  musicas[audioId].audio.play();
+  musicas[audioId].playing = true;
+  showPlayingIcon(button);
+
+  // quando acabar, chama a próxima
+  musicas[audioId].audio.onended = () => playNext();
+}
+  
+function playNext() {
+  if (playlist.length <= 1) return;
+
+  let nextIndex;
+  do {
+    nextIndex = Math.floor(Math.random() * playlist.length);
+  } while (nextIndex === currentIndex); // nunca repete a mesma imediatamente
+
+  currentIndex = nextIndex;
+  const nextId = playlist[currentIndex];
+  const btn = document.querySelector(`[onclick="togglePlay('${nextId}', this)"]`);
+  playMusic(nextId, btn);
+}
+
 
   function stopMusic(audioId, button) {
     if (musicas[audioId].audio) {
@@ -1020,6 +1048,7 @@ window.addEventListener("load", () => {
 
 </body>
 </html>
+
 
 
 
