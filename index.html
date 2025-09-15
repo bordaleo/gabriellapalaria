@@ -793,13 +793,61 @@
     button.querySelector('.pause-icon').style.display = 'none';
   }
 
-  function playMusic(audioId, button) {
-    stopAllMusic();
-    musicas[audioId].audio.loop = true;
-    musicas[audioId].audio.play();
-    musicas[audioId].playing = true;
-    showPlayingIcon(button);
+let filaMusicas = []; // fila embaralhada atual
+
+function playMusic(audioId, button) {
+  stopAllMusic();
+
+  const audio = musicas[audioId].audio;
+  audio.loop = false; // 🔥 não reinicia a mesma
+
+  audio.play();
+  musicas[audioId].playing = true;
+  showPlayingIcon(button);
+
+  // 👉 Quando acabar, toca a próxima da fila
+  audio.onended = () => {
+    playNextUnique(audioId);
+  };
+
+  // Se a fila estiver vazia ou não incluir essa música, cria uma nova embaralhada
+  if (filaMusicas.length === 0 || !filaMusicas.includes(audioId)) {
+    filaMusicas = embaralhar(["momentosAudio", "coldAudio", "foundAudio"]);
+    // garante que começa pela que foi clicada
+    const idx = filaMusicas.indexOf(audioId);
+    if (idx > -1) {
+      filaMusicas = filaMusicas.slice(idx).concat(filaMusicas.slice(0, idx));
+    }
   }
+}
+
+function playNextUnique(currentId) {
+  // remove a que acabou de tocar
+  filaMusicas.shift();
+
+  if (filaMusicas.length === 0) {
+    // se acabou a fila, cria uma nova embaralhada
+    filaMusicas = embaralhar(["momentosAudio", "coldAudio", "foundAudio"]);
+  }
+
+  const nextId = filaMusicas[0];
+  const nextBtn = document.querySelector(
+    `[onclick="togglePlay('${nextId}', this)"]`
+  );
+  if (nextBtn) {
+    playMusic(nextId, nextBtn);
+  }
+}
+
+function embaralhar(array) {
+  let arr = array.slice();
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+
 
   function stopMusic(audioId, button) {
     if (musicas[audioId].audio) {
@@ -1020,6 +1068,7 @@ window.addEventListener("load", () => {
 
 </body>
 </html>
+
 
 
 
