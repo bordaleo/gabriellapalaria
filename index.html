@@ -1070,12 +1070,42 @@ window.addEventListener("load", () => {
   }
 });
 
+  window.addEventListener("load", () => {
+  const hash = window.location.hash.substring(1);
+  if(hash && document.getElementById(hash)){
+    showSection(hash);
+    if(hash !== "loginPage"){
+      document.getElementById("loginPage").style.display = "none";
+    }
+  }
+});
+
+// 🔥 gera capa automática para os vídeos
+document.querySelectorAll(".videos-grid video").forEach(video => {
+  video.addEventListener("loadeddata", () => {
+    if (!video.getAttribute("poster")) {
+      try {
+        const canvas = document.createElement("canvas");
+        canvas.width = video.videoWidth;
+        canvas.height = video.videoHeight;
+        const ctx = canvas.getContext("2d");
+        ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+        video.setAttribute("poster", canvas.toDataURL("image/jpeg"));
+      } catch (e) {
+        console.warn("Não foi possível gerar poster para:", video.src, e);
+      }
+    }
+  });
+});
+
+
 
 
 </script>
 
 </body>
 </html>
+
 
 
 
