@@ -434,9 +434,8 @@
 </head>
 <body>
 
-<audio id="momentosAudio" src="Elvis Presley - Cant Help Falling In Love.mp3" preload="auto"></audio>
-<audio id="calendarioAudio" src="Jorge e Mateus - Pense em mim.mpeg" preload="auto"></audio>
-<audio id="cartaAudio" src="Those Eyes.mpeg" preload="auto"></audio>
+<audio id="calendarioAudio" src="Those Eyes.mpeg"  preload="auto"></audio>
+<audio id="cartaAudio" src="Elvis Presley - Cant Help Falling In Love.mp3" preload="auto"></audio>
 <audio id="palhacasAudio" src="Messy.mpeg" preload="auto"></audio>
 
 
@@ -479,7 +478,7 @@
       <h4>Can't Help Falling in Love</h4>
       <p>Elvis Presley</p>
     </div>
-    <button class="play-pause-btn" onclick="togglePlay('momentosAudio', this)">
+<button class="play-pause-btn" onclick="togglePlayMomentos(this)">
       <svg class="play-icon" viewBox="0 0 24 24" style="display: block;"><path d="M8 5v14l11-7z"/></svg>
       <svg class="pause-icon" viewBox="0 0 24 24" style="display: none;"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
     </button>
@@ -748,12 +747,24 @@
 
 <script>
   // ---------- MÚSICAS ----------
-  const musicas = {
-    momentosAudio: { src: 'Elvis Presley - Cant Help Falling In Love.mp3', audio: new Audio('Elvis Presley - Cant Help Falling In Love.mp3'), playing: false },
-    palhacasAudio: { src: 'Messy.mpeg', audio: new Audio('Messy.mpeg'), playing: false },
-    calendarioAudio: { src: 'Jorge e Mateus - Pense em mim.mpeg', audio: new Audio('Jorge e Mateus - Pense em mim.mpeg'), playing: false },
-    cartaAudio: { src: 'Those Eyes.mpeg', audio: new Audio('Those Eyes.mpeg'), playing: false }
-  };
+const musicas = {
+  palhacasAudio: { src: 'Messy.mpeg', audio: new Audio('Messy.mpeg'), playing: false },
+  calendarioAudio:   { src: 'Those Eyes.mpeg', audio: new Audio('Those Eyes.mpeg'), playing: false }
+  cartaAudio:  { src: "Elvis Presley - Cant Help Falling In Love.mp3", audio: new Audio("Elvis Presley - Cant Help Falling In Love.mp3"), playing: false }
+};
+
+// Playlist da seção Linha do Tempo
+const playlistMomentos = [
+    { src: 'Jorge e Mateus - Pense em mim.mpeg', title: "Pense em mim", artist: "Jorge e Mateus", cover: "PicPense.jpeg" },
+  { src: "Clocks.mpeg", title: "Clocks", artist: "Coldplay", cover: "Clocks.jpeg" },
+  { src: "until i found you.mpeg", title: "Until I Found You", artist: "Stephen Sanchez", cover: "found.jpeg" }
+];
+
+let currentIndexMomentos = 0;
+let audioMomentos = new Audio();
+
+let currentIndexMomentos = 0;
+let audioMomentos = new Audio();
 
   function showPlayingIcon(button) {
     button.querySelector('.play-icon').style.display = 'none';
@@ -833,6 +844,48 @@ document.querySelectorAll('video').forEach(video => {
     video.pause();
   });
 });
+
+  // ---------- PLAYER LINHA DO TEMPO COM PLAYLIST ----------
+function playRandomMomentos(button) {
+  let nextIndex;
+  do {
+    nextIndex = Math.floor(Math.random() * playlistMomentos.length);
+  } while(nextIndex === currentIndexMomentos && playlistMomentos.length > 1);
+
+  currentIndexMomentos = nextIndex;
+  const track = playlistMomentos[currentIndexMomentos];
+
+  audioMomentos.src = track.src;
+  audioMomentos.play();
+
+  // Atualiza capa e informações na tela
+  document.querySelector("#momentosSection .music-cover").src = track.cover;
+  document.querySelector("#momentosSection .music-info h4").textContent = track.title;
+  document.querySelector("#momentosSection .music-info p").textContent = track.artist;
+
+  showPlayingIcon(button);
+}
+
+function togglePlayMomentos(button) {
+  if (audioMomentos.paused) {
+    if (!audioMomentos.src) {
+      playRandomMomentos(button); // toca a primeira vez
+    } else {
+      audioMomentos.play();
+      showPlayingIcon(button);
+    }
+  } else {
+    audioMomentos.pause();
+    showPausedIcon(button);
+  }
+}
+
+// Quando acabar, toca outra automaticamente
+audioMomentos.addEventListener("ended", () => {
+  const btn = document.querySelector("#momentosSection .play-pause-btn");
+  playRandomMomentos(btn);
+});
+
 
 
   // ---------- LOGIN ----------
@@ -998,6 +1051,7 @@ window.addEventListener("load", () => {
 
 </body>
 </html>
+
 
 
 
