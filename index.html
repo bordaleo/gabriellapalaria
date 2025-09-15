@@ -647,8 +647,13 @@
   <!-- GALERIA DE PALHAÇADAS -->
   <div class="gallery">
       <div class="videos-grid">
-        <video controls preload="metadata"><source src="video2.mp4" type="video/mp4"></video> 
-        <video controls preload="metadata"><source src="video3.mp4" type="video/mp4"></video>
+         <video controls preload="metadata" poster="video2.jpeg">
+    <source src="video2.mp4" type="video/mp4">
+  </video>
+  <video controls preload="metadata" poster="video3.jpeg">
+    <source src="video3.mp4" type="video/mp4">
+  </video>
+        
         <video controls preload="metadata"><source src="video9.mp4" type="video/mp4"></video> 
         <video controls preload="metadata"><source src="video5.mp4" type="video/mp4"></video> 
         <video controls preload="metadata"><source src="video4.mp4" type="video/mp4"></video>
@@ -1080,31 +1085,12 @@ window.addEventListener("load", () => {
   }
 });
 
-// 🔥 gera capa automática para os vídeos
-document.querySelectorAll(".videos-grid video").forEach(video => {
-  video.addEventListener("loadeddata", () => {
-    if (!video.getAttribute("poster")) {
-      try {
-        const canvas = document.createElement("canvas");
-        canvas.width = video.videoWidth;
-        canvas.height = video.videoHeight;
-        const ctx = canvas.getContext("2d");
-        ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-        video.setAttribute("poster", canvas.toDataURL("image/jpeg"));
-      } catch (e) {
-        console.warn("Não foi possível gerar poster para:", video.src, e);
-      }
-    }
-  });
-});
-
-
-
 
 </script>
 
 </body>
 </html>
+
 
 
 
