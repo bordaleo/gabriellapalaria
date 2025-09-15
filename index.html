@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -434,8 +433,9 @@
 </head>
 <body>
 
-<audio id="calendarioAudio" src="Those Eyes.mpeg"  preload="auto"></audio>
-<audio id="cartaAudio" src="Elvis Presley - Cant Help Falling In Love.mp3" preload="auto"></audio>
+<audio id="momentosAudio" src="Elvis Presley - Cant Help Falling In Love.mp3" preload="auto"></audio>
+<audio id="calendarioAudio" src="Jorge e Mateus - Pense em mim.mpeg" preload="auto"></audio>
+<audio id="cartaAudio" src="Those Eyes.mpeg" preload="auto"></audio>
 <audio id="palhacasAudio" src="Messy.mpeg" preload="auto"></audio>
 
 
@@ -472,44 +472,17 @@
   
 <section id="momentosSection">
   <h2>Linha do Tempo ⏱️</h2>
-<!-- Música 1: já existente -->
-<div class="music-player">
-  <img src="PicCant.jpeg" alt="Capa da música" class="music-cover">
-  <div class="music-info">
-    <h4>Can't Help Falling in Love</h4>
-    <p>Elvis Presley</p>
+  <div class="music-player">
+    <img src="PicCant.jpeg" alt="Capa da música" class="music-cover">
+    <div class="music-info">
+      <h4>Can't Help Falling in Love</h4>
+      <p>Elvis Presley</p>
+    </div>
+    <button class="play-pause-btn" onclick="togglePlay('momentosAudio', this)">
+      <svg class="play-icon" viewBox="0 0 24 24" style="display: block;"><path d="M8 5v14l11-7z"/></svg>
+      <svg class="pause-icon" viewBox="0 0 24 24" style="display: none;"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+    </button>
   </div>
-  <button class="play-pause-btn" onclick="togglePlay('momentosAudio', this)">
-    <svg class="play-icon" viewBox="0 0 24 24" style="display: block;"><path d="M8 5v14l11-7z"/></svg>
-    <svg class="pause-icon" viewBox="0 0 24 24" style="display: none;"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
-  </button>
-</div>
-
-<!-- Música 2: Clocks -->
-<div class="music-player">
-  <img src="Clocks.jpeg" alt="Capa da música" class="music-cover">
-  <div class="music-info">
-    <h4>Clocks</h4>
-    <p>Coldplay</p>
-  </div>
-  <button class="play-pause-btn" onclick="togglePlay('calendarioAudio', this)">
-    <svg class="play-icon" viewBox="0 0 24 24" style="display: block;"><path d="M8 5v14l11-7z"/></svg>
-    <svg class="pause-icon" viewBox="0 0 24 24" style="display: none;"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
-  </button>
-</div>
-
-<!-- Música 3: Until I Found You -->
-<div class="music-player">
-  <img src="Found.jpeg" alt="Capa da música" class="music-cover">
-  <div class="music-info">
-    <h4>Until I Found You</h4>
-    <p>Stephen Sanchez</p>
-  </div>
-  <button class="play-pause-btn" onclick="togglePlay('cartaAudio', this)">
-    <svg class="play-icon" viewBox="0 0 24 24" style="display: block;"><path d="M8 5v14l11-7z"/></svg>
-    <svg class="pause-icon" viewBox="0 0 24 24" style="display: none;"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
-  </button>
-</div>
 
   <div class="gallery">
     <div class="message-box">Dê play na música e veja alguma das nossas lembranças! 💕</div>
@@ -747,7 +720,7 @@
       <div class="letter">
         <div class="letter-content">
           <p>Minha gatinha,</p>
-          <p>
+          <p>Depois de ter visto tudo isso, espero que tenha entendido e acabado nossa discussão: Eu Amo Mais. 
             Todo momento com você é um sonho que eu vivo. 
             Eu amo cada segundo ao seu lado, amo te irritar, amo ouvir sua risada.
             Cada piada que faço, saiba que é com esse intuito: ver o seu sorriso.
@@ -774,24 +747,12 @@
 
 <script>
   // ---------- MÚSICAS ----------
-const musicas = {
-  palhacasAudio: { src: 'Messy.mpeg', audio: new Audio('Messy.mpeg'), playing: false },
-  calendarioAudio:   { src: 'Those Eyes.mpeg', audio: new Audio('Those Eyes.mpeg'), playing: false }
-  cartaAudio:  { src: "Elvis Presley - Cant Help Falling In Love.mp3", audio: new Audio("Elvis Presley - Cant Help Falling In Love.mp3"), playing: false }
-};
-
-// Playlist da seção Linha do Tempo
-const playlistMomentos = [
-    { src: 'Jorge e Mateus - Pense em mim.mpeg', title: "Pense em mim", artist: "Jorge e Mateus", cover: "PicPense.jpeg" },
-  { src: "Clocks.mpeg", title: "Clocks", artist: "Coldplay", cover: "Clocks.jpeg" },
-  { src: "until i found you.mpeg", title: "Until I Found You", artist: "Stephen Sanchez", cover: "found.jpeg" }
-];
-
-let currentIndexMomentos = 0;
-let audioMomentos = new Audio();
-
-let currentIndexMomentos = 0;
-let audioMomentos = new Audio();
+  const musicas = {
+    momentosAudio: { src: 'Elvis Presley - Cant Help Falling In Love.mp3', audio: new Audio('Elvis Presley - Cant Help Falling In Love.mp3'), playing: false },
+    palhacasAudio: { src: 'Messy.mpeg', audio: new Audio('Messy.mpeg'), playing: false },
+    calendarioAudio: { src: 'Jorge e Mateus - Pense em mim.mpeg', audio: new Audio('Jorge e Mateus - Pense em mim.mpeg'), playing: false },
+    cartaAudio: { src: 'Those Eyes.mpeg', audio: new Audio('Those Eyes.mpeg'), playing: false }
+  };
 
   function showPlayingIcon(button) {
     button.querySelector('.play-icon').style.display = 'none';
@@ -872,48 +833,6 @@ document.querySelectorAll('video').forEach(video => {
   });
 });
 
-  // ---------- PLAYER LINHA DO TEMPO COM PLAYLIST ----------
-function playRandomMomentos(button) {
-  let nextIndex;
-  do {
-    nextIndex = Math.floor(Math.random() * playlistMomentos.length);
-  } while(nextIndex === currentIndexMomentos && playlistMomentos.length > 1);
-
-  currentIndexMomentos = nextIndex;
-  const track = playlistMomentos[currentIndexMomentos];
-
-  audioMomentos.src = track.src;
-  audioMomentos.play();
-
-  // Atualiza capa e informações na tela
-  document.querySelector("#momentosSection .music-cover").src = track.cover;
-  document.querySelector("#momentosSection .music-info h4").textContent = track.title;
-  document.querySelector("#momentosSection .music-info p").textContent = track.artist;
-
-  showPlayingIcon(button);
-}
-
-function togglePlayMomentos(button) {
-  if (audioMomentos.paused) {
-    if (!audioMomentos.src) {
-      playRandomMomentos(button); // toca a primeira vez
-    } else {
-      audioMomentos.play();
-      showPlayingIcon(button);
-    }
-  } else {
-    audioMomentos.pause();
-    showPausedIcon(button);
-  }
-}
-
-// Quando acabar, toca outra automaticamente
-audioMomentos.addEventListener("ended", () => {
-  const btn = document.querySelector("#momentosSection .play-pause-btn");
-  playRandomMomentos(btn);
-});
-
-
 
   // ---------- LOGIN ----------
   const senhaCorreta = "150825";
@@ -967,7 +886,7 @@ window.addEventListener("hashchange", () => {
 
   
 
-  // ---------- CONTADOR FOFO (NOVO) ----------
+// ---------- CONTADOR FOFO (NOVO) ----------
 const startDate = new Date("2025-08-15T00:00:00");
 const fmt2 = n => String(n).padStart(2,'0');
 
@@ -975,53 +894,47 @@ function atualizarContador(){
   const agora = new Date();
 
   // cálculo de anos e meses
- let anos = agora.getFullYear() - startDate.getFullYear();
-let meses = agora.getMonth() - startDate.getMonth();
+  let anos = agora.getFullYear() - startDate.getFullYear();
+  let meses = agora.getMonth() - startDate.getMonth();
+  let dias = agora.getDate() - startDate.getDate();
 
-// se o mês atual for menor, ou for igual mas o dia ainda não chegou → ainda não completou ano
-if (
-  meses < 0 ||
-  (meses === 0 && agora.getDate() < startDate.getDate())
-) {
-  anos--;
-  meses += 12;
-}
+  if (dias < 0) {
+    // pega quantos dias tinha no mês anterior
+    const ultimoDiaMesAnterior = new Date(agora.getFullYear(), agora.getMonth(), 0).getDate();
+    dias += ultimoDiaMesAnterior;
+    meses--;
+  }
 
-// se ainda não chegou no "dia do mês", tira 1 mês
-if (agora.getDate() < startDate.getDate()) {
-  meses--;
   if (meses < 0) {
-    meses = 11;
+    meses += 12;
     anos--;
   }
+
+  // cálculo do restante (horas, minutos, segundos)
+  const diffMs = agora - startDate;
+  let resto = diffMs % (1000 * 60 * 60 * 24); // tira dias inteiros
+
+  const horas = Math.floor(resto/(1000*60*60));
+  resto -= horas*(1000*60*60);
+  const minutos = Math.floor(resto/(1000*60));
+  resto -= minutos*(1000*60);
+  const segundos = Math.floor(resto/1000);
+
+  // coloca no HTML
+  document.getElementById("anos").textContent = anos;
+  document.getElementById("meses").textContent = meses;
+  document.getElementById("dias").textContent = dias;
+  document.getElementById("horas").textContent = fmt2(horas);
+  document.getElementById("minutos").textContent = fmt2(minutos);
+  document.getElementById("segundos").textContent = fmt2(segundos);
+
+  const dd = String(startDate.getDate()).padStart(2,'0');
+  const mm = String(startDate.getMonth()+1).padStart(2,'0');
+  const yyyy = startDate.getFullYear();
+  document.getElementById("sinceLabel").textContent = `Juntos desde ${dd}/${mm}/${yyyy}`;
 }
-
-
-  // cálculo do restante (dias, horas, minutos, segundos)
-  let diffMs = Math.max(0, agora - startDate);
-  const dias = Math.floor(diffMs/(1000*60*60*24));
-  diffMs -= dias*(1000*60*60*24);
-  const horas = Math.floor(diffMs/(1000*60*60));
-  diffMs -= horas*(1000*60*60);
-  const minutos = Math.floor(diffMs/(1000*60));
-  diffMs -= minutos*(1000*60);
-  const segundos = Math.floor(diffMs/1000);
-
-  
-    document.getElementById("anos").textContent = anos;
-    document.getElementById("meses").textContent = meses;
-    document.getElementById("dias").textContent = dias;
-    document.getElementById("horas").textContent = fmt2(horas);
-    document.getElementById("minutos").textContent = fmt2(minutos);
-    document.getElementById("segundos").textContent = fmt2(segundos);
-
-    const dd = String(startDate.getDate()).padStart(2,'0');
-    const mm = String(startDate.getMonth()+1).padStart(2,'0');
-    const yyyy = startDate.getFullYear();
-    document.getElementById("sinceLabel").textContent = `Juntos desde ${dd}/${mm}/${yyyy}`;
-  }
-  setInterval(atualizarContador,1000);
-  atualizarContador();
+setInterval(atualizarContador,1000);
+atualizarContador();
 
   // ---------- CARTINHA REAL (NOVA) ----------
   const envelope = document.getElementById('envelope');
@@ -1078,9 +991,6 @@ window.addEventListener("load", () => {
 
 </body>
 </html>
-
-
-
 
 
 
