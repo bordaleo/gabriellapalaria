@@ -798,6 +798,8 @@ const musicas = {
     button.querySelector('.play-icon').style.display = 'block';
     button.querySelector('.pause-icon').style.display = 'none';
   }
+  
+let filaMusicas = []; // fila embaralhada atual
 
 function playMusic(audioId, button) {
   stopAllMusic();
@@ -814,25 +816,24 @@ function playMusic(audioId, button) {
     playNextUnique(audioId);
   };
 
-  // Se a fila estiver vazia ou não incluir essa música, cria uma nova embaralhada
-  if (filaMusicas.length === 0 || !filaMusicas.includes(audioId)) {
-    filaMusicas = embaralhar(["momentosAudio", "coldAudio", "foundAudio"]);
-    // garante que começa pela que foi clicada
-    const idx = filaMusicas.indexOf(audioId);
-    if (idx > -1) {
-      filaMusicas = filaMusicas.slice(idx).concat(filaMusicas.slice(0, idx));
-    }
+  // 🔥 sempre cria uma fila nova quando o usuário clica manualmente
+  filaMusicas = embaralhar(["momentosAudio", "coldAudio", "elvisAudio"]);
+
+  // coloca a música clicada no início da fila
+  const idx = filaMusicas.indexOf(audioId);
+  if (idx > -1) {
+    filaMusicas = filaMusicas.slice(idx).concat(filaMusicas.slice(0, idx));
   }
 }
 
-let filaMusicas = []; // fila embaralhada atual
-
 function playNextUnique(currentId) {
-  // remove a que acabou de tocar
-  filaMusicas.shift();
+  // remove a música que acabou
+  if (filaMusicas[0] === currentId) {
+    filaMusicas.shift();
+  }
 
+  // se acabou a fila, cria uma nova embaralhada
   if (filaMusicas.length === 0) {
-    // se acabou a fila, cria uma nova embaralhada
     filaMusicas = embaralhar(["momentosAudio", "coldAudio", "elvisAudio"]);
   }
 
@@ -1075,6 +1076,7 @@ window.addEventListener("load", () => {
 
 </body>
 </html>
+
 
 
 
