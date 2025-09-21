@@ -770,7 +770,7 @@
     </button>
   </div>
   <div class="counter-wrap">
-     <div class="message-box">✨Juntos desde 15/08/2025✨</div>
+     <div class="since" id="sinceLabel">✨Juntos desde 15/08/2025✨</div>
     
 <div class="timer-grid" role="timer" aria-live="polite">
   <div class="unit">
@@ -1091,7 +1091,7 @@ function atualizarContador(){
   const dd = String(startDate.getDate()).padStart(2,'0');
   const mm = String(startDate.getMonth()+1).padStart(2,'0');
   const yyyy = startDate.getFullYear();
-  document.getElementById("sinceLabel").textContent = `Juntos desde ${dd}/${mm}/${yyyy}`;
+ document.getElementById("sinceLabel").innerHTML = `✨ Juntos desde ${dd}/${mm}/${yyyy} ✨`;
 }
 setInterval(atualizarContador,1000);
 atualizarContador();
@@ -1160,5 +1160,6 @@ window.addEventListener("load", () => {
 
 </body>
 </html>
+
 
 
