@@ -69,9 +69,8 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 200px;    /* largura fixa */
-  height: 220px;   /* altura fixa */
-
+  width: 200px;
+  height: 220px;
   background: linear-gradient(145deg, #f0e6ff, #f8d4ff);
   border-radius:25px;
   padding:30px;
@@ -82,22 +81,24 @@
   border: none;
   position: relative;
   overflow: hidden;
+}
 
-  .card h3 {
-  font-size: 1.6rem;   /* aumenta título */
-  margin-bottom: 10px; /* aproxima do texto */
+/* estilos separados */
+.card h3 {
+  font-size: 1.6rem;
+  margin-bottom: 10px;
 }
 
 .card p {
-  font-size: 1.1rem;   /* aumenta frase */
-  line-height: 1.5;    /* melhora leitura */
+  font-size: 1.1rem;
+  line-height: 1.5;
 }
 
 .card .emoji {
-  font-size: 2.2rem;   /* deixa emoji maior */
-  margin-bottom: 12px; /* aproxima do título */
+  font-size: 2.2rem;
+  margin-bottom: 12px;
 }
-}
+
   .card::before {
     content: '';
     position: absolute;
@@ -1160,5 +1161,6 @@ window.addEventListener("load", () => {
 
 </body>
 </html>
+
 
 
