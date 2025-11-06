@@ -428,107 +428,68 @@
   align-items: center;
   justify-content: center;
 }
-/* 🌹 Presente Especial 🌹 */
-.present-card{
-  width:min(360px,92vw);
-  background:linear-gradient(180deg,#fff7fb,#ffeef7);
-  border-radius:18px;
-  box-shadow:0 12px 30px rgba(0,0,0,0.12);
-  padding:18px;
-  text-align:center;
-  margin:30px auto;
-}
-.present-title{
-  font-weight:800;
-  color:#6b2d5b;
-  margin-bottom:10px;
-  font-size:1.15rem;
-}
-.present-front{
-  margin-top:12px;
+/* 🌹 Rosa Revelada 🌹 */
+.rosa-container{
+  width:min(360px,90vw);
+  margin:40px auto;
   position:relative;
-  height:160px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
+  text-align:center;
+  cursor:pointer;
 }
-.present-box{
-  width:140px;
-  height:110px;
-  background:linear-gradient(180deg,#ffdbe9,#ffc1df);
-  border-radius:12px;
-  border:4px solid #ff9cc5;
-  box-shadow:0 8px 20px rgba(214,51,132,0.15);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  transform-style:preserve-3d;
-  transition:transform .8s cubic-bezier(.2,.8,.2,1);
-  transform-origin:top center;
-}
-.present-flap{
+.cobertura{
   position:absolute;
-  top:-8px;
-  left:50%;
+  top:0;left:50%;
   transform:translateX(-50%);
-  width:150px;
-  height:60px;
-  background:linear-gradient(180deg,#ff8fb5,#ff6cab);
-  clip-path:polygon(0 100%,50% 0,100% 100%);
-  border-radius:8px;
-  transform-origin:bottom center;
-  transition:transform .9s cubic-bezier(.2,.8,.2,1);
-  box-shadow:0 8px 18px rgba(214,51,132,0.2);
+  width:100%;
+  height:220px;
+  background:linear-gradient(180deg,#ffe0f0,#ffd1ea);
+  border-radius:20px;
+  box-shadow:0 10px 25px rgba(255,105,180,0.3);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  transition:transform 1s ease,opacity .6s ease;
+  z-index:2;
 }
-.present-open .present-flap{transform:rotateX(180deg);}
-.present-open .present-box{transform:translateY(-40px);}
-.rose{
-  width:86px;
-  height:120px;
-  transform:translateY(60px) scale(.8);
-  opacity:0;
-  transition:transform .8s cubic-bezier(.2,.8,.2,1),opacity .6s ease;
-}
-.present-open .rose{transform:translateY(0) scale(1);opacity:1;}
-.present-message{
-  margin-top:10px;
-  background:#fff0f6;
-  padding:12px 14px;
-  border-radius:12px;
-  box-shadow:0 2px 8px rgba(0,0,0,0.08);
+.cobertura p{
   font-weight:700;
   color:#6b2d5b;
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  gap:5px;
+  font-size:1.1rem;
 }
-.present-message .infinity{
-  font-size:1.3rem;
+.rosa{
+  width:100px;
+  height:150px;
+  margin-top:40px;
+  opacity:0;
+  transform:translateY(60px) scale(0.9);
+  transition:transform 1s cubic-bezier(.2,.8,.2,1),opacity .8s ease;
+}
+.rosa-revelada .rosa{
+  opacity:1;
+  transform:translateY(0) scale(1);
+}
+.rosa-revelada .cobertura{
+  transform:translateY(-120%);
+  opacity:0;
+  pointer-events:none;
+}
+.rosa-msg{
+  opacity:0;
+  transform:translateY(20px);
+  transition:all .8s ease;
+  text-align:center;
+  margin-top:20px;
+  font-weight:700;
+  color:#6b2d5b;
+}
+.rosa-revelada .rosa-msg{
+  opacity:1;
+  transform:translateY(0);
+}
+.infinity{
+  font-size:1.4rem;
   color:#ff4081;
 }
-.present-small-btn{
-  margin-top:8px;
-  border:none;
-  background:#ff4081;
-  color:#fff;
-  border-radius:10px;
-  padding:6px 12px;
-  font-weight:700;
-  cursor:pointer;
-}
-.present-small-btn:hover{opacity:0.9;}
-.voltar{
-  margin-top:20px;
-  background:#ff6cab;
-  color:#fff;
-  border:none;
-  border-radius:10px;
-  padding:8px 16px;
-  font-weight:700;
-  cursor:pointer;
-}
-.voltar:hover{opacity:0.9;}
 
 </style>
 </head>
@@ -956,32 +917,22 @@
 <section id="rosaSection" style="display:none;">
   <h2>🌹 Um Presente Especial 🌹</h2>
 
-  <div class="present-card" id="presentCard">
-    <div class="present-title">Para Você 💖</div>
-
-    <div class="present-front">
-      <div class="present-flap" id="presentFlap"></div>
-      <div class="present-box" id="presentBox" onclick="togglePresent()">
-        <svg class="rose" id="roseSVG" viewBox="0 0 64 92" xmlns="http://www.w3.org/2000/svg">
-          <path d="M34 62 C34 50,36 40,36 30" stroke="#2a7a3b" stroke-width="4" stroke-linecap="round" fill="none"/>
-          <path d="M36 54 C46 58,54 54,50 48 C40 42,36 46,36 54" fill="#2a7a3b"/>
-          <path d="M32 54 C22 58,14 54,18 48 C28 42,32 46,32 54" fill="#2a7a3b"/>
-          <path d="M32 26 C22 18,18 8,28 6 C38 4,44 12,44 22 C44 34,36 36,32 26" fill="#ff6cab"/>
-          <path d="M32 20 C28 14,20 12,18 20 C16 28,26 32,32 28 C40 22,36 20,32 20" fill="#ff9cc5"/>
-        </svg>
-      </div>
+  <div class="rosa-container" onclick="mostrarRosa()">
+    <div class="cobertura" id="cobertura">
     </div>
-
-    <div class="present-message">
-      Feliz <strong>1</strong>/<span class="infinity">∞</span>
-    </div>
-
-    <button class="present-small-btn" onclick="resetPresent()">Fechar</button>
+    <svg class="rosa" id="rosaSVG" viewBox="0 0 64 92" xmlns="http://www.w3.org/2000/svg">
+      <path d="M34 62 C34 50,36 40,36 30" stroke="#2a7a3b" stroke-width="4" stroke-linecap="round" fill="none"/>
+      <path d="M36 54 C46 58,54 54,50 48 C40 42,36 46,36 54" fill="#2a7a3b"/>
+      <path d="M32 54 C22 58,14 54,18 48 C28 42,32 46,32 54" fill="#2a7a3b"/>
+      <path d="M32 26 C22 18,18 8,28 6 C38 4,44 12,44 22 C44 34,36 36,32 26" fill="#ff6cab"/>
+      <path d="M32 20 C28 14,20 12,18 20 C16 28,26 32,32 28 C40 22,36 20,32 20" fill="#ff9cc5"/>
+    </svg>
   </div>
 
-  <button class="voltar" onclick="voltarInicio()">Voltar</button>
+  <div class="rosa-msg" id="rosaMsg">
+    <p>Feliz <strong>1</strong> / <span class="infinity">∞</span> 💖</p>
+  </div>
 </section>
-
 
 
 
@@ -1289,28 +1240,17 @@ window.addEventListener("load", () => {
   }
 });
 
-  // ==== Presente Especial ====
-let presentOpen = false;
-const presentCard = document.getElementById('presentCard');
-
-function togglePresent(){
-  presentOpen = !presentOpen;
-  if(presentOpen){
-    presentCard.classList.add('present-open');
-  } else {
-    presentCard.classList.remove('present-open');
-  }
-}
-
-function resetPresent(){
-  presentOpen = false;
-  presentCard.classList.remove('present-open');
+// 🌹 Nova animação da rosa
+function mostrarRosa(){
+  const section = document.getElementById('rosaSection');
+  section.classList.add('rosa-revelada');
 }
 
 </script>
 
 </body>
 </html>
+
 
 
 
