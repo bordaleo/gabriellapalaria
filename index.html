@@ -428,67 +428,67 @@
   align-items: center;
   justify-content: center;
 }
-/* 🌹 Rosa Revelada 🌹 */
-.rosa-container{
-  width:min(360px,90vw);
-  margin:40px auto;
-  position:relative;
-  text-align:center;
-  cursor:pointer;
+/* === 🌹 Seção da Rosa === */
+.rosa-container {
+  position: relative;
+  height: 100vh;
+  background: linear-gradient(180deg, #fff0f6, #ffe6f0);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  overflow: hidden;
 }
-.cobertura{
-  position:absolute;
-  top:0;left:50%;
-  transform:translateX(-50%);
-  width:100%;
-  height:220px;
-  background:linear-gradient(180deg,#ffe0f0,#ffd1ea);
-  border-radius:20px;
-  box-shadow:0 10px 25px rgba(255,105,180,0.3);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  transition:transform 1s ease,opacity .6s ease;
-  z-index:2;
+
+.cobertura {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, #ffcce0, #ffb3cc);
+  transition: transform 1.2s ease;
+  z-index: 3;
+  border-bottom-left-radius: 200% 30%;
+  border-bottom-right-radius: 200% 30%;
 }
-.cobertura p{
-  font-weight:700;
-  color:#6b2d5b;
-  font-size:1.1rem;
+
+.rosa-flor {
+  width: 150px;
+  height: 150px;
+  background-image: url('https://cdn-icons-png.flaticon.com/512/7662/7662669.png');
+  background-size: cover;
+  filter: brightness(1.3) drop-shadow(0 0 15px rgba(255,255,255,0.8));
+  cursor: pointer;
+  z-index: 2;
+  transform: scale(0);
+  opacity: 0;
+  transition: all 1.2s ease;
 }
-.rosa{
-  width:100px;
-  height:150px;
-  margin-top:40px;
-  opacity:0;
-  transform:translateY(60px) scale(0.9);
-  transition:transform 1s cubic-bezier(.2,.8,.2,1),opacity .8s ease;
+
+.rosa-revelada .cobertura {
+  transform: translateY(-110%);
 }
-.rosa-revelada .rosa{
-  opacity:1;
-  transform:translateY(0) scale(1);
+
+.rosa-revelada .rosa-flor {
+  transform: scale(1);
+  opacity: 1;
 }
-.rosa-revelada .cobertura{
-  transform:translateY(-120%);
-  opacity:0;
-  pointer-events:none;
+
+.mensagemRosa {
+  margin-top: 20px;
+  font-size: 1.4rem;
+  color: #aa3366;
+  font-weight: bold;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 1s ease;
+  z-index: 1;
 }
-.rosa-msg{
-  opacity:0;
-  transform:translateY(20px);
-  transition:all .8s ease;
-  text-align:center;
-  margin-top:20px;
-  font-weight:700;
-  color:#6b2d5b;
-}
-.rosa-revelada .rosa-msg{
-  opacity:1;
-  transform:translateY(0);
-}
-.infinity{
-  font-size:1.4rem;
-  color:#ff4081;
+
+.rosa-revelada .mensagemRosa {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 </style>
@@ -917,17 +917,11 @@
 <section id="rosaSection" style="display:none;">
   <h2>🌹 Um Presente Especial 🌹</h2>
 
-  <div class="rosa-container" onclick="mostrarRosa()">
-    <div class="cobertura" id="cobertura">
-    </div>
-    <svg class="rosa" id="rosaSVG" viewBox="0 0 64 92" xmlns="http://www.w3.org/2000/svg">
-      <path d="M34 62 C34 50,36 40,36 30" stroke="#2a7a3b" stroke-width="4" stroke-linecap="round" fill="none"/>
-      <path d="M36 54 C46 58,54 54,50 48 C40 42,36 46,36 54" fill="#2a7a3b"/>
-      <path d="M32 54 C22 58,14 54,18 48 C28 42,32 46,32 54" fill="#2a7a3b"/>
-      <path d="M32 26 C22 18,18 8,28 6 C38 4,44 12,44 22 C44 34,36 36,32 26" fill="#ff6cab"/>
-      <path d="M32 20 C28 14,20 12,18 20 C16 28,26 32,32 28 C40 22,36 20,32 20" fill="#ff9cc5"/>
-    </svg>
-  </div>
+<div class="rosa-container">
+  <div class="cobertura" id="cobertura"></div>
+  <div class="rosa-flor" id="rosaFlor" onclick="toggleRosa()"></div>
+  <p class="mensagemRosa">🌹 Um presente especial pra você 🌹</p>
+</div>
 
   <div class="rosa-msg" id="rosaMsg">
     <p>Feliz <strong>1</strong> / <span class="infinity">∞</span> 💖</p>
@@ -1240,16 +1234,35 @@ window.addEventListener("load", () => {
   }
 });
 
-// 🌹 Nova animação da rosa
-function mostrarRosa(){
-  const section = document.getElementById('rosaSection');
-  section.classList.add('rosa-revelada');
+// 🌹 Controle da Rosa
+let rosaAberta = false;
+const rosaSection = document.getElementById('rosaSection');
+const rosaFlor = document.getElementById('rosaFlor');
+const cobertura = document.getElementById('cobertura');
+
+function toggleRosa() {
+  rosaAberta = !rosaAberta;
+  if (rosaAberta) {
+    rosaSection.classList.add('rosa-revelada');
+  } else {
+    rosaSection.classList.remove('rosa-revelada');
+  }
 }
+
+// Garante que ao sair da seção e voltar, a rosa volte fechada
+window.addEventListener('hashchange', () => {
+  if (!location.hash.includes('rosaSection')) {
+    rosaAberta = false;
+    rosaSection.classList.remove('rosa-revelada');
+  }
+});
+
 
 </script>
 
 </body>
 </html>
+
 
 
 
